@@ -11,7 +11,15 @@ Sibling of `wpr-budget` ("Follow the Money", Marathon County). Kept as its own r
 ## Status (Oct. 2, 2026)
 
 - **Done:** `extract_budget.py` and a validated `public/budget.json`, built from the mayor's proposed budget as published in the 284-page Finance Committee packet.
-- **Next:** build the frontend to the spec under "v1 build spec" and deploy it. Target: live before the Oct. 6 meeting.
+- **Done:** v1 frontend, all ten items of the build spec including staffing. Every acceptance value checked on the rendered page; no horizontal scroll at 360px with all 41 drill-downs open. Deploys to `https://rowanflynnpilot.github.io/wpr-city-budget/` on push to `main`.
+- **Decisions made in the build:**
+  - Masthead is the Follow the Money flag (seal + wordmark, tagline, dateline, thick-over-thin slate rule); the tool title sits in a `#2B655D` banner. `#3A867C` is used for fills only; on cream it is 3.85:1, so teal text uses `#2B655D`.
+  - Chart palette (validated with the dataviz checker on `#F6F2E9`): teal general fund, `#2E5C9A` debt, `#C9922E` tax increment, `#77706A` all other funds. Every chart has a legend and a table of the same figures.
+  - Changes are shown neutrally (glyph and sign, no red/green).
+  - Rule 10: the page shows the $300,000 gap as "planned spending exceeds revenue" with no explanation, pending confirmation from the city.
+  - The city link goes to its "Annual Financial and Budget Reports" page (supplied by Rowan), not to a specific PDF.
+  - Cloudflare Web Analytics uses the shared rowanflynnpilot.github.io token, as in `wpr-budget`.
+- **Next:** an OG card (`public/og-card.png`, generated per the wpr-brand skill); entries in `public/updates.json` as the committee and council amend the budget.
 
 ## Stack and pattern
 
