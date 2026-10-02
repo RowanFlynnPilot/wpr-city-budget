@@ -11,8 +11,7 @@ Sibling of `wpr-budget` ("Follow the Money", Marathon County). Kept as its own r
 ## Status (Oct. 2, 2026)
 
 - **Done:** `extract_budget.py` and a validated `public/budget.json`, built from the mayor's proposed budget as published in the 284-page Finance Committee packet.
-- **Not built:** the React/Vite frontend, the Pages deploy workflow, the WordPress embed.
-- **Undecided:** whether v1 includes a fee-change list and a ten-year spending history (see "Ideas not built").
+- **Next:** build the frontend to the spec under "v1 build spec" and deploy it. Target: live before the Oct. 6 meeting.
 
 ## Stack and pattern
 
@@ -73,14 +72,66 @@ Unit rows carry seven columns: `prior_actual`, `current_adopted`, `current_modif
 9. **Staffing in 2017 is not comparable.** It is the only year that counts the 11 council members.
 10. **General fund spending exceeds revenue by exactly $300,000.** This matches the vacancy allowance described in the overview, but the book does not say so. Unconfirmed.
 
-## Planned v1 sections
+## v1 build spec
 
-1. "Your city tax bill" calculator
-2. Where the levy goes, with the 2018–2027 history by fund
-3. General fund: where it comes from, where it goes
-4. Department drill-down: request, recommended, proposed
-5. Debt
-6. Capital projects, including the deferred list
+Working title: **Follow the Money: Wausau's 2027 budget** (Shereen's call). Every screen carries a status line: "Mayor's proposed budget. Not yet adopted."
+
+Build in this order. If the session runs short, the top of the list ships.
+
+1. **Scaffold.** React + Vite. If `..\wpr-budget` exists, read it first and mirror its conventions: `vite.config.js`, deploy workflow, iframe sizing, chart approach, file layout. Load `budget.json` at runtime from `import.meta.env.BASE_URL`; if the fetch fails or a top-level key is missing, show an error state and throw. No numbers hard-coded in components: every figure on screen comes from `budget.json`.
+2. **Your city tax bill** (hero). Input: assessed value, default $200,000, labeled as an example. Output: the 2027 city tax, the 2026 city tax, and the difference, from `tax_rate.rate_per_1000`. Below it, the bill split into slices: each fund in `levy_by_fund.funds` plus tax increment, as a share of `levy_by_fund.total` for the budget year. Hide zero slices. Use the labels under "Reader-facing labels".
+3. **Where the levy goes over time.** `levy_by_fund` 2018–2027: total levy by year with year-over-year change, and the split by fund.
+4. **General fund.** Revenues from `general_fund.revenues`; spending from `units` where `fund_group` is `General Fund`, largest first. Handle Other General Government per rule 6.
+5. **Department and fund drill-down.** All 41 `units`, grouped by `fund_group`, general fund first. Each shows current-year adopted, requested, and proposed totals, the change from request, and its expense and revenue categories. Include a "see the city's page" reference using `page`.
+6. **Capital projects.** Funded list by category and funding sources from `capital_projects`; then the deferred list from `deferred_projects`. Show a note under the infrastructure list from `source_discrepancies`: the city's printed total is $1,830,000 more than the projects it lists.
+7. **Debt.** `debt.outstanding` split into taxpayer-backed and ratepayer-backed, the legal limit from `debt.limit`, and the repayment schedule from `debt.go_schedule`.
+8. **Staffing** (if time allows). `staffing` by department, with the 2017 caveat.
+9. **Footer.** Source, method and caveats in plain language (rules 2, 3 and 5), plus "Corrections: editor@wausaupilotandreview.com". Link to the city's budget document only when Rowan supplies the URL; do not guess one.
+10. **Updates log.** `public/updates.json`, an array of `{date, body, summary, url}` edited by hand as the committee and council amend the budget. Ship it empty; render the section only when it has entries. Last year the Finance Committee changed the budget by motion across several meetings, so expect amendments without a new PDF.
+
+Layout: single column, mobile first, usable at 360px wide with no horizontal scroll, inside a WordPress iframe. Tables that cannot fit scroll inside their own container.
+
+## Reader-facing labels
+
+For the bill and levy slices. Keys are `levy_by_fund.funds[].name`.
+
+| Source name | Label | One-line description |
+| --- | --- | --- |
+| General Fund | Day-to-day services | Police, fire, streets, parks and city hall |
+| Debt Service Fund | Debt payments | Principal and interest on money the city has borrowed |
+| (tax increment) | Tax increment districts | Taxes on new development in the city's TIF districts, set aside for those districts' costs |
+| MetroRide Fund | Metro Ride | The city bus system |
+| Recycling Fund | Recycling | Curbside recycling |
+| Central Equipment Capital Fund | Equipment and small facility work | Police cameras, radios and vests; computers and phones; small building repairs |
+| Community Development | Community development | Planning, economic development and housing programs |
+| Capital Projects Fund | Streets and construction | The tax-funded share of street, sidewalk and building projects |
+| Wausau Downtown Airport Fund | Downtown airport | Wausau Downtown Airport operations |
+| Parking Fund | Parking | City ramps and lots |
+
+## Acceptance values
+
+Check the built page against these. All come from `budget.json`.
+
+- Total levy: $40,628,845, up $2,573,037 (6.76%) from $38,055,808
+- Rate per $1,000: $9.2404, up from $8.7418
+- $200,000 home: $1,848.08 in 2027, $1,748.36 in 2026, difference $99.72
+- Bill slices at $200,000 (rounded to cents they sum to the bill within a few cents): day-to-day services $1,195.03 (64.7%), debt payments $265.65 (14.4%), tax increment districts $154.18 (8.3%), Metro Ride $66.05 (3.6%), recycling $48.94, equipment $38.13, community development $31.13, streets and construction $22.65, airport $15.61, parking $10.69
+- General fund: spending $49,616,051, revenue $49,316,051, property tax $26,272,041
+- Police: proposed $14,784,741, requested $15,033,320, change from request -$248,579. Fire: $12,133,645. Public Works: $11,462,333
+- 41 units; their proposed spending sums to $158,432,413
+- Capital projects $19,283,371; deferred projects $9,095,154
+- General obligation debt: $75,858,460 drawn, $78,201,125 counted against a $231,283,255 limit (33.81%); 2027 payment $14,378,025; all city debt $215,144,142
+- Staffing: 355.20 positions in 2027, 354.20 in 2026
+
+## Definition of done
+
+1. `npm run build` passes and every acceptance value above appears correctly on the page.
+2. No horizontal scroll at 360px.
+3. `.github/workflows/deploy.yml` deploys to GitHub Pages on push to `main`; the page is live at `https://rowanflynnpilot.github.io/wpr-city-budget/`. Pages needs the repo to be public. Enable it once with `gh api repos/RowanFlynnPilot/wpr-city-budget/pages -X POST -f build_type=workflow`.
+4. README has the WordPress iframe snippet.
+5. This file's Status section is updated, and work is committed and pushed after each section.
+
+Do not edit `budget.json` by hand and do not change `extract_budget.py` to make the frontend easier. If the data looks wrong, stop and say so.
 
 ## Source document quirks
 
