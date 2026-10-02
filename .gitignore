@@ -1,0 +1,9 @@
+# The source budget PDF stays local (18 MB). Keep it here as 2027-proposed-budget.pdf.
+*.pdf
+
+__pycache__/
+node_modules/
+dist/
+*.local
+.vite/
+.DS_Store

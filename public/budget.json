@@ -1,0 +1,5708 @@
+{
+  "meta": {
+    "entity": "City of Wausau",
+    "stage": "proposed",
+    "fiscal_year": 2027,
+    "printed_page_offset": 1,
+    "years": {
+      "prior": 2025,
+      "current": 2026,
+      "budget": 2027
+    },
+    "pages": 284
+  },
+  "tax_rate": {
+    "page": 16,
+    "levy": {
+      "budget_year": 40628845,
+      "current_year": 38055808,
+      "change": 2573037
+    },
+    "assessed_valuation": {
+      "budget_year": 4396847847,
+      "current_year": 4353314700,
+      "change": 43533147
+    },
+    "rate_per_1000": {
+      "budget_year": 9.2404,
+      "current_year": 8.7418,
+      "change": 0.4986
+    },
+    "assessed_valuation_is_estimate": true
+  },
+  "valuation": {
+    "page": 15,
+    "history": [
+      {
+        "year": 2017,
+        "equalized": 2608454600,
+        "assessed": 2696195000
+      },
+      {
+        "year": 2018,
+        "equalized": 2764682800,
+        "assessed": 2716638000
+      },
+      {
+        "year": 2019,
+        "equalized": 2896505400,
+        "assessed": 2712932900
+      },
+      {
+        "year": 2020,
+        "equalized": 3075863100,
+        "assessed": 2817661200
+      },
+      {
+        "year": 2021,
+        "equalized": 3150497500,
+        "assessed": 3345281800
+      },
+      {
+        "year": 2022,
+        "equalized": 3265016200,
+        "assessed": 3224073900
+      },
+      {
+        "year": 2023,
+        "equalized": 3680737900,
+        "assessed": 3264070400
+      },
+      {
+        "year": 2024,
+        "equalized": 4030170800,
+        "assessed": 3361549800
+      },
+      {
+        "year": 2025,
+        "equalized": 4387427300,
+        "assessed": 4295009000
+      },
+      {
+        "year": 2026,
+        "equalized": 4569050900,
+        "assessed": 4353314700
+      },
+      {
+        "year": 2027,
+        "equalized": 4625665100,
+        "assessed": 4396847847
+      }
+    ]
+  },
+  "levy_limit": {
+    "page": 16,
+    "history": [
+      {
+        "budget_year": 2027,
+        "allowable_levy": 32125732,
+        "actual_levy": 37239240,
+        "debt_service_exception": 5113508,
+        "under_utilized": 0
+      },
+      {
+        "budget_year": 2026,
+        "allowable_levy": 29485170,
+        "actual_levy": 34313205,
+        "debt_service_exception": 4828035,
+        "under_utilized": 0
+      },
+      {
+        "budget_year": 2025,
+        "allowable_levy": 28096686,
+        "actual_levy": 32277020,
+        "debt_service_exception": 4180334,
+        "under_utilized": 0
+      },
+      {
+        "budget_year": 2024,
+        "allowable_levy": 28041703,
+        "actual_levy": 31002099,
+        "debt_service_exception": 2960396,
+        "under_utilized": 0
+      },
+      {
+        "budget_year": 2023,
+        "allowable_levy": 26867396,
+        "actual_levy": 29980918,
+        "debt_service_exception": 3113522,
+        "under_utilized": 0
+      },
+      {
+        "budget_year": 2022,
+        "allowable_levy": 26275063,
+        "actual_levy": 28556943,
+        "debt_service_exception": 2281880,
+        "under_utilized": 0
+      },
+      {
+        "budget_year": 2021,
+        "allowable_levy": 25666520,
+        "actual_levy": 27436246,
+        "debt_service_exception": 1769726,
+        "under_utilized": 0
+      },
+      {
+        "budget_year": 2020,
+        "allowable_levy": 24590165,
+        "actual_levy": 26096694,
+        "debt_service_exception": 1506529,
+        "under_utilized": 0
+      },
+      {
+        "budget_year": 2019,
+        "allowable_levy": 23496270,
+        "actual_levy": 24865156,
+        "debt_service_exception": 1368886,
+        "under_utilized": 0
+      },
+      {
+        "budget_year": 2018,
+        "allowable_levy": 23280657,
+        "actual_levy": 24462366,
+        "debt_service_exception": 1181709,
+        "under_utilized": 0
+      }
+    ]
+  },
+  "levy_by_fund": {
+    "page": 43,
+    "years": [
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025,
+      2026,
+      2027
+    ],
+    "funds": [
+      {
+        "name": "General Fund",
+        "unit": null,
+        "values": [
+          17863207,
+          18232895,
+          18863394,
+          20185188,
+          21167861,
+          22220541,
+          22644001,
+          23414717,
+          24012338,
+          26272041
+        ]
+      },
+      {
+        "name": "Community Development",
+        "unit": "Community Development Fund",
+        "values": [
+          210187,
+          215085,
+          239232,
+          264232,
+          279078,
+          325000,
+          441673,
+          452888,
+          702888,
+          684443
+        ]
+      },
+      {
+        "name": "Recycling Fund",
+        "unit": "Recycling Fund",
+        "values": [
+          517451,
+          562744,
+          564007,
+          586910,
+          630160,
+          664868,
+          704441,
+          780815,
+          968788,
+          1076015
+        ]
+      },
+      {
+        "name": "Debt Service Fund",
+        "unit": "Debt Service Fund",
+        "values": [
+          4123000,
+          4123000,
+          4123000,
+          4123000,
+          4123000,
+          4198000,
+          4398000,
+          4627337,
+          5609973,
+          5840224
+        ]
+      },
+      {
+        "name": "Capital Projects Fund",
+        "unit": "Capital Projects Fund",
+        "values": [
+          498890,
+          498890,
+          446865,
+          493699,
+          994708,
+          495000,
+          505709,
+          517427,
+          497902,
+          497902
+        ]
+      },
+      {
+        "name": "Central Equipment Capital Fund",
+        "unit": "Central Capital Purchasing Fund",
+        "values": [
+          295050,
+          406482,
+          475000,
+          552404,
+          597054,
+          614554,
+          714554,
+          806636,
+          789236,
+          838236
+        ]
+      },
+      {
+        "name": "Animal Control",
+        "unit": "Animal Control Fund",
+        "values": [
+          50676,
+          40747,
+          40747,
+          45247,
+          59693,
+          59693,
+          59693,
+          45348,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "MetroRide Fund",
+        "unit": "Metro Ride",
+        "values": [
+          809906,
+          830413,
+          1114341,
+          889892,
+          388883,
+          889892,
+          976589,
+          1110590,
+          1110590,
+          1452036
+        ]
+      },
+      {
+        "name": "Parking Fund",
+        "unit": "Parking Fund",
+        "values": [
+          0,
+          50000,
+          105108,
+          150000,
+          156287,
+          297034,
+          297000,
+          188572,
+          193988,
+          235107
+        ]
+      },
+      {
+        "name": "Wausau Downtown Airport Fund",
+        "unit": "Wausau Downtown Airport",
+        "values": [
+          94000,
+          101000,
+          125000,
+          145674,
+          160219,
+          216336,
+          260439,
+          332690,
+          341000,
+          343236
+        ]
+      }
+    ],
+    "subtotal": [
+      24462367,
+      25061256,
+      26096694,
+      27436246,
+      28556943,
+      29980918,
+      31002099,
+      32277020,
+      34226703,
+      37239240
+    ],
+    "tax_increment": [
+      2495739,
+      2794541,
+      3449306,
+      3144748,
+      4329448,
+      4629792,
+      5507367,
+      5136020,
+      3829105,
+      3389605
+    ],
+    "total": [
+      26958106,
+      27855797,
+      29546000,
+      30580994,
+      32886391,
+      34610710,
+      36509466,
+      37413040,
+      38055808,
+      40628845
+    ]
+  },
+  "general_fund": {
+    "page": 72,
+    "total_expenditures": {
+      "current_adopted": 48014200,
+      "current_modified": 48014200,
+      "current_estimated": 47078352,
+      "budget": 49616051,
+      "change": 1601851,
+      "change_pct": 3.34
+    },
+    "revenues": [
+      {
+        "name": "General Property Taxes",
+        "current_adopted": 24012338,
+        "current_modified": 24012338,
+        "current_estimated": 24012338,
+        "budget": 26272041,
+        "change": 2259703,
+        "change_pct": 9.41
+      },
+      {
+        "name": "Other Taxes",
+        "current_adopted": 260745,
+        "current_modified": 260745,
+        "current_estimated": 314612,
+        "budget": 291745,
+        "change": 31000,
+        "change_pct": 11.89
+      },
+      {
+        "name": "Intergovernmental Grants and Aids",
+        "current_adopted": 12707838,
+        "current_modified": 12707838,
+        "current_estimated": 13497632,
+        "budget": 12479520,
+        "change": -228318,
+        "change_pct": -1.8
+      },
+      {
+        "name": "Licenses and Permits",
+        "current_adopted": 996680,
+        "current_modified": 996680,
+        "current_estimated": 1252524,
+        "budget": 1070071,
+        "change": 73391,
+        "change_pct": 7.36
+      },
+      {
+        "name": "Fines and Forfeitures",
+        "current_adopted": 296000,
+        "current_modified": 296000,
+        "current_estimated": 307127,
+        "budget": 299000,
+        "change": 3000,
+        "change_pct": 1.01
+      },
+      {
+        "name": "Public Charges for Services",
+        "current_adopted": 3974066,
+        "current_modified": 3974066,
+        "current_estimated": 3762852,
+        "budget": 3981807,
+        "change": 7741,
+        "change_pct": 0.19
+      },
+      {
+        "name": "Intergovernmental Charges for Services",
+        "current_adopted": 1515279,
+        "current_modified": 1515279,
+        "current_estimated": 1725539,
+        "budget": 1526762,
+        "change": 11483,
+        "change_pct": 0.76
+      },
+      {
+        "name": "Miscellaneous Revenue",
+        "current_adopted": 1278915,
+        "current_modified": 1278915,
+        "current_estimated": 1671633,
+        "budget": 1173750,
+        "change": -105165,
+        "change_pct": -8.22
+      },
+      {
+        "name": "Other Financing Sources",
+        "current_adopted": 2672336,
+        "current_modified": 2672336,
+        "current_estimated": 2409263,
+        "budget": 2221355,
+        "change": -450981,
+        "change_pct": -16.88
+      }
+    ],
+    "total_revenues": {
+      "current_adopted": 47714197,
+      "current_modified": 47714197,
+      "current_estimated": 48953520,
+      "budget": 49316051,
+      "change": 1601854,
+      "change_pct": 3.36
+    }
+  },
+  "all_funds": {
+    "revenues_by_category": {
+      "page": 31,
+      "items": [
+        {
+          "name": "General Property Taxes",
+          "budget": 37239240,
+          "current_budget": 34226703
+        },
+        {
+          "name": "All Other Taxes",
+          "budget": 8820694,
+          "current_budget": 10097021
+        },
+        {
+          "name": "Intergovernmental Revenues",
+          "budget": 27096371,
+          "current_budget": 33568533
+        },
+        {
+          "name": "Licenses & Permits",
+          "budget": 1198672,
+          "current_budget": 1125281
+        },
+        {
+          "name": "Fines & Forfeitures",
+          "budget": 444200,
+          "current_budget": 484200
+        },
+        {
+          "name": "Public Charges for Services",
+          "budget": 36293672,
+          "current_budget": 36147161
+        },
+        {
+          "name": "Intergovernmental Charges for Services",
+          "budget": 9424462,
+          "current_budget": 7495851
+        },
+        {
+          "name": "Special Assessments",
+          "budget": 268000,
+          "current_budget": 210000
+        },
+        {
+          "name": "Miscellaneous Revenues",
+          "budget": 2890691,
+          "current_budget": 2844588
+        },
+        {
+          "name": "Other Financing Sources",
+          "budget": 34791724,
+          "current_budget": 45534516
+        }
+      ],
+      "total": {
+        "budget": 158467726,
+        "current_budget": 171733854
+      }
+    },
+    "expenditures_by_category": {
+      "page": 32,
+      "items": [
+        {
+          "name": "Personal Services",
+          "budget": 44485297,
+          "current_budget": 42313258
+        },
+        {
+          "name": "Contractual Services",
+          "budget": 20720271,
+          "current_budget": 21006812
+        },
+        {
+          "name": "Supplies and Expense",
+          "budget": 5142197,
+          "current_budget": 5348032
+        },
+        {
+          "name": "Building Materials",
+          "budget": 3477400,
+          "current_budget": 3679760
+        },
+        {
+          "name": "Fixed Charges",
+          "budget": 9674029,
+          "current_budget": 9393054
+        },
+        {
+          "name": "Debt Service",
+          "budget": 23295913,
+          "current_budget": 24237319
+        },
+        {
+          "name": "Grants, Contributions, Indemnities and Other",
+          "budget": 15483476,
+          "current_budget": 18251352
+        },
+        {
+          "name": "Capital Outlay",
+          "budget": 26288341,
+          "current_budget": 33691243
+        },
+        {
+          "name": "Other Financing Uses",
+          "budget": 9865489,
+          "current_budget": 13405803
+        }
+      ],
+      "total": {
+        "budget": 158432413,
+        "current_budget": 171326633
+      }
+    }
+  },
+  "units": [
+    {
+      "name": "Common Council",
+      "fund_group": "General Fund",
+      "page": 74,
+      "expenses": [
+        {
+          "category": "Personal Services",
+          "prior_actual": 62984,
+          "current_adopted": 63838,
+          "current_modified": 63838,
+          "current_estimated": 63334,
+          "requested": 63452,
+          "recommended": 63452,
+          "proposed": 63452
+        },
+        {
+          "category": "Contractual Services",
+          "prior_actual": 4101,
+          "current_adopted": 4980,
+          "current_modified": 4980,
+          "current_estimated": 2075,
+          "requested": 4980,
+          "recommended": 4700,
+          "proposed": 4700
+        },
+        {
+          "category": "Supplies and Expense",
+          "prior_actual": 7950,
+          "current_adopted": 12800,
+          "current_modified": 12800,
+          "current_estimated": 9150,
+          "requested": 12800,
+          "recommended": 11450,
+          "proposed": 11450
+        },
+        {
+          "category": "Fixed Charges",
+          "prior_actual": 2974,
+          "current_adopted": 3310,
+          "current_modified": 3310,
+          "current_estimated": 1379,
+          "requested": 3310,
+          "recommended": 2500,
+          "proposed": 2500
+        }
+      ],
+      "total_expenses": {
+        "prior_actual": 78009,
+        "current_adopted": 84928,
+        "current_modified": 84928,
+        "current_estimated": 75938,
+        "requested": 84542,
+        "recommended": 82102,
+        "proposed": 82102
+      },
+      "revenues": [],
+      "total_revenue": null
+    },
+    {
+      "name": "Mayor's Office",
+      "fund_group": "General Fund",
+      "page": 79,
+      "expenses": [
+        {
+          "category": "Personal Services",
+          "prior_actual": 186477,
+          "current_adopted": 201207,
+          "current_modified": 201207,
+          "current_estimated": 194228,
+          "requested": 236215,
+          "recommended": 236215,
+          "proposed": 236215
+        },
+        {
+          "category": "Contractual Services",
+          "prior_actual": 5134,
+          "current_adopted": 1950,
+          "current_modified": 1950,
+          "current_estimated": 5310,
+          "requested": 1950,
+          "recommended": 1950,
+          "proposed": 1950
+        },
+        {
+          "category": "Supplies and Expense",
+          "prior_actual": 2157,
+          "current_adopted": 7120,
+          "current_modified": 7120,
+          "current_estimated": 4018,
+          "requested": 7120,
+          "recommended": 7120,
+          "proposed": 7120
+        },
+        {
+          "category": "Fixed Charges",
+          "prior_actual": 61,
+          "current_adopted": 3110,
+          "current_modified": 3110,
+          "current_estimated": 1295,
+          "requested": 3110,
+          "recommended": 3110,
+          "proposed": 3110
+        },
+        {
+          "category": "Grants, Contributions, Indemnities and Other",
+          "prior_actual": 0,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 228,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        }
+      ],
+      "total_expenses": {
+        "prior_actual": 193829,
+        "current_adopted": 213387,
+        "current_modified": 213387,
+        "current_estimated": 205079,
+        "requested": 248395,
+        "recommended": 248395,
+        "proposed": 248395
+      },
+      "revenues": [],
+      "total_revenue": null
+    },
+    {
+      "name": "Customer Service",
+      "fund_group": "General Fund",
+      "page": 82,
+      "expenses": [
+        {
+          "category": "Personal Services",
+          "prior_actual": 965212,
+          "current_adopted": 1087756,
+          "current_modified": 1087756,
+          "current_estimated": 1030631,
+          "requested": 1081081,
+          "recommended": 1081081,
+          "proposed": 1081081
+        },
+        {
+          "category": "Contractual Services",
+          "prior_actual": 134052,
+          "current_adopted": 131900,
+          "current_modified": 131900,
+          "current_estimated": 119895,
+          "requested": 137245,
+          "recommended": 137245,
+          "proposed": 137245
+        },
+        {
+          "category": "Supplies and Expense",
+          "prior_actual": 124897,
+          "current_adopted": 137895,
+          "current_modified": 137895,
+          "current_estimated": 125310,
+          "requested": 140320,
+          "recommended": 140320,
+          "proposed": 140320
+        },
+        {
+          "category": "Fixed Charges",
+          "prior_actual": 21203,
+          "current_adopted": 17975,
+          "current_modified": 17975,
+          "current_estimated": 3582,
+          "requested": 5625,
+          "recommended": 5625,
+          "proposed": 5625
+        },
+        {
+          "category": "Grants, Contributions, Indemnities and Other",
+          "prior_actual": 45,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 0,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Capital Outlay",
+          "prior_actual": 821,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 0,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        }
+      ],
+      "total_expenses": {
+        "prior_actual": 1246230,
+        "current_adopted": 1375526,
+        "current_modified": 1375526,
+        "current_estimated": 1279418,
+        "requested": 1364271,
+        "recommended": 1364271,
+        "proposed": 1364271
+      },
+      "revenues": [
+        {
+          "category": "Licenses and Permits",
+          "prior_actual": 179973,
+          "current_adopted": 186680,
+          "current_modified": 186680,
+          "current_estimated": 197248,
+          "requested": 185460,
+          "recommended": 185460,
+          "proposed": 185460
+        },
+        {
+          "category": "Public Charges for Services",
+          "prior_actual": 66292,
+          "current_adopted": 56485,
+          "current_modified": 56485,
+          "current_estimated": 69970,
+          "requested": 57205,
+          "recommended": 57205,
+          "proposed": 57205
+        },
+        {
+          "category": "Intergovernmental Charges for services",
+          "prior_actual": 6499,
+          "current_adopted": 5200,
+          "current_modified": 5200,
+          "current_estimated": 6167,
+          "requested": 5200,
+          "recommended": 5200,
+          "proposed": 5200
+        },
+        {
+          "category": "Miscellaneous Revenue",
+          "prior_actual": 169,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 31,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        }
+      ],
+      "total_revenue": {
+        "prior_actual": 252933,
+        "current_adopted": 248365,
+        "current_modified": 248365,
+        "current_estimated": 273416,
+        "requested": 247865,
+        "recommended": 247865,
+        "proposed": 247865
+      }
+    },
+    {
+      "name": "City County Information Technology Commission",
+      "fund_group": "General Fund",
+      "page": 86,
+      "expenses": [
+        {
+          "category": "Contractual Services",
+          "prior_actual": 1549001,
+          "current_adopted": 1524680,
+          "current_modified": 1524680,
+          "current_estimated": 1524540,
+          "requested": 1583092,
+          "recommended": 1640663,
+          "proposed": 1640663
+        },
+        {
+          "category": "Supplies and Expense",
+          "prior_actual": 21685,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 139,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        }
+      ],
+      "total_expenses": {
+        "prior_actual": 1570686,
+        "current_adopted": 1524680,
+        "current_modified": 1524680,
+        "current_estimated": 1524679,
+        "requested": 1583092,
+        "recommended": 1640663,
+        "proposed": 1640663
+      },
+      "revenues": [],
+      "total_revenue": null
+    },
+    {
+      "name": "Refuse Collection",
+      "fund_group": "General Fund",
+      "page": 87,
+      "expenses": [
+        {
+          "category": "Contractual Services",
+          "prior_actual": 1047427,
+          "current_adopted": 1305000,
+          "current_modified": 1305000,
+          "current_estimated": 1346506,
+          "requested": 1542000,
+          "recommended": 1533000,
+          "proposed": 1533000
+        },
+        {
+          "category": "Supplies and Expense",
+          "prior_actual": 34,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 0,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        }
+      ],
+      "total_expenses": {
+        "prior_actual": 1047461,
+        "current_adopted": 1305000,
+        "current_modified": 1305000,
+        "current_estimated": 1346506,
+        "requested": 1542000,
+        "recommended": 1533000,
+        "proposed": 1533000
+      },
+      "revenues": [],
+      "total_revenue": null
+    },
+    {
+      "name": "Assessment",
+      "fund_group": "General Fund",
+      "page": 90,
+      "expenses": [
+        {
+          "category": "Personal Services",
+          "prior_actual": 705651,
+          "current_adopted": 881241,
+          "current_modified": 881241,
+          "current_estimated": 813765,
+          "requested": 880236,
+          "recommended": 880236,
+          "proposed": 880236
+        },
+        {
+          "category": "Contractual Services",
+          "prior_actual": 22172,
+          "current_adopted": 19405,
+          "current_modified": 19405,
+          "current_estimated": 22180,
+          "requested": 25075,
+          "recommended": 25075,
+          "proposed": 25075
+        },
+        {
+          "category": "Supplies and Expense",
+          "prior_actual": 15862,
+          "current_adopted": 25780,
+          "current_modified": 25780,
+          "current_estimated": 24159,
+          "requested": 24555,
+          "recommended": 24555,
+          "proposed": 24555
+        },
+        {
+          "category": "Fixed Charges",
+          "prior_actual": 2240,
+          "current_adopted": 2400,
+          "current_modified": 2400,
+          "current_estimated": 1000,
+          "requested": 2400,
+          "recommended": 2400,
+          "proposed": 2400
+        }
+      ],
+      "total_expenses": {
+        "prior_actual": 745925,
+        "current_adopted": 928826,
+        "current_modified": 928826,
+        "current_estimated": 861104,
+        "requested": 932266,
+        "recommended": 932266,
+        "proposed": 932266
+      },
+      "revenues": [
+        {
+          "category": "Intergovernmental Charges for services",
+          "prior_actual": 18900,
+          "current_adopted": 21900,
+          "current_modified": 21900,
+          "current_estimated": 21900,
+          "requested": 21900,
+          "recommended": 21900,
+          "proposed": 21900
+        }
+      ],
+      "total_revenue": {
+        "prior_actual": 18900,
+        "current_adopted": 21900,
+        "current_modified": 21900,
+        "current_estimated": 21900,
+        "requested": 21900,
+        "recommended": 21900,
+        "proposed": 21900
+      }
+    },
+    {
+      "name": "City Attorney",
+      "fund_group": "General Fund",
+      "page": 94,
+      "expenses": [
+        {
+          "category": "Personal Services",
+          "prior_actual": 378287,
+          "current_adopted": 550512,
+          "current_modified": 550512,
+          "current_estimated": 499994,
+          "requested": 556689,
+          "recommended": 556689,
+          "proposed": 556689
+        },
+        {
+          "category": "Contractual Services",
+          "prior_actual": 322483,
+          "current_adopted": 105893,
+          "current_modified": 105893,
+          "current_estimated": 100515,
+          "requested": 75150,
+          "recommended": 75150,
+          "proposed": 75150
+        },
+        {
+          "category": "Supplies and Expense",
+          "prior_actual": 15312,
+          "current_adopted": 23520,
+          "current_modified": 23520,
+          "current_estimated": 22089,
+          "requested": 10355,
+          "recommended": 10355,
+          "proposed": 10355
+        },
+        {
+          "category": "Fixed Charges",
+          "prior_actual": 542,
+          "current_adopted": 750,
+          "current_modified": 750,
+          "current_estimated": 363,
+          "requested": 750,
+          "recommended": 750,
+          "proposed": 750
+        }
+      ],
+      "total_expenses": {
+        "prior_actual": 716624,
+        "current_adopted": 680675,
+        "current_modified": 680675,
+        "current_estimated": 622961,
+        "requested": 642944,
+        "recommended": 642944,
+        "proposed": 642944
+      },
+      "revenues": [
+        {
+          "category": "Miscellaneous Revenue",
+          "prior_actual": 4,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 0,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        }
+      ],
+      "total_revenue": {
+        "prior_actual": 4,
+        "current_adopted": 0,
+        "current_modified": 0,
+        "current_estimated": 0,
+        "requested": 0,
+        "recommended": 0,
+        "proposed": 0
+      }
+    },
+    {
+      "name": "Human Resources",
+      "fund_group": "General Fund",
+      "page": 97,
+      "expenses": [
+        {
+          "category": "Personal Services",
+          "prior_actual": 371611,
+          "current_adopted": 429866,
+          "current_modified": 429866,
+          "current_estimated": 353996,
+          "requested": 540080,
+          "recommended": 540080,
+          "proposed": 540080
+        },
+        {
+          "category": "Contractual Services",
+          "prior_actual": 58804,
+          "current_adopted": 97200,
+          "current_modified": 97200,
+          "current_estimated": 42264,
+          "requested": 92700,
+          "recommended": 92700,
+          "proposed": 92700
+        },
+        {
+          "category": "Supplies and Expense",
+          "prior_actual": 10706,
+          "current_adopted": 29000,
+          "current_modified": 29000,
+          "current_estimated": 22801,
+          "requested": 23000,
+          "recommended": 23000,
+          "proposed": 23000
+        },
+        {
+          "category": "Fixed Charges",
+          "prior_actual": 4708,
+          "current_adopted": 5350,
+          "current_modified": 5350,
+          "current_estimated": 2229,
+          "requested": 5350,
+          "recommended": 5350,
+          "proposed": 5350
+        },
+        {
+          "category": "Grants, Contributions, Indemnities and Other",
+          "prior_actual": 234,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 0,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        }
+      ],
+      "total_expenses": {
+        "prior_actual": 446063,
+        "current_adopted": 561416,
+        "current_modified": 561416,
+        "current_estimated": 421290,
+        "requested": 661130,
+        "recommended": 661130,
+        "proposed": 661130
+      },
+      "revenues": [
+        {
+          "category": "Miscellaneous Revenue",
+          "prior_actual": 1245,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 0,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        }
+      ],
+      "total_revenue": {
+        "prior_actual": 1245,
+        "current_adopted": 0,
+        "current_modified": 0,
+        "current_estimated": 0,
+        "requested": 0,
+        "recommended": 0,
+        "proposed": 0
+      }
+    },
+    {
+      "name": "Municipal Court",
+      "fund_group": "General Fund",
+      "page": 99,
+      "expenses": [
+        {
+          "category": "Personal Services",
+          "prior_actual": 129410,
+          "current_adopted": 131144,
+          "current_modified": 131144,
+          "current_estimated": 130758,
+          "requested": 136206,
+          "recommended": 136205,
+          "proposed": 136205
+        },
+        {
+          "category": "Contractual Services",
+          "prior_actual": 5577,
+          "current_adopted": 7650,
+          "current_modified": 7650,
+          "current_estimated": 4559,
+          "requested": 7650,
+          "recommended": 7650,
+          "proposed": 7650
+        },
+        {
+          "category": "Supplies and Expense",
+          "prior_actual": 3643,
+          "current_adopted": 2950,
+          "current_modified": 2950,
+          "current_estimated": 3599,
+          "requested": 2950,
+          "recommended": 2950,
+          "proposed": 2950
+        },
+        {
+          "category": "Fixed Charges",
+          "prior_actual": 288,
+          "current_adopted": 350,
+          "current_modified": 350,
+          "current_estimated": 246,
+          "requested": 350,
+          "recommended": 350,
+          "proposed": 350
+        }
+      ],
+      "total_expenses": {
+        "prior_actual": 138918,
+        "current_adopted": 142094,
+        "current_modified": 142094,
+        "current_estimated": 139162,
+        "requested": 147156,
+        "recommended": 147155,
+        "proposed": 147155
+      },
+      "revenues": [
+        {
+          "category": "Fines, Forfeits and Penalties",
+          "prior_actual": 301862,
+          "current_adopted": 296000,
+          "current_modified": 296000,
+          "current_estimated": 307127,
+          "requested": 299000,
+          "recommended": 299000,
+          "proposed": 299000
+        },
+        {
+          "category": "Public Charges for Services",
+          "prior_actual": 10,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 40,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        }
+      ],
+      "total_revenue": {
+        "prior_actual": 301872,
+        "current_adopted": 296000,
+        "current_modified": 296000,
+        "current_estimated": 307167,
+        "requested": 299000,
+        "recommended": 299000,
+        "proposed": 299000
+      }
+    },
+    {
+      "name": "Other General Government",
+      "fund_group": "General Fund",
+      "page": 100,
+      "expenses": [
+        {
+          "category": "Personal Services",
+          "prior_actual": 290,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 0,
+          "requested": 0,
+          "recommended": 150000,
+          "proposed": 150000
+        },
+        {
+          "category": "Contractual Services",
+          "prior_actual": 70991,
+          "current_adopted": 45150,
+          "current_modified": 45150,
+          "current_estimated": 82788,
+          "requested": 45150,
+          "recommended": 44600,
+          "proposed": 44600
+        },
+        {
+          "category": "Supplies and Expense",
+          "prior_actual": 51793,
+          "current_adopted": 103162,
+          "current_modified": 103162,
+          "current_estimated": 67432,
+          "requested": 103162,
+          "recommended": 101750,
+          "proposed": 101750
+        },
+        {
+          "category": "Fixed Charges",
+          "prior_actual": 1180,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 0,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Grants, Contributions, Indemnities and Other",
+          "prior_actual": 6818,
+          "current_adopted": 4000,
+          "current_modified": 4000,
+          "current_estimated": 2276,
+          "requested": 4000,
+          "recommended": 4000,
+          "proposed": 4000
+        }
+      ],
+      "total_expenses": {
+        "prior_actual": 131072,
+        "current_adopted": 152312,
+        "current_modified": 152312,
+        "current_estimated": 152496,
+        "requested": 152312,
+        "recommended": 300350,
+        "proposed": 300350
+      },
+      "revenues": [
+        {
+          "category": "Taxes",
+          "prior_actual": 23715291,
+          "current_adopted": 24273083,
+          "current_modified": 24273083,
+          "current_estimated": 24326950,
+          "requested": 24304083,
+          "recommended": 26563786,
+          "proposed": 26563786
+        },
+        {
+          "category": "Intergovernmental Revenues",
+          "prior_actual": 8063120,
+          "current_adopted": 8617861,
+          "current_modified": 8617861,
+          "current_estimated": 8619908,
+          "requested": 8812694,
+          "recommended": 8812694,
+          "proposed": 8812694
+        },
+        {
+          "category": "Licenses and Permits",
+          "prior_actual": 283722,
+          "current_adopted": 278000,
+          "current_modified": 278000,
+          "current_estimated": 253147,
+          "requested": 278000,
+          "recommended": 278000,
+          "proposed": 278000
+        },
+        {
+          "category": "Public Charges for Services",
+          "prior_actual": 2217,
+          "current_adopted": 2000,
+          "current_modified": 2000,
+          "current_estimated": 1722,
+          "requested": 2000,
+          "recommended": 2000,
+          "proposed": 2000
+        },
+        {
+          "category": "Intergovernmental Charges for services",
+          "prior_actual": 1192056,
+          "current_adopted": 955000,
+          "current_modified": 955000,
+          "current_estimated": 1208902,
+          "requested": 955000,
+          "recommended": 955000,
+          "proposed": 955000
+        },
+        {
+          "category": "Miscellaneous Revenue",
+          "prior_actual": 2137713,
+          "current_adopted": 1163300,
+          "current_modified": 1163300,
+          "current_estimated": 1400562,
+          "requested": 1163300,
+          "recommended": 1168300,
+          "proposed": 1168300
+        },
+        {
+          "category": "Other Financing Sources",
+          "prior_actual": 0,
+          "current_adopted": 2221355,
+          "current_modified": 2221355,
+          "current_estimated": 2221355,
+          "requested": 2221355,
+          "recommended": 2221355,
+          "proposed": 2221355
+        }
+      ],
+      "total_revenue": {
+        "prior_actual": 35394119,
+        "current_adopted": 37510599,
+        "current_modified": 37510599,
+        "current_estimated": 38032546,
+        "requested": 37736432,
+        "recommended": 40001135,
+        "proposed": 40001135
+      }
+    },
+    {
+      "name": "Police",
+      "fund_group": "General Fund",
+      "page": 106,
+      "expenses": [
+        {
+          "category": "Personal Services",
+          "prior_actual": 11957283,
+          "current_adopted": 12846522,
+          "current_modified": 12846522,
+          "current_estimated": 12535577,
+          "requested": 13341846,
+          "recommended": 13315707,
+          "proposed": 13315707
+        },
+        {
+          "category": "Contractual Services",
+          "prior_actual": 1716900,
+          "current_adopted": 1327271,
+          "current_modified": 1327271,
+          "current_estimated": 1543821,
+          "requested": 1336371,
+          "recommended": 1113931,
+          "proposed": 1113931
+        },
+        {
+          "category": "Supplies and Expense",
+          "prior_actual": 232559,
+          "current_adopted": 218880,
+          "current_modified": 218880,
+          "current_estimated": 183504,
+          "requested": 270480,
+          "recommended": 270480,
+          "proposed": 270480
+        },
+        {
+          "category": "Building Materials",
+          "prior_actual": 264,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 0,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Fixed Charges",
+          "prior_actual": 74258,
+          "current_adopted": 74623,
+          "current_modified": 74623,
+          "current_estimated": 75092,
+          "requested": 74623,
+          "recommended": 74623,
+          "proposed": 74623
+        },
+        {
+          "category": "Grants, Contributions, Indemnities and Other",
+          "prior_actual": 5810,
+          "current_adopted": 10000,
+          "current_modified": 10000,
+          "current_estimated": 5515,
+          "requested": 10000,
+          "recommended": 10000,
+          "proposed": 10000
+        }
+      ],
+      "total_expenses": {
+        "prior_actual": 13987074,
+        "current_adopted": 14477296,
+        "current_modified": 14477296,
+        "current_estimated": 14343509,
+        "requested": 15033320,
+        "recommended": 14784741,
+        "proposed": 14784741
+      },
+      "revenues": [
+        {
+          "category": "Intergovernmental Revenues",
+          "prior_actual": 343756,
+          "current_adopted": 367276,
+          "current_modified": 367276,
+          "current_estimated": 430121,
+          "requested": 214634,
+          "recommended": 214634,
+          "proposed": 214634
+        },
+        {
+          "category": "Public Charges for Services",
+          "prior_actual": 155509,
+          "current_adopted": 145670,
+          "current_modified": 145670,
+          "current_estimated": 149041,
+          "requested": 145850,
+          "recommended": 145850,
+          "proposed": 145850
+        },
+        {
+          "category": "Intergovernmental Charges for services",
+          "prior_actual": 353448,
+          "current_adopted": 437879,
+          "current_modified": 437879,
+          "current_estimated": 395580,
+          "requested": 465000,
+          "recommended": 444685,
+          "proposed": 444685
+        },
+        {
+          "category": "Miscellaneous Revenue",
+          "prior_actual": 240421,
+          "current_adopted": 108065,
+          "current_modified": 108065,
+          "current_estimated": 133996,
+          "requested": 200,
+          "recommended": 200,
+          "proposed": 200
+        },
+        {
+          "category": "Other Financing Sources",
+          "prior_actual": 0,
+          "current_adopted": 86502,
+          "current_modified": 86502,
+          "current_estimated": 36042,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        }
+      ],
+      "total_revenue": {
+        "prior_actual": 1093134,
+        "current_adopted": 1145392,
+        "current_modified": 1145392,
+        "current_estimated": 1144780,
+        "requested": 825684,
+        "recommended": 805369,
+        "proposed": 805369
+      }
+    },
+    {
+      "name": "Fire",
+      "fund_group": "General Fund",
+      "page": 110,
+      "expenses": [
+        {
+          "category": "Personal Services",
+          "prior_actual": 9158380,
+          "current_adopted": 9645532,
+          "current_modified": 9645532,
+          "current_estimated": 9396971,
+          "requested": 10338143,
+          "recommended": 10315645,
+          "proposed": 10315645
+        },
+        {
+          "category": "Contractual Services",
+          "prior_actual": 1961484,
+          "current_adopted": 1435800,
+          "current_modified": 1435800,
+          "current_estimated": 1997936,
+          "requested": 1465000,
+          "recommended": 1465000,
+          "proposed": 1465000
+        },
+        {
+          "category": "Supplies and Expense",
+          "prior_actual": 285833,
+          "current_adopted": 268000,
+          "current_modified": 268000,
+          "current_estimated": 233049,
+          "requested": 289000,
+          "recommended": 289000,
+          "proposed": 289000
+        },
+        {
+          "category": "Building Materials",
+          "prior_actual": 715,
+          "current_adopted": 4000,
+          "current_modified": 4000,
+          "current_estimated": 2807,
+          "requested": 4000,
+          "recommended": 4000,
+          "proposed": 4000
+        },
+        {
+          "category": "Fixed Charges",
+          "prior_actual": 59512,
+          "current_adopted": 60000,
+          "current_modified": 60000,
+          "current_estimated": 61150,
+          "requested": 60000,
+          "recommended": 60000,
+          "proposed": 60000
+        },
+        {
+          "category": "Capital Outlay",
+          "prior_actual": 10674,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 17883,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        }
+      ],
+      "total_expenses": {
+        "prior_actual": 11476598,
+        "current_adopted": 11413332,
+        "current_modified": 11413332,
+        "current_estimated": 11709796,
+        "requested": 12156143,
+        "recommended": 12133645,
+        "proposed": 12133645
+      },
+      "revenues": [
+        {
+          "category": "Intergovernmental Revenues",
+          "prior_actual": 1453061,
+          "current_adopted": 404428,
+          "current_modified": 404428,
+          "current_estimated": 1131085,
+          "requested": 191365,
+          "recommended": 191365,
+          "proposed": 191365
+        },
+        {
+          "category": "Public Charges for Services",
+          "prior_actual": 2991692,
+          "current_adopted": 3240700,
+          "current_modified": 3240700,
+          "current_estimated": 2986698,
+          "requested": 3254700,
+          "recommended": 3254700,
+          "proposed": 3254700
+        },
+        {
+          "category": "Intergovernmental Charges for services",
+          "prior_actual": 77400,
+          "current_adopted": 77300,
+          "current_modified": 77300,
+          "current_estimated": 80645,
+          "requested": 77300,
+          "recommended": 77300,
+          "proposed": 77300
+        },
+        {
+          "category": "Miscellaneous Revenue",
+          "prior_actual": 135,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 120781,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Other Financing Sources",
+          "prior_actual": 0,
+          "current_adopted": 364479,
+          "current_modified": 364479,
+          "current_estimated": 151866,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        }
+      ],
+      "total_revenue": {
+        "prior_actual": 4522288,
+        "current_adopted": 4086907,
+        "current_modified": 4086907,
+        "current_estimated": 4471075,
+        "requested": 3523365,
+        "recommended": 3523365,
+        "proposed": 3523365
+      }
+    },
+    {
+      "name": "Public Works",
+      "fund_group": "General Fund",
+      "page": 117,
+      "expenses": [
+        {
+          "category": "Personal Services",
+          "prior_actual": 5169839,
+          "current_adopted": 5695981,
+          "current_modified": 5695981,
+          "current_estimated": 5194463,
+          "requested": 5777390,
+          "recommended": 5755428,
+          "proposed": 5755428
+        },
+        {
+          "category": "Contractual Services",
+          "prior_actual": 4836436,
+          "current_adopted": 4237170,
+          "current_modified": 4237170,
+          "current_estimated": 4431614,
+          "requested": 4283220,
+          "recommended": 4203220,
+          "proposed": 4203220
+        },
+        {
+          "category": "Supplies and Expense",
+          "prior_actual": 473451,
+          "current_adopted": 424264,
+          "current_modified": 424264,
+          "current_estimated": 428897,
+          "requested": 414769,
+          "recommended": 414769,
+          "proposed": 414769
+        },
+        {
+          "category": "Building Materials",
+          "prior_actual": 1167494,
+          "current_adopted": 948410,
+          "current_modified": 948410,
+          "current_estimated": 913106,
+          "requested": 894700,
+          "recommended": 894700,
+          "proposed": 894700
+        },
+        {
+          "category": "Fixed Charges",
+          "prior_actual": 164241,
+          "current_adopted": 203017,
+          "current_modified": 203017,
+          "current_estimated": 155383,
+          "requested": 189616,
+          "recommended": 189616,
+          "proposed": 189616
+        },
+        {
+          "category": "Capital Outlay",
+          "prior_actual": 8768,
+          "current_adopted": 4600,
+          "current_modified": 4600,
+          "current_estimated": 4392,
+          "requested": 4600,
+          "recommended": 4600,
+          "proposed": 4600
+        }
+      ],
+      "total_expenses": {
+        "prior_actual": 11820229,
+        "current_adopted": 11513442,
+        "current_modified": 11513442,
+        "current_estimated": 11127855,
+        "requested": 11564295,
+        "recommended": 11462333,
+        "proposed": 11462333
+      },
+      "revenues": [
+        {
+          "category": "Intergovernmental Revenues",
+          "prior_actual": 3201316,
+          "current_adopted": 3318273,
+          "current_modified": 3318273,
+          "current_estimated": 3316518,
+          "requested": 3349374,
+          "recommended": 3260827,
+          "proposed": 3260827
+        },
+        {
+          "category": "Licenses and Permits",
+          "prior_actual": 839626,
+          "current_adopted": 532000,
+          "current_modified": 532000,
+          "current_estimated": 802129,
+          "requested": 593370,
+          "recommended": 606611,
+          "proposed": 606611
+        },
+        {
+          "category": "Public Charges for Services",
+          "prior_actual": 190566,
+          "current_adopted": 149200,
+          "current_modified": 149200,
+          "current_estimated": 213257,
+          "requested": 118300,
+          "recommended": 118300,
+          "proposed": 118300
+        },
+        {
+          "category": "Intergovernmental Charges for services",
+          "prior_actual": 79010,
+          "current_adopted": 18000,
+          "current_modified": 18000,
+          "current_estimated": 12345,
+          "requested": 21000,
+          "recommended": 21000,
+          "proposed": 21000
+        },
+        {
+          "category": "Miscellaneous Revenue",
+          "prior_actual": 31761,
+          "current_adopted": 2950,
+          "current_modified": 2950,
+          "current_estimated": 14069,
+          "requested": 2950,
+          "recommended": 2950,
+          "proposed": 2950
+        }
+      ],
+      "total_revenue": {
+        "prior_actual": 4342279,
+        "current_adopted": 4020423,
+        "current_modified": 4020423,
+        "current_estimated": 4358318,
+        "requested": 4084994,
+        "recommended": 4009688,
+        "proposed": 4009688
+      }
+    },
+    {
+      "name": "Parks, Recreation and Forestry",
+      "fund_group": "General Fund",
+      "page": 123,
+      "expenses": [
+        {
+          "category": "Personal Services",
+          "prior_actual": 2396670,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 0,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Contractual Services",
+          "prior_actual": 551688,
+          "current_adopted": 3149214,
+          "current_modified": 3149214,
+          "current_estimated": 2821391,
+          "requested": 3188986,
+          "recommended": 3188986,
+          "proposed": 3188986
+        },
+        {
+          "category": "Supplies and Expense",
+          "prior_actual": 307552,
+          "current_adopted": 332872,
+          "current_modified": 332872,
+          "current_estimated": 307228,
+          "requested": 325965,
+          "recommended": 325965,
+          "proposed": 325965
+        },
+        {
+          "category": "Building Materials",
+          "prior_actual": 68066,
+          "current_adopted": 83700,
+          "current_modified": 83700,
+          "current_estimated": 84032,
+          "requested": 86100,
+          "recommended": 86100,
+          "proposed": 86100
+        },
+        {
+          "category": "Fixed Charges",
+          "prior_actual": 78125,
+          "current_adopted": 75500,
+          "current_modified": 75500,
+          "current_estimated": 55908,
+          "requested": 82005,
+          "recommended": 82005,
+          "proposed": 82005
+        }
+      ],
+      "total_expenses": {
+        "prior_actual": 3402101,
+        "current_adopted": 3641286,
+        "current_modified": 3641286,
+        "current_estimated": 3268559,
+        "requested": 3683056,
+        "recommended": 3683056,
+        "proposed": 3683056
+      },
+      "revenues": [
+        {
+          "category": "Public Charges for Services",
+          "prior_actual": 387600,
+          "current_adopted": 380011,
+          "current_modified": 380011,
+          "current_estimated": 342124,
+          "requested": 403752,
+          "recommended": 403752,
+          "proposed": 403752
+        },
+        {
+          "category": "Intergovernmental Charges for services",
+          "prior_actual": 0,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 0,
+          "requested": 1677,
+          "recommended": 1677,
+          "proposed": 1677
+        },
+        {
+          "category": "Miscellaneous Revenue",
+          "prior_actual": 3963,
+          "current_adopted": 4600,
+          "current_modified": 4600,
+          "current_estimated": 2194,
+          "requested": 2300,
+          "recommended": 2300,
+          "proposed": 2300
+        }
+      ],
+      "total_revenue": {
+        "prior_actual": 391563,
+        "current_adopted": 384611,
+        "current_modified": 384611,
+        "current_estimated": 344318,
+        "requested": 407729,
+        "recommended": 407729,
+        "proposed": 407729
+      }
+    },
+    {
+      "name": "Environmental Clean Up Fund",
+      "fund_group": "Special Revenue Funds",
+      "page": 128,
+      "expenses": [
+        {
+          "category": "Personal Services",
+          "prior_actual": 21336,
+          "current_adopted": 28863,
+          "current_modified": 28863,
+          "current_estimated": 25492,
+          "requested": 31798,
+          "recommended": 31798,
+          "proposed": 31798
+        },
+        {
+          "category": "Contractual Services",
+          "prior_actual": 229581,
+          "current_adopted": 232500,
+          "current_modified": 232500,
+          "current_estimated": 264333,
+          "requested": 232500,
+          "recommended": 192500,
+          "proposed": 192500
+        },
+        {
+          "category": "Supplies and Expense",
+          "prior_actual": 437,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 0,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Fixed Charges",
+          "prior_actual": 121611,
+          "current_adopted": 35000,
+          "current_modified": 35000,
+          "current_estimated": 61917,
+          "requested": 35000,
+          "recommended": 58000,
+          "proposed": 58000
+        }
+      ],
+      "total_expenses": {
+        "prior_actual": 372965,
+        "current_adopted": 296363,
+        "current_modified": 296363,
+        "current_estimated": 351742,
+        "requested": 299298,
+        "recommended": 282298,
+        "proposed": 282298
+      },
+      "revenues": [
+        {
+          "category": "Public Charges for Services",
+          "prior_actual": 105495,
+          "current_adopted": 125000,
+          "current_modified": 125000,
+          "current_estimated": 184049,
+          "requested": 125000,
+          "recommended": 140000,
+          "proposed": 140000
+        }
+      ],
+      "total_revenue": {
+        "prior_actual": 105495,
+        "current_adopted": 125000,
+        "current_modified": 125000,
+        "current_estimated": 184049,
+        "requested": 125000,
+        "recommended": 140000,
+        "proposed": 140000
+      }
+    },
+    {
+      "name": "Community Development Fund",
+      "fund_group": "Special Revenue Funds",
+      "page": 132,
+      "expenses": [
+        {
+          "category": "Personal Services",
+          "prior_actual": 1513104,
+          "current_adopted": 1684255,
+          "current_modified": 1786255,
+          "current_estimated": 1565813,
+          "requested": 1778879,
+          "recommended": 1778879,
+          "proposed": 1778879
+        },
+        {
+          "category": "Contractual Services",
+          "prior_actual": 283298,
+          "current_adopted": 374431,
+          "current_modified": 378431,
+          "current_estimated": 238209,
+          "requested": 374431,
+          "recommended": 337541,
+          "proposed": 337541
+        },
+        {
+          "category": "Supplies and Expense",
+          "prior_actual": 56821,
+          "current_adopted": 27750,
+          "current_modified": 43750,
+          "current_estimated": 27496,
+          "requested": 24800,
+          "recommended": 24800,
+          "proposed": 24800
+        },
+        {
+          "category": "Fixed Charges",
+          "prior_actual": 23369,
+          "current_adopted": 180,
+          "current_modified": 180,
+          "current_estimated": 225,
+          "requested": 180,
+          "recommended": 180,
+          "proposed": 180
+        },
+        {
+          "category": "Grants, Contributions, Indemnities and Other",
+          "prior_actual": 2679731,
+          "current_adopted": 0,
+          "current_modified": 151000,
+          "current_estimated": 619071,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Capital Outlay",
+          "prior_actual": 128145,
+          "current_adopted": 0,
+          "current_modified": 309106,
+          "current_estimated": 0,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Other Financing Uses",
+          "prior_actual": 0,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 17023,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        }
+      ],
+      "total_expenses": {
+        "prior_actual": 4684468,
+        "current_adopted": 2086616,
+        "current_modified": 2668722,
+        "current_estimated": 2467837,
+        "requested": 2178290,
+        "recommended": 2141400,
+        "proposed": 2141400
+      },
+      "revenues": [
+        {
+          "category": "Taxes",
+          "prior_actual": 452888,
+          "current_adopted": 702888,
+          "current_modified": 702888,
+          "current_estimated": 702888,
+          "requested": 710000,
+          "recommended": 684443,
+          "proposed": 684443
+        },
+        {
+          "category": "Intergovernmental Revenues",
+          "prior_actual": 3832989,
+          "current_adopted": 1014827,
+          "current_modified": 1496933,
+          "current_estimated": 1268533,
+          "requested": 1014827,
+          "recommended": 1063408,
+          "proposed": 1063408
+        },
+        {
+          "category": "Public Charges for Services",
+          "prior_actual": 650,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 379,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Miscellaneous Revenue",
+          "prior_actual": 186114,
+          "current_adopted": 284321,
+          "current_modified": 284321,
+          "current_estimated": 308338,
+          "requested": 284321,
+          "recommended": 330543,
+          "proposed": 330543
+        },
+        {
+          "category": "Other Financing Sources",
+          "prior_actual": 62511,
+          "current_adopted": 84735,
+          "current_modified": 84735,
+          "current_estimated": 67376,
+          "requested": 84735,
+          "recommended": 63000,
+          "proposed": 63000
+        }
+      ],
+      "total_revenue": {
+        "prior_actual": 4535152,
+        "current_adopted": 2086771,
+        "current_modified": 2568877,
+        "current_estimated": 2347514,
+        "requested": 2093883,
+        "recommended": 2141394,
+        "proposed": 2141394
+      }
+    },
+    {
+      "name": "Room Tax Fund",
+      "fund_group": "Special Revenue Funds",
+      "page": 135,
+      "expenses": [
+        {
+          "category": "Personal Services",
+          "prior_actual": 1732,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 0,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Contractual Services",
+          "prior_actual": 296,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 0,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Building Materials",
+          "prior_actual": 140,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 0,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Grants, Contributions, Indemnities and Other",
+          "prior_actual": 893134,
+          "current_adopted": 753843,
+          "current_modified": 1027751,
+          "current_estimated": 854479,
+          "requested": 753843,
+          "recommended": 827976,
+          "proposed": 827976
+        },
+        {
+          "category": "Capital Outlay",
+          "prior_actual": 0,
+          "current_adopted": 250000,
+          "current_modified": 257644,
+          "current_estimated": 7640,
+          "requested": 250000,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Other Financing Uses",
+          "prior_actual": 236157,
+          "current_adopted": 236157,
+          "current_modified": 641735,
+          "current_estimated": 236155,
+          "requested": 236157,
+          "recommended": 236157,
+          "proposed": 236157
+        }
+      ],
+      "total_expenses": {
+        "prior_actual": 1131459,
+        "current_adopted": 1240000,
+        "current_modified": 1927130,
+        "current_estimated": 1098274,
+        "requested": 1240000,
+        "recommended": 1064133,
+        "proposed": 1064133
+      },
+      "revenues": [
+        {
+          "category": "Taxes",
+          "prior_actual": 1221399,
+          "current_adopted": 990000,
+          "current_modified": 1040000,
+          "current_estimated": 1159333,
+          "requested": 990000,
+          "recommended": 1064133,
+          "proposed": 1064133
+        }
+      ],
+      "total_revenue": {
+        "prior_actual": 1221399,
+        "current_adopted": 990000,
+        "current_modified": 1040000,
+        "current_estimated": 1159333,
+        "requested": 990000,
+        "recommended": 1064133,
+        "proposed": 1064133
+      }
+    },
+    {
+      "name": "Public Access Cable Fund",
+      "fund_group": "Special Revenue Funds",
+      "page": 138,
+      "expenses": [
+        {
+          "category": "Personal Services",
+          "prior_actual": 22178,
+          "current_adopted": 25039,
+          "current_modified": 25039,
+          "current_estimated": 12511,
+          "requested": 23170,
+          "recommended": 23170,
+          "proposed": 23170
+        },
+        {
+          "category": "Contractual Services",
+          "prior_actual": 11336,
+          "current_adopted": 15563,
+          "current_modified": 15563,
+          "current_estimated": 15462,
+          "requested": 9563,
+          "recommended": 9563,
+          "proposed": 9563
+        },
+        {
+          "category": "Supplies and Expense",
+          "prior_actual": 1124,
+          "current_adopted": 2185,
+          "current_modified": 2185,
+          "current_estimated": 7742,
+          "requested": 2185,
+          "recommended": 2185,
+          "proposed": 2185
+        },
+        {
+          "category": "Fixed Charges",
+          "prior_actual": 13089,
+          "current_adopted": 213,
+          "current_modified": 213,
+          "current_estimated": 89,
+          "requested": 213,
+          "recommended": 213,
+          "proposed": 213
+        },
+        {
+          "category": "Capital Outlay",
+          "prior_actual": 0,
+          "current_adopted": 10000,
+          "current_modified": 10000,
+          "current_estimated": 4167,
+          "requested": 6000,
+          "recommended": 6000,
+          "proposed": 6000
+        }
+      ],
+      "total_expenses": {
+        "prior_actual": 47727,
+        "current_adopted": 53000,
+        "current_modified": 53000,
+        "current_estimated": 39971,
+        "requested": 41131,
+        "recommended": 41131,
+        "proposed": 41131
+      },
+      "revenues": [
+        {
+          "category": "Licenses and Permits",
+          "prior_actual": 0,
+          "current_adopted": 37901,
+          "current_modified": 37901,
+          "current_estimated": 37792,
+          "requested": 37901,
+          "recommended": 37901,
+          "proposed": 37901
+        },
+        {
+          "category": "Public Charges for Services",
+          "prior_actual": 10222,
+          "current_adopted": 15100,
+          "current_modified": 15100,
+          "current_estimated": 11204,
+          "requested": 10000,
+          "recommended": 10000,
+          "proposed": 10000
+        }
+      ],
+      "total_revenue": {
+        "prior_actual": 10222,
+        "current_adopted": 53001,
+        "current_modified": 53001,
+        "current_estimated": 48996,
+        "requested": 47901,
+        "recommended": 47901,
+        "proposed": 47901
+      }
+    },
+    {
+      "name": "Recycling Fund",
+      "fund_group": "Special Revenue Funds",
+      "page": 140,
+      "expenses": [
+        {
+          "category": "Personal Services",
+          "prior_actual": 110533,
+          "current_adopted": 147773,
+          "current_modified": 147773,
+          "current_estimated": 114742,
+          "requested": 175858,
+          "recommended": 175858,
+          "proposed": 175858
+        },
+        {
+          "category": "Contractual Services",
+          "prior_actual": 860172,
+          "current_adopted": 904114,
+          "current_modified": 904114,
+          "current_estimated": 932394,
+          "requested": 985257,
+          "recommended": 985257,
+          "proposed": 985257
+        },
+        {
+          "category": "Supplies and Expense",
+          "prior_actual": 7000,
+          "current_adopted": 10000,
+          "current_modified": 10000,
+          "current_estimated": 4167,
+          "requested": 9000,
+          "recommended": 9000,
+          "proposed": 9000
+        },
+        {
+          "category": "Fixed Charges",
+          "prior_actual": 52542,
+          "current_adopted": 55000,
+          "current_modified": 55000,
+          "current_estimated": 54776,
+          "requested": 54000,
+          "recommended": 54000,
+          "proposed": 54000
+        }
+      ],
+      "total_expenses": {
+        "prior_actual": 1030247,
+        "current_adopted": 1116887,
+        "current_modified": 1116887,
+        "current_estimated": 1106079,
+        "requested": 1224115,
+        "recommended": 1224115,
+        "proposed": 1224115
+      },
+      "revenues": [
+        {
+          "category": "Taxes",
+          "prior_actual": 780815,
+          "current_adopted": 968788,
+          "current_modified": 968788,
+          "current_estimated": 968788,
+          "requested": 800000,
+          "recommended": 1076015,
+          "proposed": 1076015
+        },
+        {
+          "category": "Intergovernmental Revenues",
+          "prior_actual": 147393,
+          "current_adopted": 147400,
+          "current_modified": 147400,
+          "current_estimated": 147367,
+          "requested": 147400,
+          "recommended": 147400,
+          "proposed": 147400
+        },
+        {
+          "category": "Licenses and Permits",
+          "prior_actual": 1265,
+          "current_adopted": 700,
+          "current_modified": 700,
+          "current_estimated": 1792,
+          "requested": 700,
+          "recommended": 700,
+          "proposed": 700
+        },
+        {
+          "category": "Other Financing Sources",
+          "prior_actual": 234000,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 0,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        }
+      ],
+      "total_revenue": {
+        "prior_actual": 1163473,
+        "current_adopted": 1116888,
+        "current_modified": 1116888,
+        "current_estimated": 1117947,
+        "requested": 948100,
+        "recommended": 1224115,
+        "proposed": 1224115
+      }
+    },
+    {
+      "name": "Economic Development Fund",
+      "fund_group": "Special Revenue Funds",
+      "page": 142,
+      "expenses": [
+        {
+          "category": "Contractual Services",
+          "prior_actual": 31000,
+          "current_adopted": 10000,
+          "current_modified": 10000,
+          "current_estimated": 4167,
+          "requested": 10000,
+          "recommended": 10000,
+          "proposed": 10000
+        },
+        {
+          "category": "Supplies and Expense",
+          "prior_actual": 0,
+          "current_adopted": 350,
+          "current_modified": 350,
+          "current_estimated": 466,
+          "requested": 350,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Capital Outlay",
+          "prior_actual": 0,
+          "current_adopted": 40000,
+          "current_modified": 40000,
+          "current_estimated": 40549,
+          "requested": 40000,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Other Financing Uses",
+          "prior_actual": 0,
+          "current_adopted": 161502,
+          "current_modified": 161502,
+          "current_estimated": 75000,
+          "requested": 161502,
+          "recommended": 0,
+          "proposed": 0
+        }
+      ],
+      "total_expenses": {
+        "prior_actual": 31000,
+        "current_adopted": 211852,
+        "current_modified": 211852,
+        "current_estimated": 120182,
+        "requested": 211852,
+        "recommended": 10000,
+        "proposed": 10000
+      },
+      "revenues": [],
+      "total_revenue": null
+    },
+    {
+      "name": "Animal Control Fund",
+      "fund_group": "Special Revenue Funds",
+      "page": 144,
+      "expenses": [
+        {
+          "category": "Personal Services",
+          "prior_actual": 46128,
+          "current_adopted": 79794,
+          "current_modified": 79794,
+          "current_estimated": 46070,
+          "requested": 44648,
+          "recommended": 44648,
+          "proposed": 44648
+        },
+        {
+          "category": "Contractual Services",
+          "prior_actual": 68239,
+          "current_adopted": 69500,
+          "current_modified": 69500,
+          "current_estimated": 42640,
+          "requested": 69500,
+          "recommended": 69500,
+          "proposed": 69500
+        },
+        {
+          "category": "Supplies and Expense",
+          "prior_actual": 9466,
+          "current_adopted": 8906,
+          "current_modified": 8906,
+          "current_estimated": 11516,
+          "requested": 8906,
+          "recommended": 8906,
+          "proposed": 8906
+        },
+        {
+          "category": "Fixed Charges",
+          "prior_actual": 93,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 0,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Grants, Contributions, Indemnities and Other",
+          "prior_actual": 4940,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 0,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        }
+      ],
+      "total_expenses": {
+        "prior_actual": 128866,
+        "current_adopted": 158200,
+        "current_modified": 158200,
+        "current_estimated": 100226,
+        "requested": 123054,
+        "recommended": 123054,
+        "proposed": 123054
+      },
+      "revenues": [
+        {
+          "category": "Taxes",
+          "prior_actual": 45348,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 0,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Licenses and Permits",
+          "prior_actual": 91207,
+          "current_adopted": 90000,
+          "current_modified": 90000,
+          "current_estimated": 84059,
+          "requested": 90000,
+          "recommended": 90000,
+          "proposed": 90000
+        },
+        {
+          "category": "Fines, Forfeits and Penalties",
+          "prior_actual": 2148,
+          "current_adopted": 5200,
+          "current_modified": 5200,
+          "current_estimated": 3222,
+          "requested": 5200,
+          "recommended": 5200,
+          "proposed": 5200
+        },
+        {
+          "category": "Public Charges for Services",
+          "prior_actual": 5240,
+          "current_adopted": 3000,
+          "current_modified": 3000,
+          "current_estimated": 1946,
+          "requested": 3000,
+          "recommended": 3000,
+          "proposed": 3000
+        },
+        {
+          "category": "Miscellaneous Revenue",
+          "prior_actual": 483,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 0,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        }
+      ],
+      "total_revenue": {
+        "prior_actual": 144426,
+        "current_adopted": 98200,
+        "current_modified": 98200,
+        "current_estimated": 89227,
+        "requested": 98200,
+        "recommended": 98200,
+        "proposed": 98200
+      }
+    },
+    {
+      "name": "400 Block Riverlife Fund",
+      "fund_group": "Special Revenue Funds",
+      "page": 146,
+      "expenses": [
+        {
+          "category": "Personal Services",
+          "prior_actual": 39295,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 0,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Contractual Services",
+          "prior_actual": 45722,
+          "current_adopted": 128575,
+          "current_modified": 128575,
+          "current_estimated": 59495,
+          "requested": 135013,
+          "recommended": 135013,
+          "proposed": 135013
+        },
+        {
+          "category": "Supplies and Expense",
+          "prior_actual": 4185,
+          "current_adopted": 19600,
+          "current_modified": 19600,
+          "current_estimated": 20718,
+          "requested": 3600,
+          "recommended": 3600,
+          "proposed": 3600
+        },
+        {
+          "category": "Building Materials",
+          "prior_actual": 0,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 4680,
+          "requested": 4800,
+          "recommended": 4800,
+          "proposed": 4800
+        },
+        {
+          "category": "Grants, Contributions, Indemnities and Other",
+          "prior_actual": 4299,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 0,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        }
+      ],
+      "total_expenses": {
+        "prior_actual": 93501,
+        "current_adopted": 148175,
+        "current_modified": 148175,
+        "current_estimated": 84893,
+        "requested": 143413,
+        "recommended": 143413,
+        "proposed": 143413
+      },
+      "revenues": [
+        {
+          "category": "Public Charges for Services",
+          "prior_actual": 4075,
+          "current_adopted": 18200,
+          "current_modified": 18200,
+          "current_estimated": 7583,
+          "requested": 18500,
+          "recommended": 18700,
+          "proposed": 18700
+        },
+        {
+          "category": "Other Financing Sources",
+          "prior_actual": 89802,
+          "current_adopted": 58240,
+          "current_modified": 58240,
+          "current_estimated": 89802,
+          "requested": 0,
+          "recommended": 124802,
+          "proposed": 124802
+        }
+      ],
+      "total_revenue": {
+        "prior_actual": 93877,
+        "current_adopted": 76440,
+        "current_modified": 76440,
+        "current_estimated": 97385,
+        "requested": 18500,
+        "recommended": 143502,
+        "proposed": 143502
+      }
+    },
+    {
+      "name": "Hazardous Materials Contract Fund",
+      "fund_group": "Special Revenue Funds",
+      "page": 148,
+      "expenses": [
+        {
+          "category": "Personal Services",
+          "prior_actual": 45339,
+          "current_adopted": 27414,
+          "current_modified": 27414,
+          "current_estimated": 52116,
+          "requested": 34560,
+          "recommended": 34560,
+          "proposed": 34560
+        },
+        {
+          "category": "Contractual Services",
+          "prior_actual": 8023,
+          "current_adopted": 6920,
+          "current_modified": 6920,
+          "current_estimated": 9693,
+          "requested": 6920,
+          "recommended": 6920,
+          "proposed": 6920
+        },
+        {
+          "category": "Supplies and Expense",
+          "prior_actual": 60754,
+          "current_adopted": 40000,
+          "current_modified": 40000,
+          "current_estimated": 24002,
+          "requested": 40000,
+          "recommended": 40000,
+          "proposed": 40000
+        },
+        {
+          "category": "Capital Outlay",
+          "prior_actual": 0,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 11264,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        }
+      ],
+      "total_expenses": {
+        "prior_actual": 114116,
+        "current_adopted": 74334,
+        "current_modified": 74334,
+        "current_estimated": 97075,
+        "requested": 81480,
+        "recommended": 81480,
+        "proposed": 81480
+      },
+      "revenues": [
+        {
+          "category": "Intergovernmental Revenues",
+          "prior_actual": 106120,
+          "current_adopted": 81000,
+          "current_modified": 81000,
+          "current_estimated": 96618,
+          "requested": 81000,
+          "recommended": 81000,
+          "proposed": 81000
+        },
+        {
+          "category": "Intergovernmental Charges for services",
+          "prior_actual": 20000,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 20000,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Miscellaneous Revenue",
+          "prior_actual": 4803,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 0,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        }
+      ],
+      "total_revenue": {
+        "prior_actual": 130923,
+        "current_adopted": 81000,
+        "current_modified": 81000,
+        "current_estimated": 116618,
+        "requested": 81000,
+        "recommended": 81000,
+        "proposed": 81000
+      }
+    },
+    {
+      "name": "Housing Stock Improvement Fund",
+      "fund_group": "Special Revenue Funds",
+      "page": 150,
+      "expenses": [
+        {
+          "category": "Contractual Services",
+          "prior_actual": 17030,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 58718,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Supplies and Expense",
+          "prior_actual": 0,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 30,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Grants, Contributions, Indemnities and Other",
+          "prior_actual": 32760,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 1734661,
+          "requested": 0,
+          "recommended": 190000,
+          "proposed": 190000
+        },
+        {
+          "category": "Capital Outlay",
+          "prior_actual": 34663,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 0,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        }
+      ],
+      "total_expenses": {
+        "prior_actual": 84453,
+        "current_adopted": 0,
+        "current_modified": 0,
+        "current_estimated": 1793409,
+        "requested": 0,
+        "recommended": 190000,
+        "proposed": 190000
+      },
+      "revenues": [
+        {
+          "category": "Miscellaneous Revenue",
+          "prior_actual": 58649,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 52174,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Other Financing Sources",
+          "prior_actual": 3873301,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 0,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        }
+      ],
+      "total_revenue": {
+        "prior_actual": 3931950,
+        "current_adopted": 0,
+        "current_modified": 0,
+        "current_estimated": 52174,
+        "requested": 0,
+        "recommended": 0,
+        "proposed": 0
+      }
+    },
+    {
+      "name": "Debt Service Fund",
+      "fund_group": "Debt Service Fund",
+      "page": 153,
+      "expenses": [
+        {
+          "category": "Contractual Services",
+          "prior_actual": 4451,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 182,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Debt Service",
+          "prior_actual": 11705575,
+          "current_adopted": 14863571,
+          "current_modified": 14863571,
+          "current_estimated": 15030245,
+          "requested": 13973753,
+          "recommended": 14386026,
+          "proposed": 14386026
+        }
+      ],
+      "total_expenses": {
+        "prior_actual": 11710026,
+        "current_adopted": 14863571,
+        "current_modified": 14863571,
+        "current_estimated": 15030427,
+        "requested": 13973753,
+        "recommended": 14386026,
+        "proposed": 14386026
+      },
+      "revenues": [
+        {
+          "category": "Taxes",
+          "prior_actual": 4627337,
+          "current_adopted": 5609973,
+          "current_modified": 5609973,
+          "current_estimated": 5609973,
+          "requested": 5427951,
+          "recommended": 5840224,
+          "proposed": 5840224
+        },
+        {
+          "category": "Miscellaneous Revenue",
+          "prior_actual": 468872,
+          "current_adopted": 403075,
+          "current_modified": 403075,
+          "current_estimated": 511418,
+          "requested": 503235,
+          "recommended": 503235,
+          "proposed": 503235
+        },
+        {
+          "category": "Other Financing Sources",
+          "prior_actual": 6839106,
+          "current_adopted": 8850523,
+          "current_modified": 8850523,
+          "current_estimated": 8850523,
+          "requested": 8042567,
+          "recommended": 8042567,
+          "proposed": 8042567
+        }
+      ],
+      "total_revenue": {
+        "prior_actual": 11935315,
+        "current_adopted": 14863571,
+        "current_modified": 14863571,
+        "current_estimated": 14971914,
+        "requested": 13973753,
+        "recommended": 14386026,
+        "proposed": 14386026
+      }
+    },
+    {
+      "name": "Capital Projects Fund",
+      "fund_group": "Capital Projects Funds",
+      "page": 160,
+      "expenses": [
+        {
+          "category": "Contractual Services",
+          "prior_actual": 416449,
+          "current_adopted": 330000,
+          "current_modified": 399921,
+          "current_estimated": 363293,
+          "requested": 195000,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Supplies and Expense",
+          "prior_actual": 53423,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 976007,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Fixed Charges",
+          "prior_actual": 53196,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 0,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Debt Service",
+          "prior_actual": 66804,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 67839,
+          "requested": 0,
+          "recommended": 68000,
+          "proposed": 68000
+        },
+        {
+          "category": "Grants, Contributions, Indemnities and Other",
+          "prior_actual": 8879472,
+          "current_adopted": 14146238,
+          "current_modified": 14146238,
+          "current_estimated": 10491284,
+          "requested": 14146238,
+          "recommended": 12100000,
+          "proposed": 12100000
+        },
+        {
+          "category": "Capital Outlay",
+          "prior_actual": 6541966,
+          "current_adopted": 10156813,
+          "current_modified": 10919036,
+          "current_estimated": 6006797,
+          "requested": 10308950,
+          "recommended": 7183371,
+          "proposed": 7183371
+        },
+        {
+          "category": "Other Financing Uses",
+          "prior_actual": 104603,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 0,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        }
+      ],
+      "total_expenses": {
+        "prior_actual": 16115913,
+        "current_adopted": 24633051,
+        "current_modified": 25465195,
+        "current_estimated": 17905220,
+        "requested": 24650188,
+        "recommended": 19351371,
+        "proposed": 19351371
+      },
+      "revenues": [
+        {
+          "category": "Taxes",
+          "prior_actual": 517427,
+          "current_adopted": 497902,
+          "current_modified": 497902,
+          "current_estimated": 497902,
+          "requested": 497902,
+          "recommended": 497902,
+          "proposed": 497902
+        },
+        {
+          "category": "Special Assessments",
+          "prior_actual": 317943,
+          "current_adopted": 210000,
+          "current_modified": 210000,
+          "current_estimated": 109324,
+          "requested": 210000,
+          "recommended": 200000,
+          "proposed": 200000
+        },
+        {
+          "category": "Intergovernmental Revenues",
+          "prior_actual": 2797035,
+          "current_adopted": 13825342,
+          "current_modified": 13825342,
+          "current_estimated": 14795497,
+          "requested": 13825342,
+          "recommended": 8003948,
+          "proposed": 8003948
+        },
+        {
+          "category": "Miscellaneous Revenue",
+          "prior_actual": 66085,
+          "current_adopted": 37957,
+          "current_modified": 37957,
+          "current_estimated": 90074,
+          "requested": 37957,
+          "recommended": 52360,
+          "proposed": 52360
+        },
+        {
+          "category": "Other Financing Sources",
+          "prior_actual": 9700782,
+          "current_adopted": 10061850,
+          "current_modified": 10061850,
+          "current_estimated": 9982751,
+          "requested": 10061850,
+          "recommended": 10455000,
+          "proposed": 10455000
+        }
+      ],
+      "total_revenue": {
+        "prior_actual": 13399272,
+        "current_adopted": 24633051,
+        "current_modified": 24633051,
+        "current_estimated": 25475548,
+        "requested": 24633051,
+        "recommended": 19209210,
+        "proposed": 19209210
+      }
+    },
+    {
+      "name": "Central Capital Purchasing Fund",
+      "fund_group": "Capital Projects Funds",
+      "page": 163,
+      "expenses": [
+        {
+          "category": "Contractual Services",
+          "prior_actual": 388261,
+          "current_adopted": 333236,
+          "current_modified": 333236,
+          "current_estimated": 183057,
+          "requested": 383236,
+          "recommended": 383236,
+          "proposed": 383236
+        },
+        {
+          "category": "Supplies and Expense",
+          "prior_actual": 15335,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 14482,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Building Materials",
+          "prior_actual": 4608,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 0,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Fixed Charges",
+          "prior_actual": 0,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 52,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Capital Outlay",
+          "prior_actual": 354505,
+          "current_adopted": 456000,
+          "current_modified": 623737,
+          "current_estimated": 648166,
+          "requested": 480000,
+          "recommended": 455000,
+          "proposed": 455000
+        }
+      ],
+      "total_expenses": {
+        "prior_actual": 762709,
+        "current_adopted": 789236,
+        "current_modified": 956973,
+        "current_estimated": 845757,
+        "requested": 863236,
+        "recommended": 838236,
+        "proposed": 838236
+      },
+      "revenues": [
+        {
+          "category": "Taxes",
+          "prior_actual": 806636,
+          "current_adopted": 789236,
+          "current_modified": 789236,
+          "current_estimated": 789236,
+          "requested": 789236,
+          "recommended": 838236,
+          "proposed": 838236
+        },
+        {
+          "category": "Miscellaneous Revenue",
+          "prior_actual": 1000,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 2264,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        }
+      ],
+      "total_revenue": {
+        "prior_actual": 807636,
+        "current_adopted": 789236,
+        "current_modified": 789236,
+        "current_estimated": 791500,
+        "requested": 789236,
+        "recommended": 838236,
+        "proposed": 838236
+      }
+    },
+    {
+      "name": "Tax Increment District 3",
+      "fund_group": "Capital Projects Funds",
+      "page": 166,
+      "expenses": [
+        {
+          "category": "Personal Services",
+          "prior_actual": 2412,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 9203,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Contractual Services",
+          "prior_actual": 425311,
+          "current_adopted": 35000,
+          "current_modified": 992000,
+          "current_estimated": 730555,
+          "requested": 14850,
+          "recommended": 14850,
+          "proposed": 14850
+        },
+        {
+          "category": "Supplies and Expense",
+          "prior_actual": 5194,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 36155,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Building Materials",
+          "prior_actual": 4092,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 0,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Fixed Charges",
+          "prior_actual": 123440,
+          "current_adopted": 150,
+          "current_modified": 150,
+          "current_estimated": 212,
+          "requested": 150,
+          "recommended": 150,
+          "proposed": 150
+        },
+        {
+          "category": "Debt Service",
+          "prior_actual": 59409,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 20058,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Capital Outlay",
+          "prior_actual": 7427317,
+          "current_adopted": 1505000,
+          "current_modified": 2292039,
+          "current_estimated": 1383967,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Other Financing Uses",
+          "prior_actual": 2128846,
+          "current_adopted": 5003038,
+          "current_modified": 5003038,
+          "current_estimated": 4954743,
+          "requested": 3605677,
+          "recommended": 3605677,
+          "proposed": 3605677
+        }
+      ],
+      "total_expenses": {
+        "prior_actual": 10176021,
+        "current_adopted": 6543188,
+        "current_modified": 8287227,
+        "current_estimated": 7134893,
+        "requested": 3620677,
+        "recommended": 3620677,
+        "proposed": 3620677
+      },
+      "revenues": [
+        {
+          "category": "Taxes",
+          "prior_actual": 2710841,
+          "current_adopted": 2671087,
+          "current_modified": 2671087,
+          "current_estimated": 2728924,
+          "requested": 2652387,
+          "recommended": 2652387,
+          "proposed": 2652387
+        },
+        {
+          "category": "Special Assessments",
+          "prior_actual": 0,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 16427,
+          "requested": 48000,
+          "recommended": 48000,
+          "proposed": 48000
+        },
+        {
+          "category": "Intergovernmental Revenues",
+          "prior_actual": 581428,
+          "current_adopted": 581428,
+          "current_modified": 581428,
+          "current_estimated": 581428,
+          "requested": 581428,
+          "recommended": 581428,
+          "proposed": 581428
+        },
+        {
+          "category": "Miscellaneous Revenue",
+          "prior_actual": 851111,
+          "current_adopted": 93000,
+          "current_modified": 93000,
+          "current_estimated": 219149,
+          "requested": 110572,
+          "recommended": 110572,
+          "proposed": 110572
+        },
+        {
+          "category": "Other Financing Sources",
+          "prior_actual": 7300000,
+          "current_adopted": 3325000,
+          "current_modified": 3325000,
+          "current_estimated": 1220000,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        }
+      ],
+      "total_revenue": {
+        "prior_actual": 11443380,
+        "current_adopted": 6670515,
+        "current_modified": 6670515,
+        "current_estimated": 4765928,
+        "requested": 3392387,
+        "recommended": 3392387,
+        "proposed": 3392387
+      }
+    },
+    {
+      "name": "Tax Increment District 8",
+      "fund_group": "Capital Projects Funds",
+      "page": 172,
+      "expenses": [
+        {
+          "category": "Personal Services",
+          "prior_actual": 2830,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 10423,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Contractual Services",
+          "prior_actual": 63486,
+          "current_adopted": 215000,
+          "current_modified": 215000,
+          "current_estimated": 42467,
+          "requested": 215000,
+          "recommended": 235000,
+          "proposed": 235000
+        },
+        {
+          "category": "Supplies and Expense",
+          "prior_actual": 312,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 150,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Fixed Charges",
+          "prior_actual": 110623,
+          "current_adopted": 70150,
+          "current_modified": 70150,
+          "current_estimated": 98666,
+          "requested": 70150,
+          "recommended": 70150,
+          "proposed": 70150
+        },
+        {
+          "category": "Debt Service",
+          "prior_actual": 6510,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 14550,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Grants, Contributions, Indemnities and Other",
+          "prior_actual": 250000,
+          "current_adopted": 2000000,
+          "current_modified": 2000000,
+          "current_estimated": 200000,
+          "requested": 750000,
+          "recommended": 750000,
+          "proposed": 750000
+        },
+        {
+          "category": "Capital Outlay",
+          "prior_actual": 2101911,
+          "current_adopted": 870000,
+          "current_modified": 1212564,
+          "current_estimated": 1092484,
+          "requested": 0,
+          "recommended": 1329000,
+          "proposed": 1329000
+        },
+        {
+          "category": "Other Financing Uses",
+          "prior_actual": 1062310,
+          "current_adopted": 894592,
+          "current_modified": 894592,
+          "current_estimated": 894592,
+          "requested": 1045355,
+          "recommended": 1043362,
+          "proposed": 1043362
+        }
+      ],
+      "total_expenses": {
+        "prior_actual": 3597982,
+        "current_adopted": 4049742,
+        "current_modified": 4392306,
+        "current_estimated": 2353332,
+        "requested": 2080505,
+        "recommended": 3427512,
+        "proposed": 3427512
+      },
+      "revenues": [
+        {
+          "category": "Taxes",
+          "prior_actual": 1499068,
+          "current_adopted": 1566629,
+          "current_modified": 1566629,
+          "current_estimated": 1600551,
+          "requested": 1599095,
+          "recommended": 1599095,
+          "proposed": 1599095
+        },
+        {
+          "category": "Special Assessments",
+          "prior_actual": 22698,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 0,
+          "requested": 20000,
+          "recommended": 20000,
+          "proposed": 20000
+        },
+        {
+          "category": "Intergovernmental Revenues",
+          "prior_actual": 711963,
+          "current_adopted": 311963,
+          "current_modified": 311963,
+          "current_estimated": 311963,
+          "requested": 311963,
+          "recommended": 311963,
+          "proposed": 311963
+        },
+        {
+          "category": "Miscellaneous Revenue",
+          "prior_actual": 180972,
+          "current_adopted": 123500,
+          "current_modified": 123500,
+          "current_estimated": 208625,
+          "requested": 123300,
+          "recommended": 123300,
+          "proposed": 123300
+        },
+        {
+          "category": "Other Financing Sources",
+          "prior_actual": 800000,
+          "current_adopted": 1696623,
+          "current_modified": 1696623,
+          "current_estimated": 885000,
+          "requested": 0,
+          "recommended": 1175000,
+          "proposed": 1175000
+        }
+      ],
+      "total_revenue": {
+        "prior_actual": 3214701,
+        "current_adopted": 3698715,
+        "current_modified": 3698715,
+        "current_estimated": 3006139,
+        "requested": 2054358,
+        "recommended": 3229358,
+        "proposed": 3229358
+      }
+    },
+    {
+      "name": "Tax Increment District 9",
+      "fund_group": "Capital Projects Funds",
+      "page": 180,
+      "expenses": [
+        {
+          "category": "Contractual Services",
+          "prior_actual": 0,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 0,
+          "requested": 8000,
+          "recommended": 8000,
+          "proposed": 8000
+        },
+        {
+          "category": "Fixed Charges",
+          "prior_actual": 150,
+          "current_adopted": 3150,
+          "current_modified": 3150,
+          "current_estimated": 3150,
+          "requested": 3150,
+          "recommended": 3150,
+          "proposed": 3150
+        }
+      ],
+      "total_expenses": {
+        "prior_actual": 150,
+        "current_adopted": 3150,
+        "current_modified": 3150,
+        "current_estimated": 3150,
+        "requested": 11150,
+        "recommended": 11150,
+        "proposed": 11150
+      },
+      "revenues": [
+        {
+          "category": "Taxes",
+          "prior_actual": 19867,
+          "current_adopted": 20729,
+          "current_modified": 20729,
+          "current_estimated": 21178,
+          "requested": 21900,
+          "recommended": 21900,
+          "proposed": 21900
+        },
+        {
+          "category": "Intergovernmental Revenues",
+          "prior_actual": 4479,
+          "current_adopted": 4479,
+          "current_modified": 4479,
+          "current_estimated": 4479,
+          "requested": 4479,
+          "recommended": 4479,
+          "proposed": 4479
+        }
+      ],
+      "total_revenue": {
+        "prior_actual": 24346,
+        "current_adopted": 25208,
+        "current_modified": 25208,
+        "current_estimated": 25657,
+        "requested": 26379,
+        "recommended": 26379,
+        "proposed": 26379
+      }
+    },
+    {
+      "name": "Tax Increment District 10",
+      "fund_group": "Capital Projects Funds",
+      "page": 185,
+      "expenses": [
+        {
+          "category": "Personal Services",
+          "prior_actual": 4833,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 5995,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Contractual Services",
+          "prior_actual": 113,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 504,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Fixed Charges",
+          "prior_actual": 5120,
+          "current_adopted": 15150,
+          "current_modified": 15150,
+          "current_estimated": 6462,
+          "requested": 15150,
+          "recommended": 15150,
+          "proposed": 15150
+        },
+        {
+          "category": "Capital Outlay",
+          "prior_actual": 186808,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 0,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Other Financing Uses",
+          "prior_actual": 518760,
+          "current_adopted": 585285,
+          "current_modified": 585285,
+          "current_estimated": 585285,
+          "requested": 585285,
+          "recommended": 580110,
+          "proposed": 580110
+        }
+      ],
+      "total_expenses": {
+        "prior_actual": 715634,
+        "current_adopted": 600435,
+        "current_modified": 600435,
+        "current_estimated": 598246,
+        "requested": 600435,
+        "recommended": 595260,
+        "proposed": 595260
+      },
+      "revenues": [
+        {
+          "category": "Taxes",
+          "prior_actual": 704891,
+          "current_adopted": 705660,
+          "current_modified": 705660,
+          "current_estimated": 720939,
+          "requested": 756000,
+          "recommended": 756000,
+          "proposed": 756000
+        },
+        {
+          "category": "Intergovernmental Revenues",
+          "prior_actual": 132554,
+          "current_adopted": 132554,
+          "current_modified": 132554,
+          "current_estimated": 132554,
+          "requested": 132554,
+          "recommended": 132554,
+          "proposed": 132554
+        },
+        {
+          "category": "Public Charges for Services",
+          "prior_actual": 16523,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 0,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Miscellaneous Revenue",
+          "prior_actual": 23816,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 492,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        }
+      ],
+      "total_revenue": {
+        "prior_actual": 877784,
+        "current_adopted": 838214,
+        "current_modified": 838214,
+        "current_estimated": 853985,
+        "requested": 888554,
+        "recommended": 888554,
+        "proposed": 888554
+      }
+    },
+    {
+      "name": "Tax Increment District 11",
+      "fund_group": "Capital Projects Funds",
+      "page": 190,
+      "expenses": [
+        {
+          "category": "Personal Services",
+          "prior_actual": 8356,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 14818,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Contractual Services",
+          "prior_actual": 57253,
+          "current_adopted": 0,
+          "current_modified": 60709,
+          "current_estimated": 68045,
+          "requested": 0,
+          "recommended": 100000,
+          "proposed": 100000
+        },
+        {
+          "category": "Fixed Charges",
+          "prior_actual": 31133,
+          "current_adopted": 45150,
+          "current_modified": 45150,
+          "current_estimated": 18962,
+          "requested": 45150,
+          "recommended": 20150,
+          "proposed": 20150
+        },
+        {
+          "category": "Debt Service",
+          "prior_actual": 0,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 7563,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Grants, Contributions, Indemnities and Other",
+          "prior_actual": 500729,
+          "current_adopted": 525000,
+          "current_modified": 525000,
+          "current_estimated": 490552,
+          "requested": 525000,
+          "recommended": 495000,
+          "proposed": 495000
+        },
+        {
+          "category": "Capital Outlay",
+          "prior_actual": 883541,
+          "current_adopted": 1457072,
+          "current_modified": 1457072,
+          "current_estimated": 305975,
+          "requested": 1457072,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Other Financing Uses",
+          "prior_actual": 1222660,
+          "current_adopted": 1222008,
+          "current_modified": 1222008,
+          "current_estimated": 1222008,
+          "requested": 1222008,
+          "recommended": 1308089,
+          "proposed": 1308089
+        }
+      ],
+      "total_expenses": {
+        "prior_actual": 2703672,
+        "current_adopted": 3249230,
+        "current_modified": 3309939,
+        "current_estimated": 2127923,
+        "requested": 3249230,
+        "recommended": 1923239,
+        "proposed": 1923239
+      },
+      "revenues": [
+        {
+          "category": "Taxes",
+          "prior_actual": 1416728,
+          "current_adopted": 1467241,
+          "current_modified": 1467241,
+          "current_estimated": 1396846,
+          "requested": 1467241,
+          "recommended": 1382877,
+          "proposed": 1382877
+        },
+        {
+          "category": "Intergovernmental Revenues",
+          "prior_actual": 741321,
+          "current_adopted": 1030036,
+          "current_modified": 1030036,
+          "current_estimated": 40580,
+          "requested": 1030036,
+          "recommended": 24379,
+          "proposed": 24379
+        },
+        {
+          "category": "Miscellaneous Revenue",
+          "prior_actual": 32958,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 46479,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Other Financing Sources",
+          "prior_actual": 0,
+          "current_adopted": 451415,
+          "current_modified": 451415,
+          "current_estimated": 460000,
+          "requested": 451415,
+          "recommended": 0,
+          "proposed": 0
+        }
+      ],
+      "total_revenue": {
+        "prior_actual": 2191007,
+        "current_adopted": 2948692,
+        "current_modified": 2948692,
+        "current_estimated": 1943905,
+        "requested": 2948692,
+        "recommended": 1407256,
+        "proposed": 1407256
+      }
+    },
+    {
+      "name": "Tax Increment District 12",
+      "fund_group": "Capital Projects Funds",
+      "page": 195,
+      "expenses": [
+        {
+          "category": "Personal Services",
+          "prior_actual": 18802,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 21956,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Contractual Services",
+          "prior_actual": 213538,
+          "current_adopted": 15150,
+          "current_modified": 15150,
+          "current_estimated": 31998,
+          "requested": 15150,
+          "recommended": 11150,
+          "proposed": 11150
+        },
+        {
+          "category": "Supplies and Expense",
+          "prior_actual": 0,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 465,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Fixed Charges",
+          "prior_actual": 11817,
+          "current_adopted": 70000,
+          "current_modified": 70000,
+          "current_estimated": 29708,
+          "requested": 70000,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Debt Service",
+          "prior_actual": 0,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 26223,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Grants, Contributions, Indemnities and Other",
+          "prior_actual": 98923,
+          "current_adopted": 245271,
+          "current_modified": 245271,
+          "current_estimated": 10172,
+          "requested": 245271,
+          "recommended": 569500,
+          "proposed": 569500
+        },
+        {
+          "category": "Capital Outlay",
+          "prior_actual": 0,
+          "current_adopted": 1845000,
+          "current_modified": 1845000,
+          "current_estimated": 1424937,
+          "requested": 1845000,
+          "recommended": 150000,
+          "proposed": 150000
+        },
+        {
+          "category": "Other Financing Uses",
+          "prior_actual": 884105,
+          "current_adopted": 1145600,
+          "current_modified": 1145600,
+          "current_estimated": 1145600,
+          "requested": 1145600,
+          "recommended": 1017094,
+          "proposed": 1017094
+        }
+      ],
+      "total_expenses": {
+        "prior_actual": 1227185,
+        "current_adopted": 3321021,
+        "current_modified": 3321021,
+        "current_estimated": 2691059,
+        "requested": 3321021,
+        "recommended": 1747744,
+        "proposed": 1747744
+      },
+      "revenues": [
+        {
+          "category": "Taxes",
+          "prior_actual": 375601,
+          "current_adopted": 489988,
+          "current_modified": 489988,
+          "current_estimated": 500598,
+          "requested": 489988,
+          "recommended": 1052557,
+          "proposed": 1052557
+        },
+        {
+          "category": "Intergovernmental Revenues",
+          "prior_actual": 15867,
+          "current_adopted": 15867,
+          "current_modified": 15867,
+          "current_estimated": 15867,
+          "requested": 15867,
+          "recommended": 15867,
+          "proposed": 15867
+        },
+        {
+          "category": "Miscellaneous Revenue",
+          "prior_actual": 1823,
+          "current_adopted": 6000,
+          "current_modified": 6000,
+          "current_estimated": 147362,
+          "requested": 6000,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Other Financing Sources",
+          "prior_actual": 1994374,
+          "current_adopted": 3927621,
+          "current_modified": 3927621,
+          "current_estimated": 3711303,
+          "requested": 3927621,
+          "recommended": 0,
+          "proposed": 0
+        }
+      ],
+      "total_revenue": {
+        "prior_actual": 2387665,
+        "current_adopted": 4439476,
+        "current_modified": 4439476,
+        "current_estimated": 4375130,
+        "requested": 4439476,
+        "recommended": 1068424,
+        "proposed": 1068424
+      }
+    },
+    {
+      "name": "Motor Pool Fund",
+      "fund_group": "Internal Service Funds",
+      "page": 205,
+      "expenses": [
+        {
+          "category": "Personal Services",
+          "prior_actual": 1135518,
+          "current_adopted": 1220321,
+          "current_modified": 1220321,
+          "current_estimated": 1199699,
+          "requested": 1351675,
+          "recommended": 1351675,
+          "proposed": 1351675
+        },
+        {
+          "category": "Contractual Services",
+          "prior_actual": 509912,
+          "current_adopted": 440000,
+          "current_modified": 440000,
+          "current_estimated": 364039,
+          "requested": 425000,
+          "recommended": 425000,
+          "proposed": 425000
+        },
+        {
+          "category": "Supplies and Expense",
+          "prior_actual": 1477009,
+          "current_adopted": 1604724,
+          "current_modified": 1604724,
+          "current_estimated": 1661860,
+          "requested": 1580224,
+          "recommended": 1580224,
+          "proposed": 1580224
+        },
+        {
+          "category": "Fixed Charges",
+          "prior_actual": 138120,
+          "current_adopted": 140000,
+          "current_modified": 140000,
+          "current_estimated": 141333,
+          "requested": 140000,
+          "recommended": 140000,
+          "proposed": 140000
+        },
+        {
+          "category": "Capital Outlay",
+          "prior_actual": 5636898,
+          "current_adopted": 3640585,
+          "current_modified": 3640585,
+          "current_estimated": 2162906,
+          "requested": 1770370,
+          "recommended": 1770370,
+          "proposed": 1770370
+        }
+      ],
+      "total_expenses": {
+        "prior_actual": 8897457,
+        "current_adopted": 7045630,
+        "current_modified": 7045630,
+        "current_estimated": 5529837,
+        "requested": 5267269,
+        "recommended": 5267269,
+        "proposed": 5267269
+      },
+      "revenues": [
+        {
+          "category": "Intergovernmental Charges for services",
+          "prior_actual": 6550089,
+          "current_adopted": 4779000,
+          "current_modified": 4779000,
+          "current_estimated": 4780881,
+          "requested": 6519000,
+          "recommended": 6519000,
+          "proposed": 6519000
+        },
+        {
+          "category": "Miscellaneous Revenue",
+          "prior_actual": 350276,
+          "current_adopted": 116631,
+          "current_modified": 116631,
+          "current_estimated": 219783,
+          "requested": 116631,
+          "recommended": 116631,
+          "proposed": 116631
+        },
+        {
+          "category": "Other Financing Sources",
+          "prior_actual": 2139678,
+          "current_adopted": 2150000,
+          "current_modified": 2150000,
+          "current_estimated": 2150000,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        }
+      ],
+      "total_revenue": {
+        "prior_actual": 9040043,
+        "current_adopted": 7045631,
+        "current_modified": 7045631,
+        "current_estimated": 7150664,
+        "requested": 6635631,
+        "recommended": 6635631,
+        "proposed": 6635631
+      }
+    },
+    {
+      "name": "Liability Insurance Fund",
+      "fund_group": "Internal Service Funds",
+      "page": 207,
+      "expenses": [
+        {
+          "category": "Contractual Services",
+          "prior_actual": 52856,
+          "current_adopted": 35000,
+          "current_modified": 35000,
+          "current_estimated": 141619,
+          "requested": 35000,
+          "recommended": 110000,
+          "proposed": 110000
+        },
+        {
+          "category": "Fixed Charges",
+          "prior_actual": 767779,
+          "current_adopted": 875300,
+          "current_modified": 875300,
+          "current_estimated": 847136,
+          "requested": 875300,
+          "recommended": 938300,
+          "proposed": 938300
+        },
+        {
+          "category": "Grants, Contributions, Indemnities and Other",
+          "prior_actual": 198049,
+          "current_adopted": 255000,
+          "current_modified": 255000,
+          "current_estimated": 253880,
+          "requested": 255000,
+          "recommended": 225000,
+          "proposed": 225000
+        }
+      ],
+      "total_expenses": {
+        "prior_actual": 1018684,
+        "current_adopted": 1165300,
+        "current_modified": 1165300,
+        "current_estimated": 1242635,
+        "requested": 1165300,
+        "recommended": 1273300,
+        "proposed": 1273300
+      },
+      "revenues": [
+        {
+          "category": "Intergovernmental Charges for services",
+          "prior_actual": 1486696,
+          "current_adopted": 1152872,
+          "current_modified": 1152872,
+          "current_estimated": 1265574,
+          "requested": 1152872,
+          "recommended": 1330000,
+          "proposed": 1330000
+        },
+        {
+          "category": "Miscellaneous Revenue",
+          "prior_actual": 16180,
+          "current_adopted": 60000,
+          "current_modified": 60000,
+          "current_estimated": 89363,
+          "requested": 60000,
+          "recommended": 25000,
+          "proposed": 25000
+        }
+      ],
+      "total_revenue": {
+        "prior_actual": 1502876,
+        "current_adopted": 1212872,
+        "current_modified": 1212872,
+        "current_estimated": 1354937,
+        "requested": 1212872,
+        "recommended": 1355000,
+        "proposed": 1355000
+      }
+    },
+    {
+      "name": "Employee Benefit Fund",
+      "fund_group": "Internal Service Funds",
+      "page": 209,
+      "expenses": [
+        {
+          "category": "Personal Services",
+          "prior_actual": 1373,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 1482,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Contractual Services",
+          "prior_actual": 37632,
+          "current_adopted": 94800,
+          "current_modified": 94800,
+          "current_estimated": 64976,
+          "requested": 94800,
+          "recommended": 94800,
+          "proposed": 94800
+        },
+        {
+          "category": "Fixed Charges",
+          "prior_actual": 5889809,
+          "current_adopted": 6977268,
+          "current_modified": 6977268,
+          "current_estimated": 6599335,
+          "requested": 6977268,
+          "recommended": 7000500,
+          "proposed": 7000500
+        },
+        {
+          "category": "Grants, Contributions, Indemnities and Other",
+          "prior_actual": 285975,
+          "current_adopted": 312000,
+          "current_modified": 312000,
+          "current_estimated": 312563,
+          "requested": 312000,
+          "recommended": 312000,
+          "proposed": 312000
+        }
+      ],
+      "total_expenses": {
+        "prior_actual": 6214789,
+        "current_adopted": 7384068,
+        "current_modified": 7384068,
+        "current_estimated": 6978356,
+        "requested": 7384068,
+        "recommended": 7407300,
+        "proposed": 7407300
+      },
+      "revenues": [
+        {
+          "category": "Public Charges for Services",
+          "prior_actual": 6178078,
+          "current_adopted": 7345000,
+          "current_modified": 7345000,
+          "current_estimated": 6958980,
+          "requested": 7345000,
+          "recommended": 7395000,
+          "proposed": 7395000
+        },
+        {
+          "category": "Intergovernmental Charges for services",
+          "prior_actual": 40817,
+          "current_adopted": 39700,
+          "current_modified": 39700,
+          "current_estimated": 45315,
+          "requested": 39700,
+          "recommended": 39700,
+          "proposed": 39700
+        },
+        {
+          "category": "Miscellaneous Revenue",
+          "prior_actual": 2664,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 0,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        }
+      ],
+      "total_revenue": {
+        "prior_actual": 6221559,
+        "current_adopted": 7384700,
+        "current_modified": 7384700,
+        "current_estimated": 7004295,
+        "requested": 7384700,
+        "recommended": 7434700,
+        "proposed": 7434700
+      }
+    },
+    {
+      "name": "Water Utility",
+      "fund_group": "Enterprise Funds",
+      "page": 216,
+      "expenses": [
+        {
+          "category": "Personal Services",
+          "prior_actual": 1719393,
+          "current_adopted": 2374157,
+          "current_modified": 2374157,
+          "current_estimated": 2041788,
+          "requested": 2501603,
+          "recommended": 2501603,
+          "proposed": 2501603
+        },
+        {
+          "category": "Contractual Services",
+          "prior_actual": 1428785,
+          "current_adopted": 1593450,
+          "current_modified": 1593450,
+          "current_estimated": 1282359,
+          "requested": 1408450,
+          "recommended": 1408450,
+          "proposed": 1408450
+        },
+        {
+          "category": "Supplies and Expense",
+          "prior_actual": 411479,
+          "current_adopted": 725550,
+          "current_modified": 725550,
+          "current_estimated": 448980,
+          "requested": 716050,
+          "recommended": 716050,
+          "proposed": 716050
+        },
+        {
+          "category": "Building Materials",
+          "prior_actual": 1055134,
+          "current_adopted": 1997050,
+          "current_modified": 1997050,
+          "current_estimated": 1401121,
+          "requested": 1925050,
+          "recommended": 1925050,
+          "proposed": 1925050
+        },
+        {
+          "category": "Fixed Charges",
+          "prior_actual": 126136,
+          "current_adopted": 226100,
+          "current_modified": 226100,
+          "current_estimated": 187905,
+          "requested": 226100,
+          "recommended": 226100,
+          "proposed": 226100
+        },
+        {
+          "category": "Debt Service",
+          "prior_actual": 4210613,
+          "current_adopted": 4326273,
+          "current_modified": 4326273,
+          "current_estimated": 4413314,
+          "requested": 4294474,
+          "recommended": 4178696,
+          "proposed": 4178696
+        },
+        {
+          "category": "Grants, Contributions, Indemnities and Other",
+          "prior_actual": 17966,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 0,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Capital Outlay",
+          "prior_actual": 10658353,
+          "current_adopted": 9224673,
+          "current_modified": 9224673,
+          "current_estimated": 10703002,
+          "requested": 8924673,
+          "recommended": 12193000,
+          "proposed": 12193000
+        },
+        {
+          "category": "Other Financing Uses",
+          "prior_actual": 1557877,
+          "current_adopted": 1590000,
+          "current_modified": 1590000,
+          "current_estimated": 1590000,
+          "requested": 1590000,
+          "recommended": 1590000,
+          "proposed": 1590000
+        }
+      ],
+      "total_expenses": {
+        "prior_actual": 21185736,
+        "current_adopted": 22057253,
+        "current_modified": 22057253,
+        "current_estimated": 22068469,
+        "requested": 21586400,
+        "recommended": 24738949,
+        "proposed": 24738949
+      },
+      "revenues": [
+        {
+          "category": "Intergovernmental Revenues",
+          "prior_actual": 0,
+          "current_adopted": 1000000,
+          "current_modified": 1000000,
+          "current_estimated": 811101,
+          "requested": 1000000,
+          "recommended": 1667000,
+          "proposed": 1667000
+        },
+        {
+          "category": "Public Charges for Services",
+          "prior_actual": 15420117,
+          "current_adopted": 12714400,
+          "current_modified": 12714400,
+          "current_estimated": 13530780,
+          "requested": 12714400,
+          "recommended": 12714400,
+          "proposed": 12714400
+        },
+        {
+          "category": "Miscellaneous Revenue",
+          "prior_actual": 141120,
+          "current_adopted": 128000,
+          "current_modified": 128000,
+          "current_estimated": 114879,
+          "requested": 128000,
+          "recommended": 128000,
+          "proposed": 128000
+        },
+        {
+          "category": "Other Financing Sources",
+          "prior_actual": 3189628,
+          "current_adopted": 8444673,
+          "current_modified": 8444673,
+          "current_estimated": 7849959,
+          "requested": 8444673,
+          "recommended": 9916000,
+          "proposed": 9916000
+        }
+      ],
+      "total_revenue": {
+        "prior_actual": 18750865,
+        "current_adopted": 22287073,
+        "current_modified": 22287073,
+        "current_estimated": 22306719,
+        "requested": 22287073,
+        "recommended": 24425400,
+        "proposed": 24425400
+      }
+    },
+    {
+      "name": "Wastewater Utility",
+      "fund_group": "Enterprise Funds",
+      "page": 218,
+      "expenses": [
+        {
+          "category": "Personal Services",
+          "prior_actual": 1824653,
+          "current_adopted": 1846119,
+          "current_modified": 1846119,
+          "current_estimated": 1771557,
+          "requested": 1859315,
+          "recommended": 1993747,
+          "proposed": 1993747
+        },
+        {
+          "category": "Contractual Services",
+          "prior_actual": 1358130,
+          "current_adopted": 1390591,
+          "current_modified": 1390591,
+          "current_estimated": 1260443,
+          "requested": 1390591,
+          "recommended": 1238700,
+          "proposed": 1238700
+        },
+        {
+          "category": "Supplies and Expense",
+          "prior_actual": 432097,
+          "current_adopted": 608638,
+          "current_modified": 608638,
+          "current_estimated": 503657,
+          "requested": 608638,
+          "recommended": 523250,
+          "proposed": 523250
+        },
+        {
+          "category": "Building Materials",
+          "prior_actual": 482129,
+          "current_adopted": 636200,
+          "current_modified": 636200,
+          "current_estimated": 550098,
+          "requested": 636200,
+          "recommended": 560500,
+          "proposed": 560500
+        },
+        {
+          "category": "Fixed Charges",
+          "prior_actual": 401179,
+          "current_adopted": 149765,
+          "current_modified": 149765,
+          "current_estimated": 174530,
+          "requested": 149765,
+          "recommended": 443000,
+          "proposed": 443000
+        },
+        {
+          "category": "Debt Service",
+          "prior_actual": 5103479,
+          "current_adopted": 5047475,
+          "current_modified": 5047475,
+          "current_estimated": 5119766,
+          "requested": 4654328,
+          "recommended": 4663191,
+          "proposed": 4663191
+        },
+        {
+          "category": "Capital Outlay",
+          "prior_actual": 4622657,
+          "current_adopted": 4231500,
+          "current_modified": 5293500,
+          "current_estimated": 2160363,
+          "requested": 4231500,
+          "recommended": 3159000,
+          "proposed": 3159000
+        },
+        {
+          "category": "Other Financing Uses",
+          "prior_actual": 517123,
+          "current_adopted": 485000,
+          "current_modified": 485000,
+          "current_estimated": 450000,
+          "requested": 0,
+          "recommended": 485000,
+          "proposed": 485000
+        }
+      ],
+      "total_expenses": {
+        "prior_actual": 14741447,
+        "current_adopted": 14395288,
+        "current_modified": 15457288,
+        "current_estimated": 11990414,
+        "requested": 13530337,
+        "recommended": 13066388,
+        "proposed": 13066388
+      },
+      "revenues": [
+        {
+          "category": "Special Assessments",
+          "prior_actual": 40500,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 0,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Intergovernmental Revenues",
+          "prior_actual": 442415,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 2000,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Public Charges for Services",
+          "prior_actual": 11267392,
+          "current_adopted": 11183595,
+          "current_modified": 11183595,
+          "current_estimated": 11212131,
+          "requested": 11183595,
+          "recommended": 11222965,
+          "proposed": 11222965
+        },
+        {
+          "category": "Miscellaneous Revenue",
+          "prior_actual": 281575,
+          "current_adopted": 146789,
+          "current_modified": 146789,
+          "current_estimated": 238924,
+          "requested": 146789,
+          "recommended": 160500,
+          "proposed": 160500
+        },
+        {
+          "category": "Other Financing Sources",
+          "prior_actual": 2805442,
+          "current_adopted": 3811500,
+          "current_modified": 3811500,
+          "current_estimated": 2161883,
+          "requested": 3811500,
+          "recommended": 2794000,
+          "proposed": 2794000
+        }
+      ],
+      "total_revenue": {
+        "prior_actual": 14837324,
+        "current_adopted": 15141884,
+        "current_modified": 15141884,
+        "current_estimated": 13614938,
+        "requested": 15141884,
+        "recommended": 14177465,
+        "proposed": 14177465
+      }
+    },
+    {
+      "name": "Metro Ride",
+      "fund_group": "Enterprise Funds",
+      "page": 222,
+      "expenses": [
+        {
+          "category": "Personal Services",
+          "prior_actual": 2911110,
+          "current_adopted": 3176033,
+          "current_modified": 3176033,
+          "current_estimated": 2962062,
+          "requested": 3360711,
+          "recommended": 3338755,
+          "proposed": 3338755
+        },
+        {
+          "category": "Contractual Services",
+          "prior_actual": 676270,
+          "current_adopted": 591857,
+          "current_modified": 591857,
+          "current_estimated": 767946,
+          "requested": 591857,
+          "recommended": 616934,
+          "proposed": 616934
+        },
+        {
+          "category": "Supplies and Expense",
+          "prior_actual": 481120,
+          "current_adopted": 654168,
+          "current_modified": 654168,
+          "current_estimated": 507463,
+          "requested": 654168,
+          "recommended": 560550,
+          "proposed": 560550
+        },
+        {
+          "category": "Fixed Charges",
+          "prior_actual": 29709,
+          "current_adopted": 63728,
+          "current_modified": 63728,
+          "current_estimated": 101823,
+          "requested": 63728,
+          "recommended": 50634,
+          "proposed": 50634
+        },
+        {
+          "category": "Capital Outlay",
+          "prior_actual": 433134,
+          "current_adopted": 0,
+          "current_modified": 6415000,
+          "current_estimated": 168846,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        }
+      ],
+      "total_expenses": {
+        "prior_actual": 4531343,
+        "current_adopted": 4485786,
+        "current_modified": 10900786,
+        "current_estimated": 4508140,
+        "requested": 4670464,
+        "recommended": 4566873,
+        "proposed": 4566873
+      },
+      "revenues": [
+        {
+          "category": "Taxes",
+          "prior_actual": 1110590,
+          "current_adopted": 1110590,
+          "current_modified": 1110590,
+          "current_estimated": 1110590,
+          "requested": 1110590,
+          "recommended": 1452036,
+          "proposed": 1452036
+        },
+        {
+          "category": "Intergovernmental Revenues",
+          "prior_actual": 2921363,
+          "current_adopted": 2553970,
+          "current_modified": 8968970,
+          "current_estimated": 2492993,
+          "requested": 2553970,
+          "recommended": 2583425,
+          "proposed": 2583425
+        },
+        {
+          "category": "Public Charges for Services",
+          "prior_actual": 400611,
+          "current_adopted": 388800,
+          "current_modified": 388800,
+          "current_estimated": 384810,
+          "requested": 388800,
+          "recommended": 388800,
+          "proposed": 388800
+        },
+        {
+          "category": "Intergovernmental Charges for services",
+          "prior_actual": 10872,
+          "current_adopted": 9000,
+          "current_modified": 9000,
+          "current_estimated": 10803,
+          "requested": 9000,
+          "recommended": 9000,
+          "proposed": 9000
+        },
+        {
+          "category": "Miscellaneous Revenue",
+          "prior_actual": 66,
+          "current_adopted": 10100,
+          "current_modified": 10100,
+          "current_estimated": 14308,
+          "requested": 10100,
+          "recommended": 10100,
+          "proposed": 10100
+        }
+      ],
+      "total_revenue": {
+        "prior_actual": 4443502,
+        "current_adopted": 4072460,
+        "current_modified": 10487460,
+        "current_estimated": 4013504,
+        "requested": 4072460,
+        "recommended": 4443361,
+        "proposed": 4443361
+      }
+    },
+    {
+      "name": "Parking Fund",
+      "fund_group": "Enterprise Funds",
+      "page": 225,
+      "expenses": [
+        {
+          "category": "Personal Services",
+          "prior_actual": 148492,
+          "current_adopted": 145147,
+          "current_modified": 145147,
+          "current_estimated": 151172,
+          "requested": 89710,
+          "recommended": 155885,
+          "proposed": 155885
+        },
+        {
+          "category": "Contractual Services",
+          "prior_actual": 363646,
+          "current_adopted": 393675,
+          "current_modified": 393675,
+          "current_estimated": 413344,
+          "requested": 393675,
+          "recommended": 386300,
+          "proposed": 386300
+        },
+        {
+          "category": "Supplies and Expense",
+          "prior_actual": 17476,
+          "current_adopted": 27200,
+          "current_modified": 27200,
+          "current_estimated": 23135,
+          "requested": 27200,
+          "recommended": 19200,
+          "proposed": 19200
+        },
+        {
+          "category": "Building Materials",
+          "prior_actual": 374,
+          "current_adopted": 6000,
+          "current_modified": 6000,
+          "current_estimated": 2499,
+          "requested": 6000,
+          "recommended": 1950,
+          "proposed": 1950
+        },
+        {
+          "category": "Fixed Charges",
+          "prior_actual": 181518,
+          "current_adopted": 184965,
+          "current_modified": 184965,
+          "current_estimated": 191212,
+          "requested": 184965,
+          "recommended": 192773,
+          "proposed": 192773
+        },
+        {
+          "category": "Grants, Contributions, Indemnities and Other",
+          "prior_actual": 3569,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 0,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Capital Outlay",
+          "prior_actual": 76764,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 0,
+          "requested": 0,
+          "recommended": 38000,
+          "proposed": 38000
+        }
+      ],
+      "total_expenses": {
+        "prior_actual": 791839,
+        "current_adopted": 756987,
+        "current_modified": 756987,
+        "current_estimated": 781362,
+        "requested": 701550,
+        "recommended": 794108,
+        "proposed": 794108
+      },
+      "revenues": [
+        {
+          "category": "Taxes",
+          "prior_actual": 188572,
+          "current_adopted": 193988,
+          "current_modified": 193988,
+          "current_estimated": 193988,
+          "requested": 193988,
+          "recommended": 235107,
+          "proposed": 235107
+        },
+        {
+          "category": "Fines, Forfeits and Penalties",
+          "prior_actual": 182468,
+          "current_adopted": 183000,
+          "current_modified": 183000,
+          "current_estimated": 182253,
+          "requested": 183000,
+          "recommended": 140000,
+          "proposed": 140000
+        },
+        {
+          "category": "Public Charges for Services",
+          "prior_actual": 414646,
+          "current_adopted": 380000,
+          "current_modified": 380000,
+          "current_estimated": 494808,
+          "requested": 380000,
+          "recommended": 419000,
+          "proposed": 419000
+        },
+        {
+          "category": "Miscellaneous Revenue",
+          "prior_actual": 1003,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 0,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        },
+        {
+          "category": "Other Financing Sources",
+          "prior_actual": 160000,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 0,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        }
+      ],
+      "total_revenue": {
+        "prior_actual": 946689,
+        "current_adopted": 756988,
+        "current_modified": 756988,
+        "current_estimated": 871049,
+        "requested": 756988,
+        "recommended": 794107,
+        "proposed": 794107
+      }
+    },
+    {
+      "name": "Wausau Downtown Airport",
+      "fund_group": "Enterprise Funds",
+      "page": 228,
+      "expenses": [
+        {
+          "category": "Personal Services",
+          "prior_actual": 39882,
+          "current_adopted": 24744,
+          "current_modified": 24744,
+          "current_estimated": 28668,
+          "requested": 23981,
+          "recommended": 23981,
+          "proposed": 23981
+        },
+        {
+          "category": "Contractual Services",
+          "prior_actual": 460306,
+          "current_adopted": 400187,
+          "current_modified": 400187,
+          "current_estimated": 431057,
+          "requested": 400187,
+          "recommended": 407687,
+          "proposed": 407687
+        },
+        {
+          "category": "Supplies and Expense",
+          "prior_actual": 29256,
+          "current_adopted": 32718,
+          "current_modified": 32718,
+          "current_estimated": 36607,
+          "requested": 32718,
+          "recommended": 32718,
+          "proposed": 32718
+        },
+        {
+          "category": "Building Materials",
+          "prior_actual": 0,
+          "current_adopted": 4400,
+          "current_modified": 4400,
+          "current_estimated": 1833,
+          "requested": 4400,
+          "recommended": 300,
+          "proposed": 300
+        },
+        {
+          "category": "Fixed Charges",
+          "prior_actual": 34252,
+          "current_adopted": 35250,
+          "current_modified": 35250,
+          "current_estimated": 14687,
+          "requested": 35250,
+          "recommended": 35250,
+          "proposed": 35250
+        },
+        {
+          "category": "Capital Outlay",
+          "prior_actual": 5896,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 0,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        }
+      ],
+      "total_expenses": {
+        "prior_actual": 569592,
+        "current_adopted": 497299,
+        "current_modified": 497299,
+        "current_estimated": 512852,
+        "requested": 496536,
+        "recommended": 499936,
+        "proposed": 499936
+      },
+      "revenues": [
+        {
+          "category": "Taxes",
+          "prior_actual": 332690,
+          "current_adopted": 341000,
+          "current_modified": 341000,
+          "current_estimated": 341000,
+          "requested": 341000,
+          "recommended": 343236,
+          "proposed": 343236
+        },
+        {
+          "category": "Miscellaneous Revenue",
+          "prior_actual": 161760,
+          "current_adopted": 156300,
+          "current_modified": 156300,
+          "current_estimated": 159077,
+          "requested": 156300,
+          "recommended": 156700,
+          "proposed": 156700
+        },
+        {
+          "category": "Other Financing Sources",
+          "prior_actual": 100000,
+          "current_adopted": 0,
+          "current_modified": 0,
+          "current_estimated": 0,
+          "requested": 0,
+          "recommended": 0,
+          "proposed": 0
+        }
+      ],
+      "total_revenue": {
+        "prior_actual": 594450,
+        "current_adopted": 497300,
+        "current_modified": 497300,
+        "current_estimated": 500077,
+        "requested": 497300,
+        "recommended": 499936,
+        "proposed": 499936
+      }
+    }
+  ],
+  "staffing": {
+    "page": 42,
+    "years": [
+      2027,
+      2026,
+      2025,
+      2024,
+      2023,
+      2022,
+      2021,
+      2020,
+      2019,
+      2018,
+      2017
+    ],
+    "departments": [
+      {
+        "name": "City Council",
+        "values": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          11.0
+        ]
+      },
+      {
+        "name": "Mayor\u2019s Office",
+        "values": [
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0
+        ]
+      },
+      {
+        "name": "Customer Service",
+        "values": [
+          12.45,
+          12.45,
+          12.45,
+          12.45,
+          12.45,
+          12.45,
+          12.45,
+          11.84,
+          11.84,
+          11.84,
+          11.84
+        ]
+      },
+      {
+        "name": "Assessment",
+        "values": [
+          7.0,
+          7.0,
+          7.0,
+          7.0,
+          7.0,
+          7.0,
+          7.0,
+          6.0,
+          6.0,
+          6.0,
+          7.0
+        ]
+      },
+      {
+        "name": "Human Resources",
+        "values": [
+          4.0,
+          3.0,
+          3.0,
+          3.0,
+          3.0,
+          3.0,
+          3.0,
+          3.0,
+          3.0,
+          3.0,
+          3.0
+        ]
+      },
+      {
+        "name": "City Attorney",
+        "values": [
+          4.75,
+          4.75,
+          4.75,
+          4.75,
+          4.75,
+          4.75,
+          4.75,
+          4.75,
+          4.75,
+          3.75,
+          3.75
+        ]
+      },
+      {
+        "name": "City Administrator",
+        "values": [
+          1.0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null
+        ]
+      },
+      {
+        "name": "Municipal Court",
+        "values": [
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          1.5,
+          1.5,
+          1.5
+        ]
+      },
+      {
+        "name": "Police",
+        "values": [
+          91.05,
+          92.05,
+          94.05,
+          91.25,
+          91.25,
+          90.25,
+          90.25,
+          89.8,
+          89.0,
+          87.0,
+          84.0
+        ]
+      },
+      {
+        "name": "Fire",
+        "values": [
+          75.4,
+          75.4,
+          75.4,
+          74.4,
+          74.0,
+          62.0,
+          62.0,
+          62.0,
+          62.0,
+          61.0,
+          60.0
+        ]
+      },
+      {
+        "name": "Public Works",
+        "values": [
+          70.5,
+          70.5,
+          70.5,
+          70.5,
+          69.0,
+          69.0,
+          69.0,
+          69.0,
+          68.5,
+          68.5,
+          68.5
+        ]
+      },
+      {
+        "name": "Community Development",
+        "values": [
+          14.55,
+          14.55,
+          14.55,
+          14.55,
+          14.0,
+          14.0,
+          14.0,
+          14.0,
+          14.0,
+          14.0,
+          13.75
+        ]
+      },
+      {
+        "name": "Metro Ride",
+        "values": [
+          34.5,
+          34.5,
+          34.5,
+          34.5,
+          34.5,
+          34.5,
+          34.5,
+          34.5,
+          34.5,
+          31.5,
+          31.5
+        ]
+      },
+      {
+        "name": "Wausau Water Works",
+        "values": [
+          36.0,
+          36.0,
+          36.0,
+          33.0,
+          31.0,
+          31.0,
+          31.0,
+          29.5,
+          29.5,
+          28.5,
+          27.5
+        ]
+      }
+    ],
+    "total": [
+      355.2,
+      354.2,
+      356.2,
+      349.4,
+      344.95,
+      331.95,
+      331.95,
+      328.39,
+      326.59,
+      318.59,
+      325.34
+    ]
+  },
+  "debt": {
+    "outstanding": {
+      "page": 35,
+      "as_of": "September 25, 2026",
+      "general_obligation_undrawn": 2342665,
+      "general_obligation": 75858460,
+      "water_revenue": 54674834,
+      "sewer_revenue": 84610848,
+      "total": 215144142
+    },
+    "go_schedule": {
+      "page": 39,
+      "years": [
+        {
+          "year": 2027,
+          "principal": 11730057,
+          "interest": 2647968,
+          "total": 14378025
+        },
+        {
+          "year": 2028,
+          "principal": 11571457,
+          "interest": 2105757,
+          "total": 13677214
+        },
+        {
+          "year": 2029,
+          "principal": 11382860,
+          "interest": 1689680,
+          "total": 13072541
+        },
+        {
+          "year": 2030,
+          "principal": 10774268,
+          "interest": 1286625,
+          "total": 12060893
+        },
+        {
+          "year": 2031,
+          "principal": 9910678,
+          "interest": 901250,
+          "total": 10811928
+        },
+        {
+          "year": 2032,
+          "principal": 6297092,
+          "interest": 602994,
+          "total": 6900087
+        },
+        {
+          "year": 2033,
+          "principal": 5973510,
+          "interest": 397651,
+          "total": 6371161
+        },
+        {
+          "year": 2034,
+          "principal": 4194932,
+          "interest": 239801,
+          "total": 4434732
+        },
+        {
+          "year": 2035,
+          "principal": 3431356,
+          "interest": 127068,
+          "total": 3558424
+        },
+        {
+          "year": 2036,
+          "principal": 1962510,
+          "interest": 49942,
+          "total": 2012452
+        },
+        {
+          "year": 2037,
+          "principal": 285665,
+          "interest": 19449,
+          "total": 305114
+        },
+        {
+          "year": 2038,
+          "principal": 295704,
+          "interest": 11847,
+          "total": 307551
+        },
+        {
+          "year": 2039,
+          "principal": 295744,
+          "interest": 4108,
+          "total": 299851
+        },
+        {
+          "year": 2040,
+          "principal": 15783,
+          "interest": 219,
+          "total": 16001
+        },
+        {
+          "year": 2041,
+          "principal": 15822,
+          "interest": 179,
+          "total": 16001
+        },
+        {
+          "year": 2042,
+          "principal": 15862,
+          "interest": 139,
+          "total": 16001
+        },
+        {
+          "year": 2043,
+          "principal": 15902,
+          "interest": 100,
+          "total": 16001
+        },
+        {
+          "year": 2044,
+          "principal": 15941,
+          "interest": 60,
+          "total": 16001
+        },
+        {
+          "year": 2045,
+          "principal": 15981,
+          "interest": 20,
+          "total": 16001
+        }
+      ],
+      "total_principal": 78201125,
+      "total_interest": 10084856
+    },
+    "limit": {
+      "page": 36,
+      "allowable": 231283255,
+      "debt_counted": 78201125,
+      "margin": 153082130,
+      "pct_utilized": 33.81
+    }
+  },
+  "capital_projects": {
+    "page": 22,
+    "categories": [
+      {
+        "name": "Infrastructure",
+        "projects": [
+          {
+            "description": "East Wausau Avenue Reconstruction STH 52",
+            "department": null,
+            "amount": 300000
+          },
+          {
+            "description": "Reconstruction of Emerson Street from Ethel Street to Eau Claire Boulevard",
+            "department": null,
+            "amount": 160000
+          },
+          {
+            "description": "Reconstruction of Mount View Boulevard from Ethel Street to Eau Claire Boulevard",
+            "department": null,
+            "amount": 160000
+          },
+          {
+            "description": "Reconstruction of Pied Piper from Ethel Street to Eau Claire Boulevard",
+            "department": null,
+            "amount": 135000
+          },
+          {
+            "description": "Reconstruction of South 11th Avenue from West Thomas Street to Flieth Street",
+            "department": null,
+            "amount": 1630000
+          },
+          {
+            "description": "Reconstruction of South 17th Avenue from Sherman Street to Stewart Avenue",
+            "department": null,
+            "amount": 250000
+          },
+          {
+            "description": "Street Tree Planting",
+            "department": null,
+            "amount": 25000
+          },
+          {
+            "description": "Resurfacing of Business 51 from Stewart Avenue to Merrill Avenue",
+            "department": null,
+            "amount": 47360
+          },
+          {
+            "description": "Asphalt Overlay",
+            "department": null,
+            "amount": 800000
+          },
+          {
+            "description": "Alley Paving",
+            "department": null,
+            "amount": 45000
+          },
+          {
+            "description": "Sidewalk Projects",
+            "department": null,
+            "amount": 450000
+          },
+          {
+            "description": "Concrete Repairs",
+            "department": null,
+            "amount": 300000
+          },
+          {
+            "description": "Pavement Markings",
+            "department": null,
+            "amount": 100000
+          },
+          {
+            "description": "Lead Service Line Replacement - Property owner",
+            "department": null,
+            "amount": 12100000
+          }
+        ],
+        "total": 18332360
+      },
+      {
+        "name": "Facilities",
+        "projects": [
+          {
+            "description": "Station 3 Women\u2019s Locker Room Remodel",
+            "department": "Fire",
+            "amount": 60000
+          },
+          {
+            "description": "Standing Seam Metal Roof Building 2",
+            "department": "Public Works",
+            "amount": 81000
+          },
+          {
+            "description": "Taxiway D Extension",
+            "department": "Airport",
+            "amount": 50000
+          },
+          {
+            "description": "Reconstruct Taxilanes 1-4",
+            "department": "Airport",
+            "amount": 50000
+          },
+          {
+            "description": "Runway 13/31 Rehabilitation and Apron Modification",
+            "department": "Airport",
+            "amount": 103300
+          },
+          {
+            "description": "Taxiway Reconstruction and Light Replacement",
+            "department": "Airport",
+            "amount": 190000
+          }
+        ],
+        "total": 534300
+      },
+      {
+        "name": "Equipment, Fleet, Other",
+        "projects": [
+          {
+            "description": "Nutanix Law Enforcement Server Replacement",
+            "department": "CCITC",
+            "amount": 113000
+          },
+          {
+            "description": "Security Camera Replacement",
+            "department": "CCITC",
+            "amount": 36500
+          },
+          {
+            "description": "Data Tagging & Data Loss Prevention",
+            "department": "CCITC",
+            "amount": 32472
+          },
+          {
+            "description": "Park Rolling Stock",
+            "department": "Parks",
+            "amount": 234739
+          }
+        ],
+        "total": 416711
+      }
+    ],
+    "total": 19283371,
+    "funding": [
+      {
+        "source": "General Property Taxes",
+        "amount": 497902
+      },
+      {
+        "source": "Special Assessment Income",
+        "amount": 207000
+      },
+      {
+        "source": "Principal Forgiveness Safe Drinking Water",
+        "amount": 7900000
+      },
+      {
+        "source": "Safe Drinking Water Loan",
+        "amount": 4200000
+      },
+      {
+        "source": "Grant Income",
+        "amount": 103948
+      },
+      {
+        "source": "Investment Income",
+        "amount": 45360
+      },
+      {
+        "source": "General Obligation Promissory Notes",
+        "amount": 6255000
+      }
+    ],
+    "total_funding": 19209210
+  },
+  "deferred_projects": {
+    "page": 162,
+    "departments": [
+      {
+        "name": "Parks",
+        "projects": [
+          {
+            "description": "Tennis Court Replacement Program Yr 1",
+            "amount": 175000
+          },
+          {
+            "description": "Sylvan Hill Park Parking Lot Reconstruction",
+            "amount": 175000
+          },
+          {
+            "description": "Playground Equipment Replacement",
+            "amount": 125000
+          }
+        ]
+      },
+      {
+        "name": "Police",
+        "projects": [
+          {
+            "description": "Special Event Safety Enhancements",
+            "amount": 193688
+          }
+        ]
+      },
+      {
+        "name": "Public Works",
+        "projects": [
+          {
+            "description": "Truck Scale",
+            "amount": 137000
+          },
+          {
+            "description": "LED Lighting Upgrades at DPW Facility",
+            "amount": 25466
+          },
+          {
+            "description": "Stock Room Storage",
+            "amount": 55000
+          },
+          {
+            "description": "Fleet Facility",
+            "amount": 4500000
+          },
+          {
+            "description": "Floor Repairs",
+            "amount": 650000
+          },
+          {
+            "description": "Cold Storage Building",
+            "amount": 765000
+          },
+          {
+            "description": "DPW Work Tracking and Asset Management",
+            "amount": 70000
+          }
+        ]
+      },
+      {
+        "name": "Fire",
+        "projects": [
+          {
+            "description": "EMS Cardiac Monitors",
+            "amount": 215000
+          },
+          {
+            "description": "PFAS Turnout Gear",
+            "amount": 52000
+          },
+          {
+            "description": "Training Facility",
+            "amount": 882000
+          },
+          {
+            "description": "Fire Station One Apron Restoration",
+            "amount": 70000
+          },
+          {
+            "description": "Fire Station One New Building Design",
+            "amount": 700000
+          },
+          {
+            "description": "Station 1 Fitness Equipment",
+            "amount": 25000
+          }
+        ]
+      },
+      {
+        "name": "City Hall",
+        "projects": [
+          {
+            "description": "City Hall Exterior Assessment",
+            "amount": 40000
+          },
+          {
+            "description": "City Hall Carpet",
+            "amount": 65000
+          },
+          {
+            "description": "City Hall Humidifer",
+            "amount": 85000
+          }
+        ]
+      },
+      {
+        "name": "Airport",
+        "projects": [
+          {
+            "description": "Video Sign on Lakeview Drive",
+            "amount": 30000
+          }
+        ]
+      },
+      {
+        "name": "CCITC",
+        "projects": [
+          {
+            "description": "Microsoft Server Licensing",
+            "amount": 60000
+          }
+        ]
+      }
+    ],
+    "total": 9095154
+  },
+  "source_discrepancies": [
+    {
+      "check": "capital projects: Infrastructure",
+      "page": 22,
+      "sum_of_rows": 16502360,
+      "printed_total": 18332360
+    }
+  ]
+}
