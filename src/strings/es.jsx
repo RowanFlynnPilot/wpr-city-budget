@@ -10,6 +10,8 @@ const num = (n) => (n >= 0 && n < 10 ? PALABRAS[n] : String(n));
 
 export default {
   // ---- formats
+  "doc.title": "Follow the Money: el presupuesto municipal de Wausau · Wausau Pilot & Review",
+
   "fmt.today": (date) => date.toLocaleDateString("es-US", { weekday: "long", day: "numeric", month: "long", year: "numeric" }),
   "fmt.date": (ymd) => `${ymd.d} de ${MESES[ymd.m - 1]} de ${ymd.y}`,
   "fmt.millions": (n) => (n < 0 ? "−" : "") + "$" + (Math.abs(n) / 1e6).toFixed(1) + " millones",
@@ -65,6 +67,7 @@ export default {
   "updates.title": "Cambios desde la propuesta",
   "updates.note": "Las cifras de esta página son las de la propuesta de la alcaldía. Estos son los cambios hechos desde entonces, del más reciente al más antiguo.",
   "updates.read": "Lea la noticia",
+  "updates.inEnglish": "Estas notas se publican en inglés.",
 
   // ---- highlights
   "hl.title": "Qué incluye la propuesta",

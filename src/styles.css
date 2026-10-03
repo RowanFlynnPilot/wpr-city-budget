@@ -102,8 +102,16 @@ body { margin: 0; background: var(--cream); color: var(--ink); }
   position: sticky; top: 0; z-index: 5; display: flex; gap: 2px; overflow-x: auto;
   background: var(--cream); border-bottom: 2px solid var(--ink); padding: 0 32px 0 12px;
   scrollbar-width: none; -webkit-overflow-scrolling: touch;
-  mask-image: linear-gradient(to right, #000 calc(100% - 32px), transparent);
-  -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 32px), transparent);
+  /* Fade the right edge so a strip that scrolls reads as one; the second layer
+     keeps the 2px rule underneath solid across the full width. */
+  mask-image: linear-gradient(to right, #000 calc(100% - 32px), transparent), linear-gradient(#000, #000);
+  mask-size: 100% calc(100% - 2px), 100% 2px;
+  mask-position: top, bottom;
+  mask-repeat: no-repeat;
+  -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 32px), transparent), linear-gradient(#000, #000);
+  -webkit-mask-size: 100% calc(100% - 2px), 100% 2px;
+  -webkit-mask-position: top, bottom;
+  -webkit-mask-repeat: no-repeat;
 }
 .secnav::-webkit-scrollbar { display: none; }
 .secnav a {
@@ -111,6 +119,10 @@ body { margin: 0; background: var(--cream); color: var(--ink); }
   text-decoration: none; border-bottom: 3px solid transparent; margin-bottom: -2px; white-space: nowrap;
 }
 .secnav a:hover, .secnav a.on { color: var(--teal-dark); border-bottom-color: var(--teal); }
+/* Centered while the links fit; when they don't, the auto margins give way and
+   the strip starts at its left edge, so no link is pushed out of reach. */
+.secnav a:first-child { margin-left: auto; }
+.secnav a:last-child { margin-right: auto; }
 
 /* ---------- page and sections ---------- */
 .page { max-width: 920px; margin: 0 auto; padding: 0 16px; }
@@ -538,7 +550,7 @@ body { margin: 0; background: var(--cream); color: var(--ink); }
   .flag-wordmark { width: 420px; }
   .banner-inner { padding: 38px 24px 32px; }
   .page { padding: 0 24px; }
-  .secnav { justify-content: center; padding: 0 16px; mask-image: none; -webkit-mask-image: none; }
+  .secnav { padding: 0 32px; }
   .secnav a { padding: 14px 12px 12px; font-size: 14px; }
   .block { padding: 52px 0 56px; }
   .calc { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); align-items: start; padding: 24px; gap: 28px; }

@@ -5,6 +5,8 @@ import React from "react";
 
 export default {
   // ---- formats
+  "doc.title": "Follow the Money: Lub zos Wausau daim nyiaj txiag · Wausau Pilot & Review",
+
   "fmt.today": (date) => `${["Hnub Caiv", "Hnub Ib", "Hnub Ob", "Hnub Peb", "Hnub Plaub", "Hnub Tsib", "Hnub Rau"][date.getDay()]}, ${["Lub Ib Hlis", "Lub Ob Hlis", "Lub Peb Hlis", "Lub Plaub Hlis", "Lub Tsib Hlis", "Lub Rau Hli", "Lub Xya Hli", "Lub Yim Hli", "Lub Cuaj Hli", "Lub Kaum Hli", "Lub Kaum Ib Hlis", "Lub Kaum Ob Hlis"][date.getMonth()]} tim ${date.getDate()}, ${date.getFullYear()}`,
   "fmt.date": (ymd) => `${["Lub Ib Hlis", "Lub Ob Hlis", "Lub Peb Hlis", "Lub Plaub Hlis", "Lub Tsib Hlis", "Lub Rau Hli", "Lub Xya Hli", "Lub Yim Hli", "Lub Cuaj Hli", "Lub Kaum Hli", "Lub Kaum Ib Hlis", "Lub Kaum Ob Hlis"][ymd.m - 1]} tim ${ymd.d}, ${ymd.y}`,
   "fmt.millions": (n) => `${n < 0 ? "−" : ""}$${(Math.abs(n) / 1e6).toFixed(1)} lab`,
@@ -60,6 +62,7 @@ export default {
   "updates.title": "Tej yam hloov tom qab daim nyiaj txiag npaj tseg",
   "updates.note": "Cov lej hauv qab no yog tus kav nroog daim nyiaj txiag npaj tseg. Cov no yog tej yam uas tau hloov txij thaum ntawd los, qhov tshiab tshaj ua ntej.",
   "updates.read": "Nyeem zaj xov xwm",
+  "updates.inEnglish": "Cov ntawv no sau ua lus Askiv xwb.",
 
   // ---- highlights
   "hl.title": "Muaj dab tsi hauv daim nyiaj txiag npaj tseg",

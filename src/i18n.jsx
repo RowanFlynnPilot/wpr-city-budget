@@ -66,7 +66,11 @@ export function LangProvider({ children }) {
   useEffect(() => {
     if (!TABLES[lang]) loadTable(lang).then(() => setLoaded((n) => n + 1), setFailure);
   }, [lang]);
-  useEffect(() => { document.documentElement.lang = lang; }, [lang]);
+  useEffect(() => {
+    if (!TABLES[lang]) return;
+    document.documentElement.lang = lang;
+    document.title = TABLES[lang]["doc.title"];
+  }, [lang, TABLES[lang]]);
   const setLang = (code) => loadTable(code).then(() => {
     setLangState(code);
     try { localStorage.setItem(STORAGE_KEY, code); } catch { /* storage blocked */ }

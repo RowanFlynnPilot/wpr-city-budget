@@ -7,6 +7,8 @@ import { apCount, apDate, millions } from "../format";
 
 export default {
   // ---- formats
+  "doc.title": "Follow the Money: Wausau’s city budget · Wausau Pilot & Review",
+
   "fmt.today": (date) => date.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" }),
   "fmt.date": (ymd) => apDate(ymd),
   "fmt.millions": (n) => millions(n),
@@ -62,6 +64,7 @@ export default {
   "updates.title": "Changes since the proposal",
   "updates.note": "The figures below are the mayor’s proposal. These are the changes made since, newest first.",
   "updates.read": "Read the story",
+  "updates.inEnglish": "These entries are written in English.",
 
   // ---- highlights
   "hl.title": "What’s in the proposal",
