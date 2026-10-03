@@ -58,12 +58,19 @@ proposed 2027: 41 budget units, known source discrepancies: 1 -> public\budget.j
 
 Every table is checked against the totals printed in the document and against the other tables. If a number does not reconcile, the run stops and names the table and page. Every figure on the page comes from `public/budget.json`; nothing is typed into the components.
 
+Then regenerate the social share card, which takes its year, stage and bar lengths from the same file:
+
+```powershell
+python og_card.py
+```
+
 ## Layout
 
 ```
 public/budget.json        reconciled data the page reads (from extract_budget.py)
 public/updates.json       hand-edited log of amendments
 extract_budget.py         PDF -> budget.json
+og_card.py                budget.json -> public/og-card.png (1200x630 share card)
 src/App.jsx               loads the data, lays out the sections
 src/sections/             one file per section, in page order
 src/labels.js             reader-facing names and notes (text only, no figures)

@@ -19,7 +19,8 @@ Sibling of `wpr-budget` ("Follow the Money", Marathon County). Kept as its own r
   - Rule 10: the page shows the $300,000 gap as "planned spending exceeds revenue" with no explanation, pending confirmation from the city.
   - The city link goes to its "Annual Financial and Budget Reports" page (supplied by Rowan), not to a specific PDF.
   - Cloudflare Web Analytics uses the shared rowanflynnpilot.github.io token, as in `wpr-budget`.
-- **Next:** an OG card (`public/og-card.png`, generated per the wpr-brand skill); entries in `public/updates.json` as the committee and council amend the budget.
+- **Done:** social share card. `og_card.py` draws `public/og-card.png` (1200x630) from `budget.json`: year, entity and stage, plus a receipt whose bars are the budget-year levy split to scale. Its status wording mirrors `src/labels.js`; an unknown stage stops the run. Rerun it whenever `budget.json` changes.
+- **Next:** entries in `public/updates.json` as the committee and council amend the budget.
 
 ## Stack and pattern
 
