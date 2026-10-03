@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { Share2 } from "lucide-react";
 import { signedPct, signedUsd } from "./format";
 
 // Section header: title, standfirst, and the budget's status line, which every
@@ -64,3 +65,38 @@ export function TableScroll({ label, children }) {
     </div>
   );
 }
+
+// In-page links scroll the section into view rather than follow the hash:
+// inside the WordPress iframe the frame itself never scrolls, and this moves the
+// host page instead. Modified clicks (new tab) keep the link's default.
+export const jumpTo = (id) => (e) => {
+  if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+  e.preventDefault();
+  document.getElementById(id).scrollIntoView();
+  history.replaceState(null, "", `#${id}`);
+};
+
+// Share: the system share sheet where there is one, otherwise the link is
+// copied. If the browser refuses both (an iframe embedded without the
+// permissions in the README snippet), the link is shown to copy by hand.
+export function ShareButton({ title, text, url }) {
+  const [state, setState] = useState("idle"); // idle | copied | manual
+  const copy = () => navigator.clipboard.writeText(`${text} ${url}`)
+    .then(() => { setState("copied"); setTimeout(() => setState("idle"), 2500); })
+    .catch(() => setState("manual"));
+  const onClick = () => {
+    if (!navigator.share) return copy();
+    navigator.share({ title, text, url }).catch((e) => { if (e.name !== "AbortError") copy(); });
+  };
+  return (
+    <span className="share">
+      <button type="button" className="share-btn" onClick={onClick}>
+        <Share2 size={15} strokeWidth={2.25} aria-hidden="true" />
+        {state === "copied" ? "Link copied" : "Share"}
+      </button>
+      {state === "manual" && <input className="share-url" readOnly value={url} aria-label="Link to share"
+        onFocus={(e) => e.target.select()} autoFocus />}
+    </span>
+  );
+}
+

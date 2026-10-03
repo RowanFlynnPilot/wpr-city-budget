@@ -1,5 +1,5 @@
 import React from "react";
-import { CITY_BUDGET_PAGE, CORRECTIONS_EMAIL, WPR_URL, WPR_PHONE } from "../labels";
+import { CITY_BUDGET_PAGE, CORRECTIONS_EMAIL, WPR_URL, WPR_PHONE, SUPPORT_URL, MEETING_TRACKER_URL } from "../labels";
 import { usd, pct, change } from "../format";
 
 const BADGE = `${import.meta.env.BASE_URL}wpr-typewriter-badge.png`;
@@ -73,6 +73,28 @@ export function About({ b, status }) {
         </dd>
       </dl>
     </section>
+  );
+}
+
+// The close: who built this, how, and how to keep it going. A bookend to the
+// banner, for readers and for anyone weighing whether to fund the work.
+export function Support({ b }) {
+  return (
+    <aside className="support" aria-labelledby="support-title">
+      <div className="support-inner">
+        <h2 id="support-title">Built by <span className="nowrap">Wausau Pilot &amp; Review</span></h2>
+        <p>
+          We read the city&rsquo;s {b.meta.pages}-page budget, checked all {b.units.length} department and fund
+          budgets against its totals, and will update this page as the Finance Committee and the Common
+          Council change the plan. Wausau Pilot &amp; Review is a nonprofit newsroom, and reader support
+          keeps tools like this free.
+        </p>
+        <div className="support-actions">
+          <a className="support-btn" href={SUPPORT_URL} target="_blank" rel="noopener noreferrer">Support our journalism</a>
+          <a className="support-link" href={MEETING_TRACKER_URL} target="_blank" rel="noopener noreferrer">Follow the budget meetings</a>
+        </div>
+      </div>
+    </aside>
   );
 }
 

@@ -1,6 +1,6 @@
 import React, { useId, useMemo, useState } from "react";
-import { SectionHead, Bar } from "../ui";
-import { fundLabel, departmentShort, TIF } from "../labels";
+import { SectionHead, Bar, ShareButton, jumpTo } from "../ui";
+import { fundLabel, departmentShort, TIF, SHARE_URL } from "../labels";
 import { usdCents, signedUsdCents, pct, change, taxAt } from "../format";
 import MoneyFlow from "../MoneyFlow";
 import { GENERAL_FUND } from "./GeneralFund";
@@ -46,6 +46,13 @@ const billFor = (b, assessed) => {
 // Whole dollars. Anything after a decimal point is cents and is dropped, so
 // "185,300.00" reads as $185,300, not $18,530,000.
 const parseAssessed = (text) => Math.min(parseInt(text.split(".")[0].replace(/\D/g, "") || "0", 10), MAX_ASSESSED);
+
+// The shared line uses the example home, never the reader's own value.
+function shareText(b) {
+  const { diff } = billFor(b, EXAMPLE_ASSESSED);
+  return `Wausau’s proposed ${b.meta.years.budget} budget would ${diff >= 0 ? "raise" : "lower"} the city tax on a `
+    + `$${EXAMPLE_ASSESSED.toLocaleString("en-US")} home by ${usdCents(Math.abs(diff))}. See what it means for yours:`;
+}
 
 // The calculator, set in the banner: the first thing a reader can do.
 export function BillCalculator({ b, assessed, onChange }) {
@@ -94,6 +101,10 @@ export function BillCalculator({ b, assessed, onChange }) {
           ${r.budget_year.toFixed(4)} per $1,000 of assessed value,{" "}
           {r.budget_year > r.current_year ? "up from" : r.budget_year < r.current_year ? "down from" : "the same as"} ${r.current_year.toFixed(4)}.
         </p>
+        <div className="calc-actions">
+          {text && <a className="calc-jump" href="#bill" onClick={jumpTo("bill")}>See where your {usdCents(bill)} goes</a>}
+          <ShareButton title={`Follow the Money: Wausau’s ${years.budget} budget`} text={shareText(b)} url={SHARE_URL} />
+        </div>
       </div>
     </div>
   );

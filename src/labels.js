@@ -74,10 +74,16 @@ export function groupNote(group) {
 // department. The dollar figure in the note comes from the unit's own table.
 export const OTHER_GENERAL_GOVERNMENT = "Other General Government";
 
-export function otherGeneralGovernmentNote(unit, usd) {
+// The proposed city administrator is the Personal Services line of Other
+// General Government (its only personnel); the overview names the position.
+export function administratorCost(unit) {
   const personnel = unit.expenses.find((e) => e.category === "Personal Services");
   if (!personnel) throw new Error(`${unit.name} has no Personal Services row`);
-  return `Citywide costs not assigned to a department, including ${usd(personnel.proposed)} `
+  return personnel.proposed;
+}
+
+export function otherGeneralGovernmentNote(unit, usd) {
+  return `Citywide costs not assigned to a department, including ${usd(administratorCost(unit))} `
     + "for a proposed city administrator. Its budget page also carries the general fund’s "
     + "general revenues, including the property tax, which pay for every department. "
     + "That money is not earned by this office.";
@@ -108,3 +114,9 @@ export const CITY_BUDGET_PAGE = "https://www.wausauwi.gov/your-government/financ
 export const CORRECTIONS_EMAIL = "editor@wausaupilotandreview.com";
 export const WPR_URL = "https://wausaupilotandreview.com/";
 export const WPR_PHONE = "715-301-5539";
+export const SUPPORT_URL = "https://wausaupilotandreview.com/support-our-publication/";
+export const MEETING_TRACKER_URL = "https://rowanflynnpilot.github.io/marathon-meetings/";
+
+// What the Share button sends: the tool itself until the story runs. Then set
+// it to the story's URL, so shared links land on WPR's site with the embed.
+export const SHARE_URL = "https://rowanflynnpilot.github.io/wpr-city-budget/";

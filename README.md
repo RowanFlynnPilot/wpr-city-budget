@@ -10,7 +10,8 @@ The page reports its content height to the parent page, so the iframe matches it
 
 ```html
 <iframe id="wpr-city-budget" src="https://rowanflynnpilot.github.io/wpr-city-budget/"
-        style="width:100%;border:0" scrolling="no" title="Follow the Money: Wausau's city budget"></iframe>
+        style="width:100%;border:0" scrolling="no" allow="web-share; clipboard-write"
+        title="Follow the Money: Wausau's city budget"></iframe>
 <script>
 addEventListener("message", (e) => {
   if (e.origin === "https://rowanflynnpilot.github.io" && e.data && e.data.type === "wpr-city-budget:height")
@@ -18,6 +19,13 @@ addEventListener("message", (e) => {
 });
 </script>
 ```
+
+The `allow` attribute lets the Share button open the phone's share sheet or copy the link from inside the embed; without it, readers get the link to copy by hand.
+
+## Sharing and sponsors
+
+- **Share link.** The Share button in the calculator sends `SHARE_URL` from `src/labels.js`, with a line about the example $200,000 home (never the reader's own value). It points at the tool for now. Once the story runs, set it to the story's URL so shared links land on WPR's site.
+- **Sponsor credit.** `src/sponsors.json` holds a "Presented by" credit for the banner. While `enabled` is `false` nothing renders. To sell it, set `enabled` to `true` and fill `name` (plus `url` and `logo`); the link is marked `rel="sponsored"` and UTM-tagged. Sales contact: weber.chris@wausaupilotandreview.com.
 
 ## Run it locally
 

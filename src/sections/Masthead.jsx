@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { WPR_URL } from "../labels";
 import { millions, pct, change } from "../format";
 import { BillCalculator } from "./TaxBill";
+import { jumpTo } from "../ui";
+import sponsor from "../sponsors.json";
 
 const BADGE = `${import.meta.env.BASE_URL}wpr-typewriter-badge.png`;
 const WORDMARK = `${import.meta.env.BASE_URL}wpr-wordmark.png`;
@@ -40,6 +42,28 @@ export function Flag() {
   );
 }
 
+// The sponsor credit (src/sponsors.json). Nothing renders until it is enabled;
+// an enabled credit with no name stops the page rather than show an empty one.
+function SponsorSlot() {
+  if (!sponsor.enabled) return null;
+  if (!sponsor.name) throw new Error("src/sponsors.json is enabled but has no name");
+  const logo = sponsor.logo && (sponsor.logo.startsWith("https://") ? sponsor.logo : import.meta.env.BASE_URL + sponsor.logo);
+  const inner = (
+    <>
+      <span className="sponsor-label">{sponsor.label}</span>
+      {logo
+        ? <span className="sponsor-logo"><img src={logo} alt={sponsor.name} /></span>
+        : <span className="sponsor-name">{sponsor.name}</span>}
+    </>
+  );
+  if (!sponsor.url) return <div className="sponsor">{inner}</div>;
+  const url = new URL(sponsor.url);
+  url.searchParams.set("utm_source", "wausaupilotandreview");
+  url.searchParams.set("utm_medium", "widget");
+  url.searchParams.set("utm_campaign", "wpr-city-budget");
+  return <a className="sponsor" href={url.href} target="_blank" rel="noopener noreferrer sponsored">{inner}</a>;
+}
+
 // The subject banner: tool title, the proposal in one sentence (rule 5: the
 // levy and the general fund, not the all-funds total), the status, and the
 // calculator, so the first thing on screen is the reader's own bill.
@@ -50,7 +74,10 @@ export function Banner({ b, status, assessed, onAssessed }) {
   return (
     <header className="banner">
       <div className="banner-inner">
-        <div className="banner-kicker">{b.meta.entity}</div>
+        <div className="banner-top">
+          <div className="banner-kicker">{b.meta.entity}</div>
+          <SponsorSlot />
+        </div>
         <h1>Follow the Money: Wausau&rsquo;s {years.budget} budget</h1>
         <p className="banner-dek">
           The proposal would raise {millions(tr.levy.budget_year)} in property
@@ -76,15 +103,6 @@ export function SectionNav() {
     SECTIONS.forEach(([id]) => { const el = document.getElementById(id); if (el) io.observe(el); });
     return () => io.disconnect();
   }, []);
-  // Scroll the section into view rather than follow the hash: inside the
-  // WordPress iframe the frame itself never scrolls, and this moves the host
-  // page instead. Modified clicks (new tab) keep the link's default.
-  const go = (id) => (e) => {
-    if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-    e.preventDefault();
-    document.getElementById(id).scrollIntoView();
-    history.replaceState(null, "", `#${id}`);
-  };
   useEffect(() => {
     const a = active && nav.current.querySelector(`a[href="#${active}"]`);
     if (a) nav.current.scrollTo({ left: a.offsetLeft + a.offsetWidth / 2 - nav.current.clientWidth / 2, behavior: "smooth" });
@@ -92,7 +110,7 @@ export function SectionNav() {
   return (
     <nav className="secnav" aria-label="Sections" ref={nav}>
       {SECTIONS.map(([id, label]) => (
-        <a key={id} href={`#${id}`} onClick={go(id)} className={active === id ? "on" : ""} aria-current={active === id ? "true" : undefined}>{label}</a>
+        <a key={id} href={`#${id}`} onClick={jumpTo(id)} className={active === id ? "on" : ""} aria-current={active === id ? "true" : undefined}>{label}</a>
       ))}
     </nav>
   );

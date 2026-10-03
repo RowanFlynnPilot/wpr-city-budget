@@ -3,6 +3,7 @@ import { loadAll } from "./data";
 import { statusLine, CORRECTIONS_EMAIL } from "./labels";
 import { Flag, Banner, SectionNav } from "./sections/Masthead";
 import Updates from "./sections/Updates";
+import Highlights from "./sections/Highlights";
 import TaxBill, { EXAMPLE_ASSESSED } from "./sections/TaxBill";
 import Levy from "./sections/Levy";
 import GeneralFund from "./sections/GeneralFund";
@@ -11,7 +12,7 @@ import Fees from "./sections/Fees";
 import Capital from "./sections/Capital";
 import Debt from "./sections/Debt";
 import Staffing from "./sections/Staffing";
-import { About, Footer } from "./sections/About";
+import { About, Support, Footer } from "./sections/About";
 
 /*
  * Follow the Money: Wausau's city budget (Wausau Pilot & Review).
@@ -64,6 +65,7 @@ export default function App() {
         <SectionNav />
         <div className="page">
           <Updates updates={updates} />
+          <Highlights b={b} fees={fees} status={status} />
           <TaxBill b={b} status={status} assessed={assessed} />
           <Levy b={b} status={status} />
           <GeneralFund b={b} status={status} />
@@ -75,6 +77,7 @@ export default function App() {
           <About b={b} status={status} />
         </div>
       </main>
+      <Support b={b} />
       <Footer b={b} />
     </div>
   );
