@@ -156,6 +156,9 @@ body { margin: 0; background: var(--cream); color: var(--ink); }
 .flow-seg { cursor: pointer; transition: opacity 0.2s ease; }
 .flow-rib { opacity: 0.2; transition: opacity 0.2s ease; }
 .flow-seg.dim { opacity: 0.3; }
+.flow-callout { cursor: pointer; transition: opacity 0.2s ease; }
+.flow-callout.dim { opacity: 0.3; }
+.flow-leader { fill: none; stroke: var(--ink); stroke-opacity: 0.5; stroke-width: 1; }
 .flow-rib.dim { opacity: 0.06; }
 .flow-tip {
   position: absolute; transform: translate(-50%, calc(-100% - 8px)); z-index: 4; pointer-events: none;

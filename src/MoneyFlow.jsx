@@ -111,6 +111,56 @@ function fit(w, amount, names) {
   return best;
 }
 
+// Blocks this large (share of their row) always get a label: inside if it
+// fits, otherwise a callout beneath the row with a leader line.
+const CALLOUT_MIN = 0.05;
+const LANE = 40; // height a row of callouts adds below its bar
+
+// Callouts for the large blocks whose names did not fit inside: left to right,
+// each centered under its block where room allows, never overlapping the one
+// before and never left of minX (under row 2, the day-to-day stream runs down
+// through the lane). Every callout in a row uses full names if all of them fit,
+// otherwise short names. A callout replaces the block's amount-only label.
+function placeCallouts(segs, labels, W, minX = 0) {
+  const wanted = segs.map((s, i) => ({ s, i }))
+    .filter(({ s, i }) => !(labels[i] && labels[i].lines.length) && s.share >= CALLOUT_MIN);
+  const attempt = (nameOf) => {
+    const out = [];
+    let right = minX - 8;
+    for (const { s, i } of wanted) {
+      const name = nameOf(s), amt = usdCents(s.amount), cx = s.x + s.w / 2;
+      const w = Math.max(textWidth(name, NAME_FONT), textWidth(amt, AMT_FONT));
+      let x = Math.max(cx - w / 2, right + 8);
+      if (x + w > W) x = W - w;
+      if (x < right + 8) continue;
+      out.push({ key: s.key, i, name, amt, x, w, cx });
+      right = x + w;
+    }
+    return out;
+  };
+  const full = attempt((s) => s.label);
+  const placed = full.length === wanted.length ? full : attempt((s) => s.short);
+  placed.forEach((c) => { labels[c.i] = null; });
+  return placed;
+}
+
+function Callouts({ items, rowBottom, dimmed, onEnter, onLeave }) {
+  const top = rowBottom + 8;
+  return items.map((c) => {
+    const anchor = Math.max(c.x + 2, Math.min(c.cx, c.x + c.w - 2));
+    return (
+      <g key={c.key} className={"flow-callout" + (dimmed(c.key) ? " dim" : "")}
+        onMouseEnter={onEnter(c.key)} onMouseLeave={onLeave} onClick={onEnter(c.key)}>
+        <path d={`M${c.cx},${rowBottom} L${c.cx},${rowBottom + 3} L${anchor},${top}`} className="flow-leader" />
+        <text x={c.x} y={top + 12} fill={TEXT_DARK}>
+          <tspan className="flow-name">{c.name}</tspan>
+          <tspan className="flow-amt" x={c.x} dy={LINE + 1}>{c.amt}</tspan>
+        </text>
+      </g>
+    );
+  });
+}
+
 // Bar height for the tallest label in a row: name lines plus the amount line.
 const barHeight = (labels) => Math.max(40, 12 + LINE * (1 + Math.max(0, ...labels.map((l) => (l ? l.lines.length : 0)))));
 
@@ -157,8 +207,13 @@ export default function MoneyFlow({ bill, funds, departments, billLabel, ariaLab
     const billLabel1 = fit(billW, bill, [billLabel, "Your city tax"]);
     const labels2 = row2.map((f) => fit(f.w, f.amount, [f.label, f.short]));
     const labels3 = row3.map((d) => fit(d.w, d.amount, [d.label, d.short]));
+    const callouts2 = placeCallouts(row2, labels2, W, general.x + general.w + 6);
+    const callouts3 = placeCallouts(row3, labels3, W);
     const h1 = barHeight([billLabel1]), h2 = barHeight(labels2), h3 = barHeight(labels3);
-    const y1 = 0, y2 = h1 + R, y3 = y2 + h2 + R, H = y3 + h3;
+    // A callout lane under a row pushes everything below it down; under row 2 the
+    // day-to-day stream runs straight through the lane before it fans out.
+    const lane2 = callouts2.length ? LANE : 0, lane3 = callouts3.length ? LANE : 0;
+    const y1 = 0, y2 = h1 + R, y3 = y2 + h2 + lane2 + R, H = y3 + h3 + lane3;
 
     // Highlight: a department lights its own ribbon, the day-to-day segment and its ribbon.
     const litFund = (f) => !hot || (hot.kind === "fund" ? hot.key === f.key : f.general);
@@ -184,10 +239,16 @@ export default function MoneyFlow({ bill, funds, departments, billLabel, ariaLab
             <Segment key={f.key} seg={f} y={y2} h={h2} color={f.color} text={f.ink ? TEXT_DARK : TEXT_LIGHT}
               label={labels2[i]} dim={!litFund(f)} onEnter={enter("fund", f.key)} onLeave={leave} />
           ))}
+          <Callouts items={callouts2} rowBottom={y2 + h2} onLeave={leave}
+            dimmed={(k) => !litFund(row2.find((f) => f.key === k))} onEnter={(k) => enter("fund", k)} />
         </g>
         <g className="flow-layer r2">
+          {lane2 > 0 && (
+            <rect x={general.x} y={y2 + h2} width={general.w} height={lane2} fill={general.color}
+              className={"flow-rib" + (!hot || hot.kind === "dept" || hot.key === general.key ? "" : " dim")} />
+          )}
           {row3.map((d, i) => (
-            <path key={d.key} d={ribbon(src2[i][0], src2[i][1], y2 + h2, d.x, d.x + d.w, y3)}
+            <path key={d.key} d={ribbon(src2[i][0], src2[i][1], y2 + h2 + lane2, d.x, d.x + d.w, y3)}
               fill={general.color} className={"flow-rib" + (litDept(d) ? "" : " dim")} />
           ))}
         </g>
@@ -196,6 +257,8 @@ export default function MoneyFlow({ bill, funds, departments, billLabel, ariaLab
             <Segment key={d.key} seg={d} y={y3} h={h3} color={general.color} text={TEXT_LIGHT}
               label={labels3[i]} dim={!litDept(d)} onEnter={enter("dept", d.key)} onLeave={leave} />
           ))}
+          <Callouts items={callouts3} rowBottom={y3 + h3} onLeave={leave}
+            dimmed={(k) => !litDept(row3.find((d) => d.key === k))} onEnter={(k) => enter("dept", k)} />
         </g>
       </svg>
     );
