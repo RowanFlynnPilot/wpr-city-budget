@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { WPR_URL } from "../labels";
 import { compact, pct, change } from "../format";
+import { BillCalculator } from "./TaxBill";
 
 const BADGE = `${import.meta.env.BASE_URL}wpr-typewriter-badge.png`;
 const WORDMARK = `${import.meta.env.BASE_URL}wpr-wordmark.png`;
@@ -39,48 +40,45 @@ export function Flag() {
   );
 }
 
-// The subject banner: tool title, dek, status, and the three numbers the story
-// leads with (rule 5: the levy and the general fund, not the all-funds total).
-export function Banner({ b, status }) {
+// The subject banner: tool title, the proposal in one sentence (rule 5: the
+// levy and the general fund, not the all-funds total), the status, and the
+// calculator, so the first thing on screen is the reader's own bill.
+export function Banner({ b, status, assessed, onAssessed }) {
   const { years } = b.meta;
   const tr = b.tax_rate;
   const levyChange = change(tr.levy.budget_year, tr.levy.current_year);
   return (
     <header className="banner">
       <div className="banner-inner">
-        <div className="banner-kicker">Follow the Money &middot; {b.meta.entity}</div>
+        <div className="banner-kicker">{b.meta.entity}</div>
         <h1>Follow the Money: Wausau&rsquo;s {years.budget} budget</h1>
         <p className="banner-dek">
-          What the city&rsquo;s share of your property tax bill pays for, where the levy goes,
-          and what each department asked for and got.
+          The proposal would raise {compact(tr.levy.budget_year).replace("M", " million")} in property
+          taxes, up {pct(levyChange, 2)}, and spend {compact(b.general_fund.total_expenditures.budget).replace("M", " million")} on
+          police, fire, streets, parks and city hall. Here is what it means for your bill.
         </p>
         <p className="banner-status"><span className="banner-dot" aria-hidden="true" />{status}</p>
-        <dl className="banner-stats">
-          <div>
-            <dt>City tax levy</dt>
-            <dd>{compact(tr.levy.budget_year)}</dd>
-            <dd className="banner-sub">up {pct(levyChange, 2)} from {years.current}</dd>
-          </div>
-          <div>
-            <dt>Rate per $1,000</dt>
-            <dd>${tr.rate_per_1000.budget_year.toFixed(4)}</dd>
-            <dd className="banner-sub">{tr.assessed_valuation_is_estimate ? "preliminary; " : ""}${tr.rate_per_1000.current_year.toFixed(4)} in {years.current}</dd>
-          </div>
-          <div>
-            <dt>General fund spending</dt>
-            <dd>{compact(b.general_fund.total_expenditures.budget)}</dd>
-            <dd className="banner-sub">police, fire, streets, parks, city hall</dd>
-          </div>
-        </dl>
+        <BillCalculator b={b} assessed={assessed} onChange={onAssessed} />
       </div>
     </header>
   );
 }
 
+// Section links; the one for the section in view is marked as you scroll.
 export function SectionNav() {
+  const [active, setActive] = useState(null);
+  useEffect(() => {
+    const io = new IntersectionObserver(
+      (entries) => entries.forEach((e) => { if (e.isIntersecting) setActive(e.target.id); }),
+      { rootMargin: "-40% 0px -55% 0px" });
+    SECTIONS.forEach(([id]) => { const el = document.getElementById(id); if (el) io.observe(el); });
+    return () => io.disconnect();
+  }, []);
   return (
     <nav className="secnav" aria-label="Sections">
-      {SECTIONS.map(([id, label]) => <a key={id} href={`#${id}`}>{label}</a>)}
+      {SECTIONS.map(([id, label]) => (
+        <a key={id} href={`#${id}`} className={active === id ? "on" : ""} aria-current={active === id ? "true" : undefined}>{label}</a>
+      ))}
     </nav>
   );
 }

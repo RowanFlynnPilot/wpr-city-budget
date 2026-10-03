@@ -84,7 +84,7 @@ function UnitDetail({ u, meta, history }) {
   );
 }
 
-function UnitRow({ u, meta, history }) {
+function UnitRow({ u, meta, history, max }) {
   const [open, setOpen] = useState(false);
   const panel = useId();
   const t = u.total_expenses;
@@ -92,7 +92,11 @@ function UnitRow({ u, meta, history }) {
     <li className={"unit" + (open ? " open" : "")}>
       <button type="button" className="unit-row" aria-expanded={open} aria-controls={panel}
         onClick={() => setOpen(!open)}>
-        <span className="unit-name">{u.name}</span>
+        <span className="unit-name">
+          {u.name}
+          {/* Length = this budget against the largest of all 41, so sizes compare across groups. */}
+          <span className="unit-scale" aria-hidden="true"><i style={{ width: `${(t.proposed / max) * 100}%` }} /></span>
+        </span>
         <span className="unit-amt">{usd(t.proposed)}</span>
         <span className="unit-chg"><Change value={change(t.proposed, t.current_adopted)} /></span>
         <ChevronDown className="unit-chev" size={18} strokeWidth={2} aria-hidden="true" />
@@ -107,6 +111,7 @@ export default function Departments({ b, history, status }) {
   const searchId = useId();
   const { years } = b.meta;
   const groups = useMemo(() => groupUnits(b.units), [b.units]);
+  const max = Math.max(...b.units.map((u) => u.total_expenses.proposed));
   const q = query.trim().toLowerCase();
   const shown = groups
     .map((g) => ({ ...g, units: q ? g.units.filter((u) => u.name.toLowerCase().includes(q)) : g.units }))
@@ -114,7 +119,7 @@ export default function Departments({ b, history, status }) {
 
   return (
     <section id="departments" className="block">
-      <SectionHead kicker="Departments and funds" title="What each department asked for, and got" status={status}>
+      <SectionHead title="What each department asked for, and got" status={status}>
         All {b.units.length} department and fund budgets in the book. Open one to see its{" "}
         {years.current} budget, its {years.budget} request, the proposed amount, where the money goes, and
         about ten years of budgeted and actual spending.
@@ -142,7 +147,7 @@ export default function Departments({ b, history, status }) {
               <span>Budget</span><span>{years.budget} proposed</span><span>vs. {years.current}</span>
             </div>
             <ul className="units">
-              {g.units.map((u) => <UnitRow key={u.name} u={u} meta={b.meta} history={history} />)}
+              {g.units.map((u) => <UnitRow key={u.name} u={u} meta={b.meta} history={history} max={max} />)}
             </ul>
           </div>
         );

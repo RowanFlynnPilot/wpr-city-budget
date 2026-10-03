@@ -75,19 +75,6 @@ body { margin: 0; background: var(--cream); color: var(--ink); }
   background: var(--ochre-tint); color: var(--ochre-text); font-size: 13px; font-weight: 700; border-radius: 3px;
 }
 .banner-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--ochre); flex: none; }
-.banner-stats {
-  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; margin: 24px 0 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.28);
-}
-.banner-stats > div { padding: 14px 10px 0 0; min-width: 0; }
-.banner-stats > div + div { padding-left: 12px; border-left: 1px solid rgba(255, 255, 255, 0.2); }
-.banner-stats dt { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #CFE6E0; }
-.banner-stats dd { margin: 0; }
-.banner-stats dd:not(.banner-sub) {
-  font-family: var(--serif); font-size: clamp(22px, 5.4vw, 38px); font-weight: 600; line-height: 1.1;
-  margin-top: 6px; letter-spacing: -0.01em;
-}
-.banner-sub { font-size: 12.5px; color: #CFE6E0; margin-top: 4px; line-height: 1.35; }
 
 /* ---------- section nav ---------- */
 .secnav {
@@ -100,14 +87,13 @@ body { margin: 0; background: var(--cream); color: var(--ink); }
   flex: 0 0 auto; padding: 13px 10px 11px; font-size: 13.5px; font-weight: 600; color: var(--ink-2);
   text-decoration: none; border-bottom: 3px solid transparent; margin-bottom: -2px; white-space: nowrap;
 }
-.secnav a:hover { color: var(--teal-dark); border-bottom-color: var(--teal); }
+.secnav a:hover, .secnav a.on { color: var(--teal-dark); border-bottom-color: var(--teal); }
 
 /* ---------- page and sections ---------- */
 .page { max-width: 920px; margin: 0 auto; padding: 0 16px; }
 .block { padding: 40px 0 44px; border-bottom: 1px solid var(--rule-2); scroll-margin-top: 52px; }
 .sec-head { max-width: 64ch; margin-bottom: 24px; }
-.sec-kicker { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal-dark); }
-.sec-head h2 { font-size: clamp(27px, 5vw, 40px); line-height: 1.1; margin-top: 6px; }
+.sec-head h2 { font-size: clamp(28px, 5vw, 42px); line-height: 1.08; text-wrap: balance; }
 .status-line {
   display: inline-block; margin-top: 10px !important; padding: 2px 8px; border-radius: 3px;
   background: var(--ochre-tint); color: var(--ochre-text); font-size: 12px; font-weight: 600;
@@ -133,13 +119,13 @@ body { margin: 0; background: var(--cream); color: var(--ink); }
 .hbar { display: block; height: 8px; background: var(--cream-2); min-width: 0; }
 .hbar-fill { display: block; height: 100%; background: var(--teal); border-radius: 0 4px 4px 0; }
 
-/* ---------- tax calculator ---------- */
+/* ---------- tax calculator (a paper card set into the banner) ---------- */
 .calc {
-  display: grid; gap: 22px; background: var(--paper); border: 1px solid var(--rule-2);
-  border-top: 4px solid var(--teal); padding: 20px 18px;
+  display: grid; gap: 18px; margin-top: 24px; background: var(--paper); color: var(--ink);
+  border-radius: 4px; padding: 20px 18px 18px;
 }
 .calc-input label {
-  display: block; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted);
+  display: block; font-size: 13px; font-weight: 600; letter-spacing: 0; color: var(--muted);
 }
 .calc-field {
   display: flex; align-items: center; gap: 4px; margin-top: 8px; padding: 6px 12px;
@@ -152,14 +138,46 @@ body { margin: 0; background: var(--cream); color: var(--ink); }
   font-family: var(--serif); font-size: 32px; font-weight: 600; letter-spacing: -0.01em; padding: 2px 0;
 }
 .calc-hint { font-size: 13px; color: var(--muted); margin-top: 8px !important; }
-.calc-label { display: block; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.calc-label { display: block; font-size: 13px; font-weight: 600; letter-spacing: 0; color: var(--muted); }
 .calc-big {
   display: block; font-family: var(--serif); font-size: clamp(44px, 11vw, 64px); font-weight: 600;
   line-height: 1.05; color: var(--teal-dark); letter-spacing: -0.02em; margin-top: 4px;
 }
-.calc-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--rule); }
-.calc-mid { display: block; font-family: var(--serif); font-size: 26px; font-weight: 600; margin-top: 2px; letter-spacing: -0.01em; }
-.calc-rate { font-size: 13px; color: var(--muted); margin-top: 12px !important; }
+.calc-compare { font-size: 15px; color: var(--ink-2); margin-top: 6px !important; }
+.calc-diff { font-weight: 700; color: var(--teal-dark); font-variant-numeric: tabular-nums; }
+.calc-rate { font-size: 13px; color: var(--muted); margin-top: 4px !important; }
+
+/* ---------- money flow ---------- */
+.flow { position: relative; min-height: 1px; margin-top: 4px; }
+.flow-svg { display: block; overflow: visible; }
+.flow-svg text { pointer-events: none; }
+.flow-name { font: 700 12px var(--sans); }
+.flow-amt { font: 500 11.5px var(--mono); letter-spacing: -0.02em; }
+.flow-seg { cursor: pointer; transition: opacity 0.2s ease; }
+.flow-rib { opacity: 0.2; transition: opacity 0.2s ease; }
+.flow-seg.dim { opacity: 0.3; }
+.flow-rib.dim { opacity: 0.06; }
+.flow-tip {
+  position: absolute; transform: translate(-50%, calc(-100% - 8px)); z-index: 4; pointer-events: none;
+  background: var(--ink); color: var(--cream); padding: 7px 10px; border-radius: 3px; font-size: 12.5px;
+  white-space: nowrap; line-height: 1.4;
+}
+.flow-tip b { display: block; font-family: var(--serif); font-size: 14px; font-weight: 600; }
+.flow-note { margin-top: 12px !important; }
+/* The one orchestrated moment: the money pours down, row by row, the first time it comes into view. */
+.flow-svg .flow-layer { opacity: 0; }
+.flow-svg.in .flow-layer { animation: flow-fade 0.45s ease-out both; }
+.flow-svg.in .r1, .flow-svg.in .r2 { transform-box: fill-box; transform-origin: 50% 0; animation-name: flow-pour; animation-duration: 0.6s; }
+.flow-svg.in .r1 { animation-delay: 0.25s; }
+.flow-svg.in .l2 { animation-delay: 0.75s; }
+.flow-svg.in .r2 { animation-delay: 1s; }
+.flow-svg.in .l3 { animation-delay: 1.5s; }
+@keyframes flow-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes flow-pour { from { opacity: 0; transform: scaleY(0); } to { opacity: 1; transform: scaleY(1); } }
+
+/* department list: each budget's size against the largest of all 41 */
+.unit-scale { display: block; height: 3px; max-width: 240px; margin-top: 6px; background: var(--cream-2); }
+.unit-scale i { display: block; height: 100%; background: var(--teal); }
 
 .flagnote {
   margin-top: 18px !important; padding: 12px 14px; background: var(--ochre-tint); border-left: 3px solid var(--ochre);
@@ -215,7 +233,7 @@ body { margin: 0; background: var(--cream); color: var(--ink); }
 .tbl th, .tbl td { padding: 8px 10px; border-bottom: 1px solid var(--rule); text-align: left; vertical-align: top; }
 .tbl th:first-child, .tbl td:first-child { padding-left: 0; }
 .tbl th:last-child, .tbl td:last-child { padding-right: 0; }
-.tbl thead th { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); border-bottom: 2px solid var(--ink); white-space: nowrap; }
+.tbl thead th { font-size: 12.5px; font-weight: 600; letter-spacing: 0; color: var(--muted); border-bottom: 2px solid var(--ink); white-space: nowrap; }
 .tbl tbody th { font-weight: 500; }
 .tbl .num { text-align: right; white-space: nowrap; }
 .tbl tfoot th, .tbl tfoot td { font-weight: 700; border-top: 1.5px solid var(--ink); border-bottom: 0; }
@@ -248,7 +266,7 @@ body { margin: 0; background: var(--cream); color: var(--ink); }
 /* ---------- general fund ---------- */
 .trio { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1px; background: var(--rule-2); border: 1px solid var(--rule-2); margin: 0 0 26px; }
 .trio > div { background: var(--paper); padding: 14px 16px; }
-.trio dt { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.trio dt { font-size: 13px; font-weight: 600; letter-spacing: 0; color: var(--muted); }
 .trio dd { margin: 0; }
 .trio dd:not(.trio-sub) { font-family: var(--serif); font-size: 28px; font-weight: 600; letter-spacing: -0.01em; margin-top: 4px; }
 .trio-sub { font-size: 13px; color: var(--muted); display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
@@ -278,7 +296,7 @@ body { margin: 0; background: var(--cream); color: var(--ink); }
 
 /* ---------- departments ---------- */
 .search { margin-bottom: 10px; max-width: 420px; }
-.search label { display: block; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.search label { display: block; font-size: 13px; font-weight: 600; letter-spacing: 0; color: var(--muted); margin-bottom: 6px; }
 .search input {
   width: 100%; font: 16px var(--sans); padding: 10px 12px; border: 1.5px solid var(--ink); background: var(--paper); color: var(--ink); border-radius: 0;
 }
@@ -305,7 +323,7 @@ body { margin: 0; background: var(--cream); color: var(--ink); }
 .unit-detail { background: var(--paper); border: 1px solid var(--rule); border-top: 0; padding: 16px 14px 18px; display: grid; gap: 16px; }
 .unit-figs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 0; }
 .unit-figs > div { display: flex; flex-direction: column; justify-content: space-between; }
-.unit-figs dt { font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
+.unit-figs dt { font-size: 12.5px; font-weight: 600; letter-spacing: 0; color: var(--muted); }
 .unit-figs dd { margin: 2px 0 0; font-size: 13.5px; font-weight: 600; }
 .unit-figs > div:last-child dd { color: var(--teal-dark); }
 .unit-request { font-size: 14.5px; font-weight: 600; }
@@ -372,7 +390,7 @@ body { margin: 0; background: var(--cream); color: var(--ink); }
 .proj { display: flex; justify-content: space-between; align-items: baseline; gap: 14px; padding: 8px 0; border-bottom: 1px solid var(--rule); font-size: 14.5px; }
 .proj-desc { min-width: 0; }
 .proj-dept {
-  display: inline-block; margin-left: 8px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+  display: inline-block; margin-left: 8px; font-size: 12.5px; font-weight: 600; letter-spacing: 0;
   color: var(--teal-dark); background: var(--teal-tint); padding: 1px 6px; border-radius: 2px; vertical-align: 1px;
 }
 .proj-amt { font-size: 13.5px; white-space: nowrap; }
@@ -384,7 +402,7 @@ body { margin: 0; background: var(--cream); color: var(--ink); }
 .debt-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
 .debt-card { background: var(--paper); border: 1px solid var(--rule-2); border-top: 4px solid var(--teal); padding: 16px 18px; }
 .debt-card-rate { border-top-color: var(--blue); }
-.debt-who { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.debt-who { font-size: 13px; font-weight: 600; letter-spacing: 0; color: var(--muted); }
 .debt-big { font-family: var(--serif); font-size: clamp(30px, 7vw, 38px); font-weight: 600; letter-spacing: -0.01em; margin: 4px 0 8px; }
 .debt-card p { font-size: 14px; color: var(--ink-2); }
 .debt-split { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 0 0 10px; }
@@ -410,7 +428,7 @@ body { margin: 0; background: var(--cream); color: var(--ink); }
 .updates-title { font-size: 26px; line-height: 1.15; margin-bottom: 6px !important; }
 .updates { list-style: none; margin: 0; padding: 0; }
 .update { padding: 14px 16px; background: var(--ochre-tint); border-left: 3px solid var(--ochre); margin-top: 10px; }
-.update-meta { font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ochre-text); }
+.update-meta { font-size: 13px; font-weight: 600; letter-spacing: 0; color: var(--ochre-text); }
 .update p { margin-top: 4px; font-size: 15px; }
 .update a { display: inline-flex; align-items: center; gap: 3px; margin-top: 6px; font-size: 14px; font-weight: 600; }
 
@@ -456,8 +474,8 @@ body { margin: 0; background: var(--cream); color: var(--ink); }
     grid-template-areas: "name bar amt share chg";
   }
   .ranked-head {
-    display: grid; gap: 14px; padding: 0 0 6px; font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
-    text-transform: uppercase; color: var(--muted);
+    display: grid; gap: 14px; padding: 0 0 6px; font-size: 12.5px; font-weight: 600;
+    letter-spacing: 0; color: var(--muted);
   }
   .ranked-head span:nth-child(n+2) { text-align: right; }
   .ranked-head span:first-child { grid-column: 1 / 3; }
@@ -465,7 +483,7 @@ body { margin: 0; background: var(--cream); color: var(--ink); }
   .mrow { grid-template-columns: minmax(0, 1fr) 96px 120px 100px; grid-template-areas: "label spark amt chg"; }
   .unit-cols {
     display: grid; grid-template-columns: minmax(0, 1fr) 130px 96px 18px; gap: 12px; padding: 10px 2px 0;
-    font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted);
+    font-size: 12.5px; font-weight: 600; letter-spacing: 0; color: var(--muted);
   }
   .unit-cols span:nth-child(n+2) { text-align: right; }
   .unit-cols span:nth-child(3) { grid-column: 3; }
@@ -480,8 +498,8 @@ body { margin: 0; background: var(--cream); color: var(--ink); }
   .fee, .fee-cols { grid-template-columns: minmax(0, 1fr) 170px 150px; grid-template-areas: "name rates chg" "note note note"; }
   .fee-rates { text-align: right; }
   .fee-cols {
-    display: grid; gap: 12px; padding: 0 2px 6px; font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
-    text-transform: uppercase; color: var(--muted);
+    display: grid; gap: 12px; padding: 0 2px 6px; font-size: 12.5px; font-weight: 600;
+    letter-spacing: 0; color: var(--muted);
   }
   .fee-cols span:nth-child(n+2) { text-align: right; }
   .col-val { visibility: visible; font-size: 11px; }
@@ -492,5 +510,6 @@ body { margin: 0; background: var(--cream); color: var(--ink); }
 @media print {
   .secnav, .search, .seg, .table-toggle summary { display: none !important; }
   .ftm { background: #fff; }
+  .flow-svg .flow-layer { opacity: 1 !important; animation: none !important; }
   .rrow, .rank, .mrow, .unit, .proj, .debt-card, .callout { break-inside: avoid; }
 }

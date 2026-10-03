@@ -56,7 +56,7 @@ export default function Levy({ b, status }) {
 
   return (
     <section id="levy" className="block">
-      <SectionHead kicker="The property tax levy" title="Where the levy goes, year by year" status={status}>
+      <SectionHead title="Where the levy goes, year by year" status={status}>
         The city plans to collect {usd(lf.total[iNow])} in property taxes for {years.budget},
         up {usd(levyChange)} ({pct(change(lf.total[iNow], lf.total[iPrev]), 2)}) from {usd(lf.total[iPrev])}.
         Since {first.year} the levy has grown {pct(change(last.total, first.total), 0)}.

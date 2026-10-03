@@ -23,7 +23,7 @@ export default function Debt({ b, status }) {
 
   return (
     <section id="debt" className="block">
-      <SectionHead kicker="Debt" title="What the city owes, and who repays it" status={status}>
+      <SectionHead title="What the city owes, and who repays it" status={status}>
         The city owed {usd(o.total)} as of {o.as_of}. Property taxpayers back {compact(o.general_obligation)} of
         it; water and sewer customers repay the other {compact(ratepayer)} through their utility rates.
       </SectionHead>

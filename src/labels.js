@@ -2,28 +2,55 @@
 
 // Bill and levy slices, keyed by levy_by_fund.funds[].name (CLAUDE.md,
 // "Reader-facing labels"). A fund missing here stops the page.
+// [label, description, short label for narrow spaces such as the money flow]
 const FUND_LABELS = {
-  "General Fund": ["Day-to-day services", "Police, fire, streets, parks and city hall"],
-  "Debt Service Fund": ["Debt payments", "Principal and interest on money the city has borrowed"],
-  "MetroRide Fund": ["Metro Ride", "The city bus system"],
-  "Recycling Fund": ["Recycling", "Curbside recycling"],
-  "Central Equipment Capital Fund": ["Equipment and small facility work", "Police cameras, radios and vests; computers and phones; small building repairs"],
-  "Community Development": ["Community development", "Planning, economic development and housing programs"],
-  "Capital Projects Fund": ["Streets and construction", "The tax-funded share of street, sidewalk and building projects"],
-  "Wausau Downtown Airport Fund": ["Downtown airport", "Wausau Downtown Airport operations"],
-  "Parking Fund": ["Parking", "City ramps and lots"],
-  "Animal Control": ["Animal control", "Animal control services"],
+  "General Fund": ["Day-to-day services", "Police, fire, streets, parks and city hall", "Day-to-day"],
+  "Debt Service Fund": ["Debt payments", "Principal and interest on money the city has borrowed", "Debt"],
+  "MetroRide Fund": ["Metro Ride", "The city bus system", "Buses"],
+  "Recycling Fund": ["Recycling", "Curbside recycling", "Recycling"],
+  "Central Equipment Capital Fund": ["Equipment and small facility work", "Police cameras, radios and vests; computers and phones; small building repairs", "Equipment"],
+  "Community Development": ["Community development", "Planning, economic development and housing programs", "Planning"],
+  "Capital Projects Fund": ["Streets and construction", "The tax-funded share of street, sidewalk and building projects", "Streets"],
+  "Wausau Downtown Airport Fund": ["Downtown airport", "Wausau Downtown Airport operations", "Airport"],
+  "Parking Fund": ["Parking", "City ramps and lots", "Parking"],
+  "Animal Control": ["Animal control", "Animal control services", "Animals"],
 };
 
 export const TIF = {
   label: "Tax increment districts",
   desc: "Taxes on new development in the city’s TIF districts, set aside for those districts’ costs",
+  short: "TIF",
 };
 
 export function fundLabel(name) {
   const l = FUND_LABELS[name];
   if (!l) throw new Error(`No reader-facing label for levy fund "${name}" (src/labels.js)`);
-  return { label: l[0], desc: l[1] };
+  return { label: l[0], desc: l[1], short: l[2] };
+}
+
+// Short names for general fund departments where space is tight (the money
+// flow). Keyed by units[].name; a general fund unit missing here stops the page.
+const DEPARTMENT_SHORT = {
+  "Police": "Police",
+  "Fire": "Fire",
+  "Public Works": "Public works",
+  "Parks, Recreation and Forestry": "Parks",
+  "City County Information Technology Commission": "IT",
+  "Refuse Collection": "Garbage",
+  "Customer Service": "Customer service",
+  "Assessment": "Assessor",
+  "Human Resources": "HR",
+  "City Attorney": "Attorney",
+  "Other General Government": "Other",
+  "Mayor's Office": "Mayor",
+  "Municipal Court": "Court",
+  "Common Council": "Council",
+};
+
+export function departmentShort(name) {
+  const s = DEPARTMENT_SHORT[name];
+  if (!s) throw new Error(`No short name for general fund department "${name}" (src/labels.js)`);
+  return s;
 }
 
 // One-line explanations of the fund groups in the department drill-down.

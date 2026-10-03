@@ -1,12 +1,11 @@
 import React from "react";
 import { signedPct, signedUsd } from "./format";
 
-// Section header: kicker, title, standfirst, and the budget's status line,
-// which every section carries so a screenshot of any one of them is labeled.
-export function SectionHead({ kicker, title, status, children }) {
+// Section header: title, standfirst, and the budget's status line, which every
+// section carries so a screenshot of any one of them is labeled.
+export function SectionHead({ title, status, children }) {
   return (
     <header className="sec-head">
-      <div className="sec-kicker">{kicker}</div>
       <h2>{title}</h2>
       <p className="status-line">{status}</p>
       {children && <p className="standfirst">{children}</p>}

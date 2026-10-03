@@ -13,8 +13,7 @@ export function About({ b, status }) {
   return (
     <section id="about" className="block block-about">
       <header className="sec-head">
-        <div className="sec-kicker">About these numbers</div>
-        <h2>Source, method and caveats</h2>
+        <h2>About these numbers</h2>
         <p className="status-line">{status}</p>
       </header>
       <dl className="about">

@@ -26,7 +26,7 @@ export default function Staffing({ b, status }) {
 
   return (
     <section id="staffing" className="block">
-      <SectionHead kicker="Staffing" title="How many people the city employs" status={status}>
+      <SectionHead title="How many people the city employs" status={status}>
         The proposed budget funds {fte(st.total[iNow])} full-time-equivalent positions
         in {years.budget}, compared with {fte(st.total[iPrev])} in {years.current}.
       </SectionHead>

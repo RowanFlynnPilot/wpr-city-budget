@@ -41,7 +41,7 @@ export default function Capital({ b, status }) {
 
   return (
     <section id="capital" className="block">
-      <SectionHead kicker="Capital projects" title="What the city plans to build and buy" status={status}>
+      <SectionHead title="What the city plans to build and buy" status={status}>
         The proposed budget funds {count} listed projects totaling {usd(cp.total)} in {years.budget}.
         Another {deferredCount} requests, worth {usd(dp.total)}, were left out.
       </SectionHead>

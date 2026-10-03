@@ -3,7 +3,7 @@ import { loadBudget, loadFees, loadHistory, loadUpdates } from "./data";
 import { statusLine } from "./labels";
 import { Flag, Banner, SectionNav } from "./sections/Masthead";
 import Updates from "./sections/Updates";
-import TaxBill from "./sections/TaxBill";
+import TaxBill, { EXAMPLE_ASSESSED } from "./sections/TaxBill";
 import Levy from "./sections/Levy";
 import GeneralFund from "./sections/GeneralFund";
 import Departments from "./sections/Departments";
@@ -25,6 +25,8 @@ import { About, Footer } from "./sections/About";
 export default function App() {
   const [state, setState] = useState(null);
   const [err, setErr] = useState(null);
+  // The assessed value is typed in the banner and followed through the bill section.
+  const [assessed, setAssessed] = useState(EXAMPLE_ASSESSED);
 
   useEffect(() => {
     Promise.all([loadBudget(), loadUpdates()])
@@ -56,11 +58,11 @@ export default function App() {
   return (
     <div className="ftm">
       <Flag />
-      <Banner b={b} status={status} />
+      <Banner b={b} status={status} assessed={assessed} onAssessed={setAssessed} />
       <SectionNav />
       <main className="page">
         <Updates updates={updates} />
-        <TaxBill b={b} status={status} />
+        <TaxBill b={b} status={status} assessed={assessed} />
         <Levy b={b} status={status} />
         <GeneralFund b={b} status={status} />
         <Departments b={b} history={history} status={status} />

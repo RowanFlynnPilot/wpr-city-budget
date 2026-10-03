@@ -34,7 +34,7 @@ export default function GeneralFund({ b, status }) {
 
   return (
     <section id="general-fund" className="block">
-      <SectionHead kicker="The general fund" title="The city’s day-to-day budget" status={status}>
+      <SectionHead title="The city’s day-to-day budget" status={status}>
         The general fund pays for police, fire, streets, parks and city hall. Property taxes
         cover {usd(propertyTax.budget)} of it, about {pct((propertyTax.budget / revenue) * 100, 0)} of
         its revenue.

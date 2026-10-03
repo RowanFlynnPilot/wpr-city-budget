@@ -68,7 +68,7 @@ export default function Fees({ fees, b, status }) {
 
   return (
     <section id="fees" className="block">
-      <SectionHead kicker="Fees and charges" title={`Fees that change in ${years.budget}`} status={status}>
+      <SectionHead title={`Fees that change in ${years.budget}`} status={status}>
         The proposed fee schedule changes {all.length} rates. {count(tally.up || 0, "goes up", "go up")} and{" "}
         {count(tally.down || 0, "goes down", "go down")}; {count(tally.removed || 0, "fee is dropped", "fees are dropped")}{" "}
         and {count(tally.restructured || 0, "pass becomes", "passes become")} a flat price. Most are parking permits and
