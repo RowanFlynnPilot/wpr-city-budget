@@ -21,7 +21,7 @@ Sibling of `wpr-budget` ("Follow the Money", Marathon County). Kept as its own r
   - Cloudflare Web Analytics uses the shared rowanflynnpilot.github.io token, as in `wpr-budget`.
 - **Done:** social share card. `og_card.py` draws `public/og-card.png` (1200x630) from `budget.json`: year, entity and stage, plus a receipt whose bars are the budget-year levy split to scale. Its status wording mirrors `src/labels.js`; an unknown stage stops the run. Rerun it whenever `budget.json` changes.
 - **Done:** the hand-verified fee changes list (`public/fees.json`, checked by `check_fees.py`), shown in a "Fees" section after the department drill-down. See "fees.json" below.
-- **Next:** entries in `public/updates.json` as the committee and council amend the budget. If the committee amends fees, edit `fees.json` and log it in `updates.json`.
+- **Next:** entries in `public/updates.json` as the committee and council amend the budget. If the committee amends a fee, log it in `updates.json` only: `fees.json` mirrors the book, and `check_fees.py` holds it to the PDF. Update `fees.json` when the city publishes a new schedule.
 
 ## Stack and pattern
 
