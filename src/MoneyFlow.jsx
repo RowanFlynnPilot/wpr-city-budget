@@ -16,13 +16,20 @@ import { usdCents, pct } from "./format";
  */
 
 const GAP = 2;
-const BAR = 40;
+const PAD = 7;          // text inset inside a segment
+const LINE = 14;        // label line height
 const TEXT_LIGHT = "#FFFFFF";
 const TEXT_DARK = "#1A1A1A";
+const NAME_FONT = '700 12px "Public Sans"';
+const AMT_FONT = '500 11.5px "JetBrains Mono"';
 
-// Rough text widths for fit tests (Public Sans bold, JetBrains Mono).
-const sansW = (s, size) => s.length * size * 0.57;
-const monoW = (s, size) => s.length * size * 0.6;
+// Text widths measured with the page's own fonts, so a label is placed only
+// where it truly fits.
+const ctx = document.createElement("canvas").getContext("2d");
+function textWidth(text, font) {
+  ctx.font = font;
+  return ctx.measureText(text).width;
+}
 
 function useWidth() {
   const ref = useRef(null);
@@ -33,6 +40,13 @@ function useWidth() {
     return () => ro.disconnect();
   }, []);
   return [ref, w];
+}
+
+// Measure only once the web fonts are in; before that, widths are the fallback's.
+function useFontsReady() {
+  const [ready, setReady] = useState(false);
+  useEffect(() => { document.fonts.ready.then(() => setReady(true)); }, []);
+  return ready;
 }
 
 // Reveal once, when the diagram first scrolls into view.
@@ -71,39 +85,65 @@ function splitSpan(x0, width, items) {
   return items.map((it) => { const s = [x, x + width * it.share]; x = s[1]; return s; });
 }
 
-// What fits inside a segment: name and amount, a shorter name, the amount alone, or nothing.
-function fit(seg, names) {
-  const room = seg.w - 12;
-  const amt = usdCents(seg.amount);
-  for (const name of names) {
-    if (Math.max(sansW(name, 12), monoW(amt, 11.5)) <= room) return { name, amt };
+// A name broken at a space into two lines that each fit, or null.
+function wrapTwo(name, room) {
+  const words = name.split(" ");
+  for (let i = words.length - 1; i > 0; i--) {
+    const a = words.slice(0, i).join(" "), b = words.slice(i).join(" ");
+    if (textWidth(a, NAME_FONT) <= room && textWidth(b, NAME_FONT) <= room) return [a, b];
   }
-  return monoW(amt, 11.5) <= room ? { name: null, amt } : null;
+  return null;
 }
 
-function Segment({ seg, y, color, text, label, dim, onEnter, onLeave }) {
+// The label that fits inside a segment, best first: a name on one line, a
+// name wrapped onto two, then the amount alone, each tried at the normal inset
+// and then a tighter one for narrow segments. Null when not even the amount fits.
+function fit(w, amount, names) {
+  const amt = usdCents(amount);
+  let best = null;
+  for (const pad of [PAD, 4]) {
+    const room = w - pad * 2;
+    if (textWidth(amt, AMT_FONT) > room) continue;
+    for (const n of names) if (textWidth(n, NAME_FONT) <= room) return { lines: [n], amt, pad };
+    for (const n of [...names].reverse()) { const two = wrapTwo(n, room); if (two) return { lines: two, amt, pad }; }
+    best = best || { lines: [], amt, pad };
+  }
+  return best;
+}
+
+// Bar height for the tallest label in a row: name lines plus the amount line.
+const barHeight = (labels) => Math.max(40, 12 + LINE * (1 + Math.max(0, ...labels.map((l) => (l ? l.lines.length : 0)))));
+
+function Label({ x, y, h, label, fill }) {
+  if (!label) return null;
+  const first = label.lines.length ? y + 17 : y + h / 2 + 4;
+  const tx = x + label.pad;
+  return (
+    <text x={tx} y={first} fill={fill}>
+      {label.lines.map((l, i) => <tspan key={i} className="flow-name" x={tx} dy={i ? LINE : 0}>{l}</tspan>)}
+      <tspan className="flow-amt" x={tx} dy={label.lines.length ? LINE + 1 : 0}>{label.amt}</tspan>
+    </text>
+  );
+}
+
+function Segment({ seg, y, h, color, text, label, dim, onEnter, onLeave }) {
   return (
     <g className={"flow-seg" + (dim ? " dim" : "")} onMouseEnter={onEnter} onMouseLeave={onLeave} onClick={onEnter}>
-      <rect x={seg.x} y={y} width={seg.w} height={BAR} rx={seg.w > 8 ? 3 : 0} fill={color} />
-      {label && (
-        <text x={seg.x + 7} y={y + (label.name ? 17 : 25)} fill={text}>
-          {label.name && <tspan className="flow-name">{label.name}</tspan>}
-          <tspan className="flow-amt" x={seg.x + 7} dy={label.name ? 15 : 0}>{label.amt}</tspan>
-        </text>
-      )}
+      <rect x={seg.x} y={y} width={seg.w} height={h} rx={seg.w > 8 ? 3 : 0} fill={color} />
+      <Label x={seg.x} y={y} h={h} label={label} fill={text} />
     </g>
   );
 }
 
 export default function MoneyFlow({ bill, funds, departments, billLabel, ariaLabel }) {
   const [ref, W] = useWidth();
+  const fontsReady = useFontsReady();
   const seen = useSeen(ref);
   const [hot, setHot] = useState(null); // {kind: "fund"|"dept", key}
 
   let svg = null;
-  if (W > 0) {
+  if (W > 0 && fontsReady) {
     const R = W < 560 ? 58 : 88;
-    const y1 = 0, y2 = BAR + R, y3 = y2 + BAR + R, H = y3 + BAR;
     const billW = Math.min(Math.max(W * 0.34, 156), W);
     const billX = (W - billW) / 2;
 
@@ -113,47 +153,48 @@ export default function MoneyFlow({ bill, funds, departments, billLabel, ariaLab
     const src1 = splitSpan(billX, billW, row2);
     const src2 = splitSpan(general.x, general.w, row3);
 
+    // Labels first: each row is as tall as its tallest label needs.
+    const billLabel1 = fit(billW, bill, [billLabel, "Your city tax"]);
+    const labels2 = row2.map((f) => fit(f.w, f.amount, [f.label, f.short]));
+    const labels3 = row3.map((d) => fit(d.w, d.amount, [d.label, d.short]));
+    const h1 = barHeight([billLabel1]), h2 = barHeight(labels2), h3 = barHeight(labels3);
+    const y1 = 0, y2 = h1 + R, y3 = y2 + h2 + R, H = y3 + h3;
+
     // Highlight: a department lights its own ribbon, the day-to-day segment and its ribbon.
     const litFund = (f) => !hot || (hot.kind === "fund" ? hot.key === f.key : f.general);
     const litDept = (d) => !hot || (hot.kind === "dept" ? hot.key === d.key : hot.key === general.key);
     const enter = (kind, key) => () => setHot({ kind, key });
     const leave = () => setHot(null);
 
-    const billLabelFit = fit({ w: billW, amount: bill }, [billLabel, "Your city tax"]);
     svg = (
       <svg width={W} height={H} viewBox={`0 0 ${W} ${H}`} className={"flow-svg" + (seen ? " in" : "")}
         role="img" aria-label={ariaLabel} onMouseLeave={leave}>
         <g className="flow-layer l1">
-          <rect x={billX} y={y1} width={billW} height={BAR} rx={3} fill={TEXT_DARK} />
-          {billLabelFit && (
-            <text x={billX + 8} y={y1 + 17} fill={TEXT_LIGHT}>
-              <tspan className="flow-name">{billLabelFit.name}</tspan>
-              <tspan className="flow-amt" x={billX + 8} dy={15}>{billLabelFit.amt}</tspan>
-            </text>
-          )}
+          <rect x={billX} y={y1} width={billW} height={h1} rx={3} fill={TEXT_DARK} />
+          <Label x={billX} y={y1} h={h1} label={billLabel1} fill={TEXT_LIGHT} />
         </g>
         <g className="flow-layer r1">
           {row2.map((f, i) => (
-            <path key={f.key} d={ribbon(src1[i][0], src1[i][1], y1 + BAR, f.x, f.x + f.w, y2)}
+            <path key={f.key} d={ribbon(src1[i][0], src1[i][1], y1 + h1, f.x, f.x + f.w, y2)}
               fill={f.color} className={"flow-rib" + (litFund(f) ? "" : " dim")} />
           ))}
         </g>
         <g className="flow-layer l2">
-          {row2.map((f) => (
-            <Segment key={f.key} seg={f} y={y2} color={f.color} text={f.ink ? TEXT_DARK : TEXT_LIGHT}
-              label={fit(f, [f.label, f.short])} dim={!litFund(f)} onEnter={enter("fund", f.key)} onLeave={leave} />
+          {row2.map((f, i) => (
+            <Segment key={f.key} seg={f} y={y2} h={h2} color={f.color} text={f.ink ? TEXT_DARK : TEXT_LIGHT}
+              label={labels2[i]} dim={!litFund(f)} onEnter={enter("fund", f.key)} onLeave={leave} />
           ))}
         </g>
         <g className="flow-layer r2">
           {row3.map((d, i) => (
-            <path key={d.key} d={ribbon(src2[i][0], src2[i][1], y2 + BAR, d.x, d.x + d.w, y3)}
+            <path key={d.key} d={ribbon(src2[i][0], src2[i][1], y2 + h2, d.x, d.x + d.w, y3)}
               fill={general.color} className={"flow-rib" + (litDept(d) ? "" : " dim")} />
           ))}
         </g>
         <g className="flow-layer l3">
-          {row3.map((d) => (
-            <Segment key={d.key} seg={d} y={y3} color={general.color} text={TEXT_LIGHT}
-              label={fit(d, [d.label, d.short])} dim={!litDept(d)} onEnter={enter("dept", d.key)} onLeave={leave} />
+          {row3.map((d, i) => (
+            <Segment key={d.key} seg={d} y={y3} h={h3} color={general.color} text={TEXT_LIGHT}
+              label={labels3[i]} dim={!litDept(d)} onEnter={enter("dept", d.key)} onLeave={leave} />
           ))}
         </g>
       </svg>
