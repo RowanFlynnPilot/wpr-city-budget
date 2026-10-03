@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import { ChevronDown } from "lucide-react";
 import { SectionHead } from "../ui";
 import { printedPage } from "../labels";
-import { usd, usdCents, pct, signedPct } from "../format";
+import { usd, usdCents, pct, signedPct, apCount, curly } from "../format";
 
 // Whole dollars print without cents; $10.50 and $6.25 keep them.
 const money = (n) => (Number.isInteger(n) ? usd(n) : usdCents(n));
@@ -10,17 +10,22 @@ const signedMoney = (n) => (n > 0 ? "+" : "") + money(n);
 
 const direction = (c) => (c.kind !== "rate" ? c.kind : c.budget > c.current ? "up" : "down");
 
-// "1 is", "2 are": counts in running text.
+// "1 change", "3 changes": counts in labels.
 const count = (n, one, many) => `${n} ${n === 1 ? one : many}`;
+// The same in running text, AP style: "two go down".
+const say = (n, one, many) => `${apCount(n)} ${n === 1 ? one : many}`;
+
+// The arrow is read aloud as "to".
+const To = () => <><span aria-hidden="true"> → </span><span className="sr-only"> to </span></>;
 
 function Rates({ c }) {
   if (c.kind === "rate") {
-    return <span className="fee-rates"><span>{money(c.current)}</span><span aria-label="to"> → </span><span>{money(c.budget)}</span></span>;
+    return <span className="fee-rates"><span>{money(c.current)}</span><To /><span>{money(c.budget)}</span></span>;
   }
   if (c.kind === "removed") {
-    return <span className="fee-rates"><span>{c.current_text}</span><span aria-label="to"> → </span><span>none</span></span>;
+    return <span className="fee-rates"><span>{c.current_text}</span><To /><span>none</span></span>;
   }
-  return <span className="fee-rates"><span>discounts</span><span aria-label="to"> → </span><span>{money(c.budget)}</span></span>;
+  return <span className="fee-rates"><span>discounts</span><To /><span>{money(c.budget)}</span></span>;
 }
 
 function Delta({ c }) {
@@ -40,12 +45,12 @@ function Delta({ c }) {
 // `more`: the next row continues this one.
 function FeeRow({ c, meta, cont, more }) {
   // A restructured fee's old terms are quoted as the city printed them.
-  const note = c.kind === "restructured" ? `In ${meta.years.current}: “${c.current_text}”` : c.note;
+  const note = c.kind === "restructured" ? `In ${meta.years.current}: “${c.current_text}”` : c.note && curly(c.note);
   return (
     <li className={"fee" + (cont ? " fee-cont" : "") + (more ? " fee-more" : "")}>
       <span className="fee-name">
         {cont ? <span className="sr-only">{c.fee}</span> : c.fee}
-        {c.detail && <span className="fee-detail">{c.detail}</span>}
+        {c.detail && <span className="fee-detail">{curly(c.detail)}</span>}
       </span>
       <Rates c={c} />
       <Delta c={c} />
@@ -61,6 +66,14 @@ export default function Fees({ fees, b, status }) {
   const offset = fees.source.printed_page_offset;
   const pageRange = `${fees.source.first_page - offset}–${fees.source.last_page - offset}`;
 
+  // "91 go up, two go down, one fee is dropped and two passes become a flat price"
+  const clauses = [
+    [tally.up, "goes up", "go up"], [tally.down, "goes down", "go down"],
+    [tally.removed, "fee is dropped", "fees are dropped"],
+    [tally.restructured, "pass becomes a flat price", "passes become a flat price"],
+  ].filter(([n]) => n).map(([n, one, many]) => say(n, one, many));
+  const kinds = clauses.length > 1 ? `${clauses.slice(0, -1).join(", ")} and ${clauses[clauses.length - 1]}` : clauses[0];
+
   // Largest percentage increases among ordinary rates, for the lead list.
   const biggest = useMemo(() => all
     .filter((c) => c.kind === "rate" && c.current > 0 && c.budget > c.current)
@@ -71,10 +84,8 @@ export default function Fees({ fees, b, status }) {
   return (
     <section id="fees" className="block">
       <SectionHead title={`Fees that change in ${years.budget}`} status={status}>
-        The proposed fee schedule changes {all.length} rates. {count(tally.up || 0, "goes up", "go up")} and{" "}
-        {count(tally.down || 0, "goes down", "go down")}; {count(tally.removed || 0, "fee is dropped", "fees are dropped")}{" "}
-        and {count(tally.restructured || 0, "pass becomes", "passes become")} a flat price. Most are parking permits and
-        park, pool and event rentals.
+        The proposed fee schedule changes {all.length} rates: {kinds}. Most are parking permits and park, pool
+        and event rentals.
       </SectionHead>
 
       <div className="fee-lead">
@@ -84,9 +95,9 @@ export default function Fees({ fees, b, status }) {
             <li key={c.fee + c.detail}>
               <span className="fee-lead-name">
                 {c.fee}
-                {c.detail && <span className="fee-detail">{c.detail}</span>}
+                {c.detail && <span className="fee-detail">{curly(c.detail)}</span>}
               </span>
-              <span className="fee-lead-rates">{money(c.current)} → {money(c.budget)}</span>
+              <span className="fee-lead-rates">{money(c.current)}<To />{money(c.budget)}</span>
               <span className="fee-lead-pct">+{pct(c.pct, 0)}</span>
             </li>
           ))}
@@ -127,7 +138,7 @@ export default function Fees({ fees, b, status }) {
           <ul className="fee-plain">
             {fees.unclear.map((u) => (
               <li key={u.fee}>
-                <b>{u.fee}.</b> {u.note} (Page {printedPage(u.page, fees.source)}.)
+                <b>{curly(u.fee)}.</b> {curly(u.note)} (Page {printedPage(u.page, fees.source)}.)
               </li>
             ))}
           </ul>
@@ -139,7 +150,7 @@ export default function Fees({ fees, b, status }) {
           <h3 className="callout-title">Problems in the city&rsquo;s schedule</h3>
           <ul className="fee-plain">
             {fees.source_discrepancies.map((d, i) => (
-              <li key={i}>{d.note} (Page {printedPage(d.page, fees.source)}.)</li>
+              <li key={i}>{curly(d.note)} (Page {printedPage(d.page, fees.source)}.)</li>
             ))}
           </ul>
         </div>

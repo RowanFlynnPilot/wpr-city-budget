@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { WPR_URL } from "../labels";
-import { compact, pct, change } from "../format";
+import { millions, pct, change } from "../format";
 import { BillCalculator } from "./TaxBill";
 
 const BADGE = `${import.meta.env.BASE_URL}wpr-typewriter-badge.png`;
@@ -25,7 +25,7 @@ export function Flag() {
     weekday: "long", month: "long", day: "numeric", year: "numeric",
   });
   return (
-    <div className="flag">
+    <header className="flag">
       <a className="flag-lockup" href={WPR_URL} target="_blank" rel="noopener noreferrer"
         aria-label="Wausau Pilot & Review home">
         <img className="flag-badge" src={BADGE} alt="" width="62" height="62" decoding="async" />
@@ -36,7 +36,7 @@ export function Flag() {
         <span>{today}</span>
         <span className="flag-place">Wausau, Wisconsin</span>
       </div>
-    </div>
+    </header>
   );
 }
 
@@ -53,8 +53,8 @@ export function Banner({ b, status, assessed, onAssessed }) {
         <div className="banner-kicker">{b.meta.entity}</div>
         <h1>Follow the Money: Wausau&rsquo;s {years.budget} budget</h1>
         <p className="banner-dek">
-          The proposal would raise {compact(tr.levy.budget_year).replace("M", " million")} in property
-          taxes, up {pct(levyChange, 2)}, and spend {compact(b.general_fund.total_expenditures.budget).replace("M", " million")} on
+          The proposal would raise {millions(tr.levy.budget_year)} in property
+          taxes, up {pct(levyChange, 2)}, and spend {millions(b.general_fund.total_expenditures.budget)} on
           police, fire, streets, parks and city hall. Here is what it means for your bill.
         </p>
         <p className="banner-status"><span className="banner-dot" aria-hidden="true" />{status}</p>

@@ -2,7 +2,7 @@ import React from "react";
 import { HistoryChart, HISTORY } from "../charts";
 import { TableScroll } from "../ui";
 import { printedPage } from "../labels";
-import { usd } from "../format";
+import { usd, curly } from "../format";
 
 // Measured figures are approximate: say so in the wording, not with false precision.
 const about = (v) => (v >= 1e6 ? `$${(v / 1e6).toFixed(2)} million` : usd(v));
@@ -32,7 +32,7 @@ export default function UnitHistory({ u, h, meta, offset }) {
       {h.note && (
         <p className="history-flag">
           {c && <>The chart&rsquo;s {c.year} actual measures about {about(c.measured)}; the city&rsquo;s budget table says {usd(c.table)}. </>}
-          {h.note}
+          {curly(h.note)}
         </p>
       )}
       <details className="table-toggle">

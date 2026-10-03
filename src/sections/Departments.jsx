@@ -128,7 +128,7 @@ export default function Departments({ b, history, status }) {
       <SectionHead title="What each department asked for, and got" status={status}>
         All {b.units.length} department and fund budgets in the book. Open one to see its{" "}
         {years.current} budget, its {years.budget} request, the proposed amount, where the money goes, and
-        about ten years of budgeted and actual spending.
+        about 10 years of budgeted and actual spending.
       </SectionHead>
 
       <div className="search">

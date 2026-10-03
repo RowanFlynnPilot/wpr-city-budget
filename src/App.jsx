@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { loadAll } from "./data";
-import { statusLine } from "./labels";
+import { statusLine, CORRECTIONS_EMAIL } from "./labels";
 import { Flag, Banner, SectionNav } from "./sections/Masthead";
 import Updates from "./sections/Updates";
 import TaxBill, { EXAMPLE_ASSESSED } from "./sections/TaxBill";
@@ -45,7 +45,9 @@ export default function App() {
       <div className="ftm">
         <Flag />
         <div className="load load-error" role="alert">
-          <b>The budget data could not be loaded.</b> {err}
+          <b>The budget data could not be loaded.</b> Reload the page to try again. If it keeps
+          happening, email <a href={`mailto:${CORRECTIONS_EMAIL}`}>{CORRECTIONS_EMAIL}</a>.
+          <span className="load-detail">{err}</span>
         </div>
       </div>
     );
@@ -57,19 +59,21 @@ export default function App() {
   return (
     <div className="ftm">
       <Flag />
-      <Banner b={b} status={status} assessed={assessed} onAssessed={setAssessed} />
-      <SectionNav />
-      <main className="page">
-        <Updates updates={updates} />
-        <TaxBill b={b} status={status} assessed={assessed} />
-        <Levy b={b} status={status} />
-        <GeneralFund b={b} status={status} />
-        <Departments b={b} history={history} status={status} />
-        <Fees fees={fees} b={b} status={status} />
-        <Capital b={b} status={status} />
-        <Debt b={b} status={status} />
-        <Staffing b={b} status={status} />
-        <About b={b} status={status} />
+      <main>
+        <Banner b={b} status={status} assessed={assessed} onAssessed={setAssessed} />
+        <SectionNav />
+        <div className="page">
+          <Updates updates={updates} />
+          <TaxBill b={b} status={status} assessed={assessed} />
+          <Levy b={b} status={status} />
+          <GeneralFund b={b} status={status} />
+          <Departments b={b} history={history} status={status} />
+          <Fees fees={fees} b={b} status={status} />
+          <Capital b={b} status={status} />
+          <Debt b={b} status={status} />
+          <Staffing b={b} status={status} />
+          <About b={b} status={status} />
+        </div>
       </main>
       <Footer b={b} />
     </div>

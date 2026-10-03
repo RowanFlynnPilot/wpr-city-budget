@@ -32,7 +32,7 @@ export function About({ b, status }) {
           {b.units.length} department and fund budgets add up exactly to the citywide totals.
           Where the book disagrees with itself, this page says so.
         </dd>
-        <dt>The ten-year history is approximate</dt>
+        <dt>The 10-year history is approximate</dt>
         <dd>
           The book shows past budgets and spending only as charts. The yearly figures in each department&rsquo;s
           history were measured from those drawings, so they are close but not exact. Every chart that can be
@@ -69,7 +69,7 @@ export function About({ b, status }) {
         <dd>
           Download the <a href={`${import.meta.env.BASE_URL}budget.json`} download>budget figures</a>,
           the <a href={`${import.meta.env.BASE_URL}fees.json`} download>fee changes</a> and
-          the <a href={`${import.meta.env.BASE_URL}history.json`} download>ten-year history</a> (JSON).
+          the <a href={`${import.meta.env.BASE_URL}history.json`} download>10-year history</a> (JSON).
         </dd>
       </dl>
     </section>

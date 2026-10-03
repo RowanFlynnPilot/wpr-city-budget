@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { SectionHead, TableScroll } from "../ui";
 import { StackedColumns, Legend, SERIES } from "../charts";
-import { usd, compact, pct } from "../format";
+import { usd, millions, pct, apDate } from "../format";
 
 export default function Debt({ b, status }) {
   const { years } = b.meta;
@@ -27,8 +27,8 @@ export default function Debt({ b, status }) {
   return (
     <section id="debt" className="block">
       <SectionHead title="What the city owes, and who repays it" status={status}>
-        The city owed {usd(o.total)} as of {o.as_of}. Property taxpayers back {compact(o.general_obligation)} of
-        it; water and sewer customers repay the other {compact(ratepayer)} through their utility rates.
+        The city owed {usd(o.total)} as of {apDate(o.as_of)}. Property taxpayers back {millions(o.general_obligation)} of
+        it; water and sewer customers repay the other {millions(ratepayer)} through their utility rates.
       </SectionHead>
 
       <div className="debt-cards">

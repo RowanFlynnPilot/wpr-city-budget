@@ -108,7 +108,8 @@ body { margin: 0; background: var(--cream); color: var(--ink); }
 .note { font-size: 13.5px; color: var(--muted); margin-top: 16px !important; max-width: 66ch; line-height: 1.55; }
 .note b { color: var(--ink-2); }
 .load { padding: 60px 16px; max-width: 920px; margin: 0 auto; color: var(--muted); }
-.load-error { color: var(--ink); background: var(--ochre-tint); border-left: 3px solid var(--ochre); margin: 32px auto; padding: 18px 20px; max-width: 888px; }
+.load-detail { display: block; margin-top: 8px; font: 12.5px/1.45 var(--mono); color: var(--muted); }
+.load-error { color: var(--ink); background: var(--ochre-tint); border-left: 3px solid var(--ochre); margin: 32px auto; padding: 18px 20px; width: calc(100% - 32px); max-width: 888px; }
 
 /* ---------- figures in columns ---------- */
 .num, .rrow-amt, .rank-amt, .rank-share, .mrow-amt, .unit-amt, .proj-amt, .cat-sum, .group-sum,
