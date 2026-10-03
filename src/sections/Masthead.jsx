@@ -10,6 +10,7 @@ const SECTIONS = [
   ["levy", "The levy"],
   ["general-fund", "General fund"],
   ["departments", "Departments"],
+  ["fees", "Fees"],
   ["capital", "Projects"],
   ["debt", "Debt"],
   ["staffing", "Staffing"],

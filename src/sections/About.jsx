@@ -61,7 +61,8 @@ export function About({ b, status }) {
         </dd>
         <dt>The data</dt>
         <dd>
-          <a href={`${import.meta.env.BASE_URL}budget.json`} download>Download every figure on this page (JSON)</a>.
+          Download the <a href={`${import.meta.env.BASE_URL}budget.json`} download>budget figures</a> and
+          the <a href={`${import.meta.env.BASE_URL}fees.json`} download>fee changes</a> (JSON).
         </dd>
       </dl>
     </section>

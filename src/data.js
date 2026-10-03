@@ -21,6 +21,20 @@ export async function loadBudget() {
   return b;
 }
 
+// Hand-verified fee changes (fees.json, checked against the PDF by check_fees.py).
+// Its years must be the budget's, so a stale list can't sit beside a new book.
+const FEE_KEYS = ["source", "years", "verification", "groups", "unclear", "source_discrepancies"];
+
+export async function loadFees(meta) {
+  const f = await fetchJson("fees.json");
+  const missing = FEE_KEYS.filter((k) => !(k in f));
+  if (missing.length) throw new Error(`fees.json is missing ${missing.join(", ")}`);
+  if (f.years.current !== meta.years.current || f.years.budget !== meta.years.budget) {
+    throw new Error(`fees.json covers ${f.years.current}-${f.years.budget}; the budget is ${meta.years.current}-${meta.years.budget}`);
+  }
+  return f;
+}
+
 // Hand-edited log of committee and council amendments: [{date, body, summary, url}].
 export async function loadUpdates() {
   const u = await fetchJson("updates.json");

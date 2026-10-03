@@ -20,7 +20,8 @@ Sibling of `wpr-budget` ("Follow the Money", Marathon County). Kept as its own r
   - The city link goes to its "Annual Financial and Budget Reports" page (supplied by Rowan), not to a specific PDF.
   - Cloudflare Web Analytics uses the shared rowanflynnpilot.github.io token, as in `wpr-budget`.
 - **Done:** social share card. `og_card.py` draws `public/og-card.png` (1200x630) from `budget.json`: year, entity and stage, plus a receipt whose bars are the budget-year levy split to scale. Its status wording mirrors `src/labels.js`; an unknown stage stops the run. Rerun it whenever `budget.json` changes.
-- **Next:** entries in `public/updates.json` as the committee and council amend the budget.
+- **Done:** the hand-verified fee changes list (`public/fees.json`, checked by `check_fees.py`), shown in a "Fees" section after the department drill-down. See "fees.json" below.
+- **Next:** entries in `public/updates.json` as the committee and council amend the budget. If the committee amends fees, edit `fees.json` and log it in `updates.json`.
 
 ## Stack and pattern
 
@@ -151,8 +152,20 @@ Page numbers are PDF positions.
 - **Levy-limit table (p. 16):** gives the 2026 levy as $34,313,205; every other table says $34,226,703.
 - **History charts:** the Other General Government chart shows about $1.25M for 2025 where its budget table says $131,072. The airport chart stops at 2024.
 - **Central Capital Purchasing (p. 164):** the by-department table still shows 2026 figures.
+- **Fee schedules (pp. 252–273):** the comprehensive schedule (pp. 252–262) prints **2027 before 2026**; the building, electrical and plumbing schedules (pp. 263–273) print **2026 before 2027**. Page 262 repeats the tree, memorial, 400 Block and sound-system fees from p. 261 with 2026 prices in both columns. The Sylvan Hill Chalet non-commercial rate is printed as $1,406 for 2026 (p. 260), above the $599 commercial rate. Business, advertising and temporary sign fees (p. 267) have a 2026 rate and a blank 2027 cell. The PDF draws no rule between three pairs of rows on pp. 255 and 262 (see `EXTRA_CUTS` in `check_fees.py`).
+
+## fees.json: the hand-verified fee changes
+
+`public/fees.json` is written by hand, not by the extractor. It lists every fee whose 2027 rate differs from 2026, grouped for readers: `groups[].changes[]` each carry `fee` and `detail` (reader-facing), `kind` (`rate`, `removed`, `restructured`), `current` and `budget` (numbers, `null` when not a dollar rate), `label` and `section` (the printed label and heading, used by the check), `current_text` and `budget_text` (the cells exactly as printed), `page` (PDF position) and `note`. `unclear` holds rows the schedule leaves ambiguous; `source_discrepancies` holds problems in the schedule itself. `years` must match `budget.json`, or the page stops.
+
+After any edit to `fees.json`, or a new PDF, run:
+
+```powershell
+python check_fees.py 2027-proposed-budget.pdf public\fees.json
+```
+
+It rebuilds every table row from the PDF's ruling lines and fails unless each entry matches its printed row (label, section, both cells and amounts) **and** every row that changes is listed, in `unclear`, or in `IGNORED` with a reason. Verified Oct. 2, 2026: 96 changes (91 up, 2 down, 1 dropped, 2 restructured) and 3 unclear.
 
 ## Ideas not built
 
-- **Fee changes.** The fee schedule (pp. 252–273) has roughly 65–70 rates that change for 2027, nearly all increases. The text is too irregular to parse with the same guarantees; a hand-verified list is the safer route.
 - **Ten-year history.** The budget-vs-actual charts (pp. 230–250) are vector drawings, so values can be measured from bar and line positions. In a test, 39 of 41 charts reproduced the known 2025 actual within 0.25% of the chart's scale. These would be close approximations, not exact figures, and belong in a separate file from `budget.json`.

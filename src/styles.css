@@ -311,6 +311,49 @@ body { margin: 0; background: var(--cream); color: var(--ink); }
 .unit-flag { font-size: 14px; background: var(--ochre-tint); border-left: 3px solid var(--ochre); padding: 10px 12px; color: var(--ink-2); }
 .unit-page { font-size: 13px; color: var(--muted); }
 
+/* ---------- fees ---------- */
+.fee-lead { background: var(--paper); border: 1px solid var(--rule-2); border-top: 4px solid var(--teal); padding: 16px 18px 10px; }
+.fee-lead-title { font-size: 19px; margin-bottom: 6px !important; }
+.fee-lead-list { list-style: none; margin: 0; padding: 0; counter-reset: lead; }
+.fee-lead-list li {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "name pct" "rates pct";
+  align-content: center;
+  gap: 0 14px; align-items: center; padding: 9px 0; border-bottom: 1px solid var(--rule);
+}
+.fee-lead-list li:last-child { border-bottom: 0; }
+.fee-lead-name { grid-area: name; font-weight: 600; font-size: 15px; }
+.fee-lead-rates { grid-area: rates; font-family: var(--mono); font-size: 13px; color: var(--muted); letter-spacing: -0.02em; }
+.fee-lead-pct { grid-area: pct; font-family: var(--serif); font-size: 24px; font-weight: 600; color: var(--teal-dark); }
+
+.fee-groups { margin-top: 24px; border-top: 2px solid var(--ink); }
+.fee-group { border-bottom: 1px solid var(--rule-2); }
+.fee-group summary {
+  display: flex; align-items: center; gap: 10px; padding: 14px 2px; cursor: pointer; list-style: none;
+}
+.fee-group-text { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 10px; min-width: 0; }
+.fee-group-count { white-space: nowrap; }
+.fee-group summary::-webkit-details-marker { display: none; }
+.fee-group summary:hover { background: var(--cream-2); }
+.fee-group-name { font-family: var(--serif); font-size: 20px; font-weight: 600; }
+.fee-group-count { font-size: 13px; color: var(--muted); }
+.fee-group-chev { margin-left: auto; align-self: center; color: var(--muted); transition: transform 0.2s ease; flex: none; }
+.fee-group[open] .fee-group-chev { transform: rotate(180deg); }
+.fee-cols { display: none; }
+.fee-list { list-style: none; margin: 0 0 14px; padding: 0; border-top: 1px solid var(--rule-2); }
+.fee {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "name name" "rates chg" "note note";
+  gap: 3px 12px; align-items: baseline; padding: 10px 2px; border-bottom: 1px solid var(--rule);
+}
+.fee-name { grid-area: name; font-weight: 600; font-size: 15px; }
+.fee-detail { display: block; font-weight: 400; font-size: 13px; color: var(--muted); }
+.fee-rates { grid-area: rates; font-family: var(--mono); font-size: 14px; letter-spacing: -0.02em; color: var(--ink-2); }
+.fee-chg { grid-area: chg; text-align: right; font-family: var(--mono); font-size: 13px; letter-spacing: -0.02em; white-space: nowrap; }
+.fee-pct { color: var(--muted); }
+.fee-note { grid-area: note; font-size: 13px; color: var(--ink-2); background: var(--ochre-tint); padding: 7px 10px; margin-top: 4px !important; line-height: 1.45; }
+.callout-flag { background: var(--ochre-tint); border-left-color: var(--ochre); }
+.fee-plain { margin: 0; padding-left: 18px; font-size: 14.5px; color: var(--ink-2); }
+.fee-plain li + li { margin-top: 8px; }
+
 /* ---------- capital projects ---------- */
 .cat { margin-top: 24px; }
 .cat-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; border-bottom: 2px solid var(--ink); padding-bottom: 6px; }
@@ -423,6 +466,16 @@ body { margin: 0; background: var(--cream); color: var(--ink); }
   .unit-detail { padding: 20px 22px 22px; }
   .unit-figs dd { font-size: 16px; }
   .tbl-detail { min-width: 0; }
+  .fee-lead-list li { grid-template-columns: minmax(0, 1fr) 170px 88px; grid-template-areas: "name rates pct"; }
+  .fee-lead-rates { text-align: right; }
+  .fee-lead-pct { text-align: right; }
+  .fee, .fee-cols { grid-template-columns: minmax(0, 1fr) 170px 150px; grid-template-areas: "name rates chg" "note note note"; }
+  .fee-rates { text-align: right; }
+  .fee-cols {
+    display: grid; gap: 12px; padding: 0 2px 6px; font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--muted);
+  }
+  .fee-cols span:nth-child(n+2) { text-align: right; }
   .col-val { visibility: visible; font-size: 11px; }
   .cols { gap: 8px; height: 220px; }
   .foot { padding: 24px 24px 48px; }
