@@ -76,6 +76,15 @@ export function SectionNav() {
     SECTIONS.forEach(([id]) => { const el = document.getElementById(id); if (el) io.observe(el); });
     return () => io.disconnect();
   }, []);
+  // Scroll the section into view rather than follow the hash: inside the
+  // WordPress iframe the frame itself never scrolls, and this moves the host
+  // page instead. Modified clicks (new tab) keep the link's default.
+  const go = (id) => (e) => {
+    if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    e.preventDefault();
+    document.getElementById(id).scrollIntoView();
+    history.replaceState(null, "", `#${id}`);
+  };
   useEffect(() => {
     const a = active && nav.current.querySelector(`a[href="#${active}"]`);
     if (a) nav.current.scrollTo({ left: a.offsetLeft + a.offsetWidth / 2 - nav.current.clientWidth / 2, behavior: "smooth" });
@@ -83,7 +92,7 @@ export function SectionNav() {
   return (
     <nav className="secnav" aria-label="Sections" ref={nav}>
       {SECTIONS.map(([id, label]) => (
-        <a key={id} href={`#${id}`} className={active === id ? "on" : ""} aria-current={active === id ? "true" : undefined}>{label}</a>
+        <a key={id} href={`#${id}`} onClick={go(id)} className={active === id ? "on" : ""} aria-current={active === id ? "true" : undefined}>{label}</a>
       ))}
     </nav>
   );

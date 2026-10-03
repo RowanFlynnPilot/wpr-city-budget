@@ -202,6 +202,8 @@ function Callouts({ items, rowBottom, dimmed, onEnter, onLeave }) {
       <g key={c.key} className={"flow-callout" + (dimmed(c.key) ? " dim" : "")}
         onMouseEnter={onEnter(c.key)} onMouseLeave={onLeave} onClick={onEnter(c.key)}>
         <path d={`M${c.cx},${rowBottom} L${c.cx},${top - 5} L${anchor},${top}`} className="flow-leader" />
+        {/* Labels ignore the pointer (styles.css), so this is what a tap or hover lands on. */}
+        <rect x={c.x - 3} y={top - 1} width={c.w + 6} height={LANE_STEP - 3} fill="transparent" />
         <text x={c.x} y={top + 12} fill={TEXT_DARK}>
           <tspan className="flow-name">{c.name}</tspan>
           <tspan className="flow-amt" x={c.x} dy={LINE + 1}>{c.amt}</tspan>

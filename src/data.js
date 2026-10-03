@@ -14,8 +14,7 @@ async function fetchJson(file) {
   return r.json();
 }
 
-export async function loadBudget() {
-  const b = await fetchJson("budget.json");
+function checkBudget(b) {
   const missing = BUDGET_KEYS.filter((k) => !(k in b));
   if (missing.length) throw new Error(`budget.json is missing ${missing.join(", ")}`);
   return b;
@@ -25,8 +24,7 @@ export async function loadBudget() {
 // Its years must be the budget's, so a stale list can't sit beside a new book.
 const FEE_KEYS = ["source", "years", "verification", "groups", "unclear", "source_discrepancies"];
 
-export async function loadFees(meta) {
-  const f = await fetchJson("fees.json");
+function checkFees(f, meta) {
   const missing = FEE_KEYS.filter((k) => !(k in f));
   if (missing.length) throw new Error(`fees.json is missing ${missing.join(", ")}`);
   if (f.years.current !== meta.years.current || f.years.budget !== meta.years.budget) {
@@ -40,8 +38,7 @@ export async function loadFees(meta) {
 // It must come from the same book and cover every budget unit.
 const HISTORY_KEYS = ["source", "method", "tolerance_pct_of_axis", "fiscal_year", "units"];
 
-export async function loadHistory(b) {
-  const h = await fetchJson("history.json");
+function checkHistory(h, b) {
   const missing = HISTORY_KEYS.filter((k) => !(k in h));
   if (missing.length) throw new Error(`history.json is missing ${missing.join(", ")}`);
   if (h.fiscal_year !== b.meta.fiscal_year) {
@@ -54,12 +51,27 @@ export async function loadHistory(b) {
 }
 
 // Hand-edited log of committee and council amendments: [{date, body, summary, url}].
-export async function loadUpdates() {
-  const u = await fetchJson("updates.json");
+function checkUpdates(u) {
   if (!Array.isArray(u)) throw new Error("updates.json must be an array");
   u.forEach((e, i) => {
     const missing = ["date", "body", "summary", "url"].filter((k) => !(k in e));
     if (missing.length) throw new Error(`updates.json entry ${i} is missing ${missing.join(", ")}`);
+    // Hand-edited on deadline, so the formats are checked too.
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(e.date) || isNaN(new Date(e.date + "T12:00:00"))) {
+      throw new Error(`updates.json entry ${i}: date must be YYYY-MM-DD, got "${e.date}"`);
+    }
+    if (e.url !== null && !String(e.url).startsWith("https://")) {
+      throw new Error(`updates.json entry ${i}: url must be an https:// link or null, got "${e.url}"`);
+    }
   });
   return u;
+}
+
+// All four files are fetched at once (none waits on another), then checked:
+// fees and history against the budget they must belong to.
+export async function loadAll() {
+  const [b, fees, history, updates] = await Promise.all(
+    ["budget.json", "fees.json", "history.json", "updates.json"].map(fetchJson));
+  checkBudget(b);
+  return { b, fees: checkFees(fees, b.meta), history: checkHistory(history, b), updates: checkUpdates(updates) };
 }

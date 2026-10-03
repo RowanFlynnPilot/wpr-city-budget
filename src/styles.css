@@ -32,7 +32,7 @@ body { margin: 0; background: var(--cream); color: var(--ink); }
 .ftm {
   --surface: var(--cream);
   font-family: var(--sans); font-size: 16px; line-height: 1.55; color: var(--ink);
-  background: var(--cream); min-height: 100vh; overflow-x: clip;
+  background: var(--cream); overflow-x: clip;
 }
 .ftm h1, .ftm h2, .ftm h3, .ftm h4 { font-family: var(--serif); font-weight: 600; letter-spacing: -0.01em; margin: 0; }
 .ftm a { color: var(--teal-dark); text-underline-offset: 2px; }
@@ -547,5 +547,10 @@ body { margin: 0; background: var(--cream); color: var(--ink); }
   .secnav, .search, .seg, .table-toggle summary { display: none !important; }
   .ftm { background: #fff; }
   .flow-svg .flow-layer { opacity: 1 !important; animation: none !important; }
-  .rrow, .rank, .mrow, .unit, .proj, .debt-card, .callout { break-inside: avoid; }
+  .rrow, .rank, .mrow, .unit, .proj, .debt-card, .callout, .flow, .sec-head { break-inside: avoid; }
+  /* Printing does not rerun the flow's width measurement; its viewBox scales it to the page. */
+  .flow-svg { width: 100%; height: auto; }
+  .sec-head, .subhead, .group-head, .tbl caption, .about dt { break-after: avoid; }
+  .about dd { break-inside: avoid; }
+  .unit-chev { display: none; }
 }

@@ -63,7 +63,7 @@ export default function Levy({ b, status }) {
       </SectionHead>
 
       <Legend series={series} />
-      <StackedColumns rows={rows} series={series} totalLabel="Total levy" step={10e6}
+      <StackedColumns rows={rows} series={series} totalLabel="Total levy" step={10e6} height={280}
         ariaLabel={`Stacked column chart of the city property tax levy by year, ${first.year} to ${last.year}, rising from ${usd(first.total)} to ${usd(last.total)}. The same figures are in the table below.`} />
 
       <h3 className="subhead">Total levy by year</h3>

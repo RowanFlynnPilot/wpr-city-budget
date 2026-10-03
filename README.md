@@ -42,6 +42,8 @@ When the Finance Committee or the council amends the budget without a new PDF, a
 ]
 ```
 
+`date` is `YYYY-MM-DD`. Use `"url": null` until there is a story to link; the page leaves the link off. A malformed entry stops the page with a message naming it, so check the page after pushing.
+
 ## Rebuild the data
 
 The source PDF is not in the repo. Save the city's budget PDF in this folder, then:
@@ -90,7 +92,8 @@ og_card.py                budget.json -> public/og-card.png (1200x630 share card
 src/App.jsx               loads the data, lays out the sections
 src/sections/             one file per section, in page order
 src/labels.js             reader-facing names and notes (text only, no figures)
-src/charts.jsx            recharts columns and the validated chart palette
+src/charts.jsx            the validated chart palette, legend, and lazy chart wrappers
+src/plots.jsx             the recharts charts, loaded after the first render
 src/ui.jsx, src/format.js shared pieces and number formatting
 ```
 

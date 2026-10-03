@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { loadBudget, loadFees, loadHistory, loadUpdates } from "./data";
+import { loadAll } from "./data";
 import { statusLine } from "./labels";
 import { Flag, Banner, SectionNav } from "./sections/Masthead";
 import Updates from "./sections/Updates";
@@ -29,9 +29,8 @@ export default function App() {
   const [assessed, setAssessed] = useState(EXAMPLE_ASSESSED);
 
   useEffect(() => {
-    Promise.all([loadBudget(), loadUpdates()])
-      .then(([b, updates]) => Promise.all([loadFees(b.meta), loadHistory(b)])
-        .then(([fees, history]) => setState({ b, fees, history, updates })))
+    loadAll()
+      .then(setState)
       .catch((e) => { setErr(String(e.message || e)); throw e; });
   }, []);
 
