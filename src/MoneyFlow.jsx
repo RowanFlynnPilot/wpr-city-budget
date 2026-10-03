@@ -73,10 +73,11 @@ function lay(items, x0, width) {
   });
 }
 
-// A ribbon from [sx0, sx1] at y0 down to [tx0, tx1] at y1.
-function ribbon(sx0, sx1, y0, tx0, tx1, y1) {
-  const m = (y0 + y1) / 2;
-  return `M${sx0},${y0} C${sx0},${m} ${tx0},${m} ${tx0},${y1} L${tx1},${y1} C${tx1},${m} ${sx1},${m} ${sx1},${y0} Z`;
+// A ribbon from [sx0, sx1] at y0 down to [tx0, tx1] at y1, running straight
+// down for `lead` first (through a callout lane) so the stream has no seam.
+function ribbon(sx0, sx1, y0, tx0, tx1, y1, lead = 0) {
+  const c = y0 + lead, m = (c + y1) / 2;
+  return `M${sx0},${y0} L${sx0},${c} C${sx0},${m} ${tx0},${m} ${tx0},${y1} L${tx1},${y1} C${tx1},${m} ${sx1},${m} ${sx1},${c} L${sx1},${y0} Z`;
 }
 
 // Split a source span by the shares of its targets (no gaps at the source).
@@ -113,9 +114,9 @@ function fit(w, amount, names) {
 
 // Blocks this large (share of their row) always get a label: inside if it
 // fits, otherwise a callout beneath the row with a leader line.
-const CALLOUT_MIN = 0.03;
+const CALLOUT_MIN = 0.025;
 const LANE_GAP = 8;   // from the bar to the first lane of callouts
-const LANE_STEP = 36; // one lane of two-line callouts
+const LANE_STEP = 33; // one lane of two-line callouts
 const SPACE = 8;      // between callouts in a lane
 const CLEAR = 5;      // kept clear on each side of a leader passing through a lane
 const MAX_SHIFT = 36; // farthest a callout's center may sit from its block's
@@ -292,12 +293,8 @@ export default function MoneyFlow({ bill, funds, departments, billLabel, ariaLab
             dimmed={(k) => !litFund(row2.find((f) => f.key === k))} onEnter={(k) => enter("fund", k)} />
         </g>
         <g className="flow-layer r2">
-          {lane2 > 0 && (
-            <rect x={general.x} y={y2 + h2} width={general.w} height={lane2} fill={general.color}
-              className={"flow-rib" + (!hot || hot.kind === "dept" || hot.key === general.key ? "" : " dim")} />
-          )}
           {row3.map((d, i) => (
-            <path key={d.key} d={ribbon(src2[i][0], src2[i][1], y2 + h2 + lane2, d.x, d.x + d.w, y3)}
+            <path key={d.key} d={ribbon(src2[i][0], src2[i][1], y2 + h2, d.x, d.x + d.w, y3, lane2)}
               fill={general.color} className={"flow-rib" + (litDept(d) ? "" : " dim")} />
           ))}
         </g>
