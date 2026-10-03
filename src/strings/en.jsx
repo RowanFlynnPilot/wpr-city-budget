@@ -221,7 +221,7 @@ export default {
   "fees.colFee": "Fee",
   "fees.colRates": ({ prev, year }) => `${prev} → ${year}`,
   "fees.colChange": "Change",
-  "fees.count": ({ n, up }) => `${n} ${n === 1 ? "change" : "changes"}${up !== n ? `, ${up} up` : ""}`,
+  "fees.count": ({ n, up }) => (up === n ? `${n} ${n === 1 ? "increase" : "increases"}` : `${n} ${n === 1 ? "change" : "changes"}, ${up} up`),
   "fees.to": "to",
   "fees.none": "none",
   "fees.discounts": "discounts",

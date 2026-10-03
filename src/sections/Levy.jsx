@@ -72,7 +72,7 @@ export default function Levy({ b, status }) {
 
       <h3 className="subhead">{t("levy.tableTitle")}</h3>
       <TableScroll label={t("levy.tableTitle")}>
-        <table className="tbl tbl-compact">
+        <table className="tbl tbl-compact tbl-inset">
           <thead>
             <tr><th scope="col">{t("table.year")}</th><th scope="col" className="num">{t("levy.colTotal")}</th><th scope="col" className="num">{t("table.change")}</th><th scope="col" className="num">%</th></tr>
           </thead>

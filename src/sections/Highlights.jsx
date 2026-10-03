@@ -32,7 +32,7 @@ export default function Highlights({ b, fees, status }) {
   const up = changes.filter((c) => c.kind === "rate" && c.budget > c.current).length;
 
   const items = [
-    { id: "levy", fig: signedPct(levyGrowth), label: t("hl.levy", { since, first: lf.years[1] }) },
+    { id: "levy", fig: signedPct(levyGrowth, 2), label: t("hl.levy", { since, first: lf.years[1] }) },
     { id: "departments", fig: t("hl.requestsFig", { below, total: b.units.length }), label: t("hl.requests", above) },
     { id: "general-fund", fig: usd(administratorCost(ogg)), label: t("hl.admin") },
     { id: "fees", fig: String(changes.length), label: t("hl.fees", up) },

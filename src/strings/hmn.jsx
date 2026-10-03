@@ -219,7 +219,7 @@ export default {
   "fees.colFee": "Nqi them",
   "fees.colRates": ({ prev, year }) => `${prev} → ${year}`,
   "fees.colChange": "Hloov",
-  "fees.count": ({ n, up }) => `${n} qhov hloov${up !== n ? `, ${up} nce` : ""}`,
+  "fees.count": ({ n, up }) => (up === n ? `${n} qhov nce` : `${n} qhov hloov, ${up} nce`),
   "fees.to": "mus rau",
   "fees.none": "tsis muaj",
   "fees.discounts": "luv nqi",

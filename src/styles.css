@@ -291,7 +291,10 @@ body { margin: 0; background: var(--cream); color: var(--ink); }
 .tbl thead th.num { font-family: var(--sans); letter-spacing: 0; }
 .tbl tfoot th, .tbl tfoot td { font-weight: 700; border-top: 1.5px solid var(--ink); border-bottom: 0; }
 .tbl .row-now th, .tbl .row-now td { font-weight: 700; background: var(--teal-tint); }
-.tbl .row-now th { padding-left: 8px; }
+/* A table with a highlighted row insets its outer columns, so the tint has
+   room and every row's text starts at the same place. */
+.tbl-inset th:first-child, .tbl-inset td:first-child { padding-left: 8px; }
+.tbl-inset th:last-child, .tbl-inset td:last-child { padding-right: 8px; }
 .tbl-detail { table-layout: fixed; font-size: 13.5px; }
 .tbl-detail thead th.num { width: 22%; }
 .tbl-compact { max-width: 640px; font-size: 13.5px; }
@@ -354,6 +357,8 @@ body { margin: 0; background: var(--cream); color: var(--ink); }
 .search input {
   width: 100%; font: 16px var(--sans); padding: 10px 12px; border: 1.5px solid var(--ink); background: var(--paper); color: var(--ink); border-radius: 0;
 }
+/* Chrome tints the clear button its own blue; keep it in the page's ink. */
+.search input::-webkit-search-cancel-button { filter: grayscale(1) brightness(0.4); cursor: pointer; }
 .group { margin-top: 30px; }
 .group-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; border-top: 2px solid var(--ink); padding-top: 10px; }
 .group-head h3 { font-size: 22px; }
@@ -431,6 +436,7 @@ body { margin: 0; background: var(--cream); color: var(--ink); }
 .fee-rates { grid-area: rates; font-family: var(--mono); font-size: 14px; letter-spacing: -0.02em; color: var(--ink-2); }
 .fee-chg { grid-area: chg; text-align: right; font-family: var(--mono); font-size: 13px; letter-spacing: -0.02em; white-space: nowrap; }
 .fee-pct { color: var(--muted); }
+.fee-chg .chg-glyph { margin-right: 4px; vertical-align: 0.2em; }
 .fee-note { grid-area: note; font-size: 13px; color: var(--ink-2); background: var(--ochre-tint); padding: 7px 10px; margin-top: 4px !important; line-height: 1.45; }
 .callout-flag { background: var(--ochre-tint); border-left-color: var(--ochre); }
 .fee-plain { margin: 0; padding-left: 18px; font-size: 14.5px; color: var(--ink-2); }
