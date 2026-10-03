@@ -113,45 +113,94 @@ function fit(w, amount, names) {
 
 // Blocks this large (share of their row) always get a label: inside if it
 // fits, otherwise a callout beneath the row with a leader line.
-const CALLOUT_MIN = 0.05;
-const LANE = 40; // height a row of callouts adds below its bar
+const CALLOUT_MIN = 0.03;
+const LANE_GAP = 8;   // from the bar to the first lane of callouts
+const LANE_STEP = 36; // one lane of two-line callouts
+const SPACE = 8;      // between callouts in a lane
+const CLEAR = 5;      // kept clear on each side of a leader passing through a lane
+const MAX_SHIFT = 36; // farthest a callout's center may sit from its block's
 
-// Callouts for the large blocks whose names did not fit inside: left to right,
-// each centered under its block where room allows, never overlapping the one
-// before and never left of minX (under row 2, the day-to-day stream runs down
-// through the lane). Every callout in a row uses full names if all of them fit,
-// otherwise short names. A callout replaces the block's amount-only label.
-function placeCallouts(segs, labels, W, minX = 0) {
-  const wanted = segs.map((s, i) => ({ s, i }))
-    .filter(({ s, i }) => !(labels[i] && labels[i].lines.length) && s.share >= CALLOUT_MIN);
-  const attempt = (nameOf) => {
-    const out = [];
-    let right = minX - 8;
-    for (const { s, i } of wanted) {
-      const name = nameOf(s), amt = usdCents(s.amount), cx = s.x + s.w / 2;
-      const w = Math.max(textWidth(name, NAME_FONT), textWidth(amt, AMT_FONT));
-      let x = Math.max(cx - w / 2, right + 8);
-      if (x + w > W) x = W - w;
-      if (x < right + 8) continue;
-      out.push({ key: s.key, i, name, amt, x, w, cx });
-      right = x + w;
+// x positions for one lane of callouts (sorted by their block's center), each
+// at least SPACE apart, inside [minX, W], and clear of the leaders that pass
+// through this lane to the lanes below. Tries a few natural spots per label
+// (centered under its block, ending at its leader, beside the one before,
+// either side of a passing leader) and keeps the arrangement nearest to
+// centered. Null when no arrangement fits.
+function solveLane(items, minX, W, through) {
+  // A label stays near its block and on its block's side of every passing
+  // leader, so leaders stay short and never cross.
+  const ok = (x, w, cx) => x >= minX && x + w <= W && Math.abs(x + w / 2 - cx) <= MAX_SHIFT
+    && through.every((f) => (cx < f ? x + w < f - CLEAR : x > f + CLEAR));
+  let best = null;
+  const walk = (k, right, xs, cost) => {
+    if (best && cost >= best.cost) return;
+    if (k === items.length) { best = { xs: [...xs], cost }; return; }
+    const { w, cx } = items[k];
+    const spots = [cx - w / 2, cx - w + 2, cx - 2, right + SPACE, W - w, minX,
+      ...through.flatMap((f) => [f + CLEAR + 1, f - CLEAR - 1 - w])];
+    for (const x of spots) {
+      if (x < right + SPACE || !ok(x, w, cx)) continue;
+      xs.push(x);
+      walk(k + 1, x + w, xs, cost + Math.abs(x - (cx - w / 2)));
+      xs.pop();
     }
-    return out;
   };
-  const full = attempt((s) => s.label);
-  const placed = full.length === wanted.length ? full : attempt((s) => s.short);
-  placed.forEach((c) => { labels[c.i] = null; });
-  return placed;
+  walk(0, -Infinity, [], 0);
+  return best && best.xs;
 }
 
+// Callouts for the large blocks whose names did not fit inside. Prefers one
+// lane, then short names, then more lanes (callouts dealt across lanes in
+// order, the leaders to lower lanes passing between the labels above). If no
+// arrangement holds them all, the smallest block's callout is dropped and the
+// rest tried again. Under row 2, minX keeps callouts right of the day-to-day
+// stream. A callout replaces the block's amount-only label.
+function placeCallouts(segs, labels, W, minX = 0) {
+  let wanted = segs.map((s, i) => ({ s, i }))
+    .filter(({ s, i }) => !(labels[i] && labels[i].lines.length) && s.share >= CALLOUT_MIN);
+  while (wanted.length) {
+    const placed = arrange(wanted, labels, W, minX);
+    if (placed) return placed;
+    const smallest = wanted.reduce((a, c) => (c.s.share < a.s.share ? c : a));
+    wanted = wanted.filter((c) => c !== smallest);
+  }
+  return { items: [], lanes: 0 };
+}
+
+function arrange(wanted, labels, W, minX) {
+  for (let lanes = 1; lanes <= wanted.length; lanes++) {
+    for (const nameOf of [(s) => s.label, (s) => s.short]) {
+      const items = wanted.map(({ s, i }, k) => {
+        const name = nameOf(s), amt = usdCents(s.amount);
+        return { key: s.key, i, name, amt, lane: k % lanes, cx: s.x + s.w / 2,
+          w: Math.max(textWidth(name, NAME_FONT), textWidth(amt, AMT_FONT)) };
+      });
+      let fits = true;
+      for (let l = 0; l < lanes && fits; l++) {
+        const mine = items.filter((c) => c.lane === l);
+        const through = items.filter((c) => c.lane > l).map((c) => c.cx);
+        const xs = solveLane(mine, minX, W, through);
+        if (xs) mine.forEach((c, j) => { c.x = xs[j]; }); else fits = false;
+      }
+      if (fits) {
+        items.forEach((c) => { labels[c.i] = null; });
+        return { items, lanes };
+      }
+    }
+  }
+  return null;
+}
+
+const laneHeight = (lanes) => (lanes ? LANE_GAP + lanes * LANE_STEP : 0);
+
 function Callouts({ items, rowBottom, dimmed, onEnter, onLeave }) {
-  const top = rowBottom + 8;
   return items.map((c) => {
+    const top = rowBottom + LANE_GAP + c.lane * LANE_STEP;
     const anchor = Math.max(c.x + 2, Math.min(c.cx, c.x + c.w - 2));
     return (
       <g key={c.key} className={"flow-callout" + (dimmed(c.key) ? " dim" : "")}
         onMouseEnter={onEnter(c.key)} onMouseLeave={onLeave} onClick={onEnter(c.key)}>
-        <path d={`M${c.cx},${rowBottom} L${c.cx},${rowBottom + 3} L${anchor},${top}`} className="flow-leader" />
+        <path d={`M${c.cx},${rowBottom} L${c.cx},${top - 5} L${anchor},${top}`} className="flow-leader" />
         <text x={c.x} y={top + 12} fill={TEXT_DARK}>
           <tspan className="flow-name">{c.name}</tspan>
           <tspan className="flow-amt" x={c.x} dy={LINE + 1}>{c.amt}</tspan>
@@ -210,9 +259,9 @@ export default function MoneyFlow({ bill, funds, departments, billLabel, ariaLab
     const callouts2 = placeCallouts(row2, labels2, W, general.x + general.w + 6);
     const callouts3 = placeCallouts(row3, labels3, W);
     const h1 = barHeight([billLabel1]), h2 = barHeight(labels2), h3 = barHeight(labels3);
-    // A callout lane under a row pushes everything below it down; under row 2 the
-    // day-to-day stream runs straight through the lane before it fans out.
-    const lane2 = callouts2.length ? LANE : 0, lane3 = callouts3.length ? LANE : 0;
+    // Callout lanes under a row push everything below it down; under row 2 the
+    // day-to-day stream runs straight through them before it fans out.
+    const lane2 = laneHeight(callouts2.lanes), lane3 = laneHeight(callouts3.lanes);
     const y1 = 0, y2 = h1 + R, y3 = y2 + h2 + lane2 + R, H = y3 + h3 + lane3;
 
     // Highlight: a department lights its own ribbon, the day-to-day segment and its ribbon.
@@ -239,7 +288,7 @@ export default function MoneyFlow({ bill, funds, departments, billLabel, ariaLab
             <Segment key={f.key} seg={f} y={y2} h={h2} color={f.color} text={f.ink ? TEXT_DARK : TEXT_LIGHT}
               label={labels2[i]} dim={!litFund(f)} onEnter={enter("fund", f.key)} onLeave={leave} />
           ))}
-          <Callouts items={callouts2} rowBottom={y2 + h2} onLeave={leave}
+          <Callouts items={callouts2.items} rowBottom={y2 + h2} onLeave={leave}
             dimmed={(k) => !litFund(row2.find((f) => f.key === k))} onEnter={(k) => enter("fund", k)} />
         </g>
         <g className="flow-layer r2">
@@ -257,7 +306,7 @@ export default function MoneyFlow({ bill, funds, departments, billLabel, ariaLab
             <Segment key={d.key} seg={d} y={y3} h={h3} color={general.color} text={TEXT_LIGHT}
               label={labels3[i]} dim={!litDept(d)} onEnter={enter("dept", d.key)} onLeave={leave} />
           ))}
-          <Callouts items={callouts3} rowBottom={y3 + h3} onLeave={leave}
+          <Callouts items={callouts3.items} rowBottom={y3 + h3} onLeave={leave}
             dimmed={(k) => !litDept(row3.find((d) => d.key === k))} onEnter={(k) => enter("dept", k)} />
         </g>
       </svg>

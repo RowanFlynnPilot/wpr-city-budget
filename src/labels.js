@@ -6,7 +6,7 @@
 const FUND_LABELS = {
   "General Fund": ["Day-to-day services", "Police, fire, streets, parks and city hall", "Day-to-day"],
   "Debt Service Fund": ["Debt payments", "Principal and interest on money the city has borrowed", "Debt"],
-  "MetroRide Fund": ["Metro Ride", "The city bus system", "Buses"],
+  "MetroRide Fund": ["Metro Ride", "The city bus system", "Metro"],
   "Recycling Fund": ["Recycling", "Curbside recycling", "Recycling"],
   "Central Equipment Capital Fund": ["Equipment and small facility work", "Police cameras, radios and vests; computers and phones; small building repairs", "Equipment"],
   "Community Development": ["Community development", "Planning, economic development and housing programs", "Planning"],
