@@ -21,6 +21,7 @@ Sibling of `wpr-budget` ("Follow the Money", Marathon County). Kept as its own r
   - Cloudflare Web Analytics uses the shared rowanflynnpilot.github.io token, as in `wpr-budget`.
 - **Done:** social share card. `og_card.py` draws `public/og-card.png` (1200x630) from `budget.json`: year, entity and stage, plus a receipt whose bars are the budget-year levy split to scale. Its status wording mirrors `src/labels.js`; an unknown stage stops the run. Rerun it whenever `budget.json` changes.
 - **Done:** the hand-verified fee changes list (`public/fees.json`, checked by `check_fees.py`), shown in a "Fees" section after the department drill-down. See "fees.json" below.
+- **Done:** ten-year history. `extract_history.py` measures the 41 budget-to-actual charts (pp. 230–250) into `public/history.json`; each department's drill-down shows its chart (budget bars, actual line, dashed 2027 proposal from `budget.json`) with a table and an "approximate" note. See "history.json" below.
 - **Next:** entries in `public/updates.json` as the committee and council amend the budget. If the committee amends a fee, log it in `updates.json` only: `fees.json` mirrors the book, and `check_fees.py` holds it to the PDF. Update `fees.json` when the city publishes a new schedule.
 
 ## Stack and pattern
@@ -150,7 +151,7 @@ Page numbers are PDF positions.
 - **Capital project list (p. 22):** the itemized infrastructure projects total $16,502,360; the printed total is $18,332,360. The $1,830,000 gap equals the Ethel Street reconstruction, which appears only in a second copy of the list on p. 161. The two copies also differ on the taxiway project ($190,000 vs. $10,000), borrowing ($6,255,000 vs. $6,550,000) and total cost. The p. 22 totals match the fund's budget, so the extractor uses p. 22.
 - **Housing Stock Improvement Fund:** $190,000 proposed with nothing requested; missing from the overview's fund tables though included in their totals.
 - **Levy-limit table (p. 16):** gives the 2026 levy as $34,313,205; every other table says $34,226,703.
-- **History charts:** the Other General Government chart shows about $1.25M for 2025 where its budget table says $131,072. The airport chart stops at 2024.
+- **History charts:** the Other General Government chart shows about $1.25M for 2025 where its budget table says $131,072. The airport chart stops at 2024. The Refuse Collection chart's axis starts at $800,000, not zero (the page's redraw starts at zero). Years with no budget bar (Housing Stock 2023–25, TID 11, TID 12's early years) are `null` in `history.json`.
 - **Central Capital Purchasing (p. 164):** the by-department table still shows 2026 figures.
 - **Fee schedules (pp. 252–273):** the comprehensive schedule (pp. 252–262) prints **2027 before 2026**; the building, electrical and plumbing schedules (pp. 263–273) print **2026 before 2027**. Page 262 repeats the tree, memorial, 400 Block and sound-system fees from p. 261 with 2026 prices in both columns. The Sylvan Hill Chalet non-commercial rate is printed as $1,406 for 2026 (p. 260), above the $599 commercial rate. Business, advertising and temporary sign fees (p. 267) have a 2026 rate and a blank 2027 cell. The PDF draws no rule between three pairs of rows on pp. 255 and 262 (see `EXTRA_CUTS` in `check_fees.py`).
 
@@ -166,6 +167,18 @@ python check_fees.py 2027-proposed-budget.pdf public\fees.json
 
 It rebuilds every table row from the PDF's ruling lines and fails unless each entry matches its printed row (label, section, both cells and amounts) **and** every row that changes is listed, in `unclear`, or in `IGNORED` with a reason. Verified Oct. 2, 2026: 96 changes (91 up, 2 down, 1 dropped, 2 restructured) and 3 unclear.
 
+## history.json: the measured ten-year history
+
+The book gives past years only as charts (pp. 230–250): modified budget as bars, actual spending as a line, 2016–2025. They are vector drawings, so `extract_history.py` reads them directly:
+
+```powershell
+python extract_history.py 2027-proposed-budget.pdf public\budget.json public\history.json
+```
+
+Each chart is calibrated from its own tick labels and gridlines (a non-linear axis raises), and every bar top and line point is converted to dollars and rounded to 0.1% of the axis (`precision`). Titles map to units through `CHART_UNITS`; an unknown title or a unit without a chart raises. Every chart's last actual point is checked against the unit's `prior_actual` in `budget.json`: it must be within 0.25% of the axis, or the unit must be in `KNOWN_MISMATCHES` (Other General Government) or `KNOWN_SHORT` (the airport). Oct. 2, 2026 run: 41 charts, 39 checked, worst error 0.100% of the axis.
+
+`units[]` each carry `unit`, `title`, `page`, `axis_max`, `precision`, `years`, `budget` (`null` where no bar is drawn), `actual`, `check` (`year`, `table`, `measured`, `error_pct_of_axis`, or `null`) and `note`. These are measurements of drawings, not table figures: never mix them into `budget.json`, and label them approximate wherever they appear. `fiscal_year` must match `budget.json`, and every unit needs a chart, or the page stops. Rerun with each new book.
+
 ## Ideas not built
 
-- **Ten-year history.** The budget-vs-actual charts (pp. 230–250) are vector drawings, so values can be measured from bar and line positions. In a test, 39 of 41 charts reproduced the known 2025 actual within 0.25% of the chart's scale. These would be close approximations, not exact figures, and belong in a separate file from `budget.json`.
+- Nothing outstanding from the original list.

@@ -37,6 +37,7 @@ body { margin: 0; background: var(--cream); color: var(--ink); }
 .ftm a { color: var(--teal-dark); text-underline-offset: 2px; }
 .ftm p { margin: 0; }
 .muted { color: var(--muted); }
+.nowrap { white-space: nowrap; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 
 /* ---------- WPR flag: seal + wordmark, tagline, dateline ---------- */
@@ -310,6 +311,13 @@ body { margin: 0; background: var(--cream); color: var(--ink); }
 .unit-request { font-size: 14.5px; font-weight: 600; }
 .unit-flag { font-size: 14px; background: var(--ochre-tint); border-left: 3px solid var(--ochre); padding: 10px 12px; color: var(--ink-2); }
 .unit-page { font-size: 13px; color: var(--muted); }
+.history { border-top: 1px solid var(--rule); padding-top: 14px; min-width: 0; }
+.history-title { font-family: var(--serif); font-size: 17px; font-weight: 600; margin-bottom: 8px !important; }
+.legend-small { font-size: 12.5px; gap: 4px 14px; margin-bottom: 6px; }
+.legend-line { display: inline-block; width: 16px; height: 2px; margin-right: 7px; flex: none; }
+.legend-dash { display: inline-block; width: 16px; height: 0; border-top: 2px dashed; margin-right: 7px; flex: none; }
+.history-note { font-size: 13px; color: var(--muted); margin-top: 8px !important; max-width: 66ch; }
+.history-flag { font-size: 13.5px; color: var(--ink-2); background: var(--ochre-tint); border-left: 3px solid var(--ochre); padding: 8px 10px; margin-top: 8px !important; }
 
 /* ---------- fees ---------- */
 .fee-lead { background: var(--paper); border: 1px solid var(--rule-2); border-top: 4px solid var(--teal); padding: 16px 18px 10px; }

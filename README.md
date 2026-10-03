@@ -58,6 +58,12 @@ proposed 2027: 41 budget units, known source discrepancies: 1 -> public\budget.j
 
 Every table is checked against the totals printed in the document and against the other tables. If a number does not reconcile, the run stops and names the table and page. Every figure on the page comes from `public/budget.json`; nothing is typed into the components.
 
+The ten-year history comes from the book's budget-to-actual charts, measured from the drawings and checked against `budget.json`:
+
+```powershell
+python extract_history.py 2027-proposed-budget.pdf public\budget.json public\history.json
+```
+
 The fee changes in `public/fees.json` are a hand-verified list, not extractor output. After editing it, or with a new PDF, check it against the book; the check fails if any entry doesn't match its printed row or if any changed fee is missing:
 
 ```powershell
@@ -74,10 +80,12 @@ python og_card.py
 
 ```
 public/budget.json        reconciled data the page reads (from extract_budget.py)
+public/history.json       ten-year budget vs. actual, measured from the book's charts
 public/fees.json          hand-verified list of fee changes
 public/updates.json       hand-edited log of amendments
 check_fees.py             checks fees.json against the PDF, row by row
 extract_budget.py         PDF -> budget.json
+extract_history.py        PDF charts -> history.json (approximate, checked against budget.json)
 og_card.py                budget.json -> public/og-card.png (1200x630 share card)
 src/App.jsx               loads the data, lays out the sections
 src/sections/             one file per section, in page order

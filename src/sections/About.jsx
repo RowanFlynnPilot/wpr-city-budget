@@ -33,6 +33,13 @@ export function About({ b, status }) {
           {b.units.length} department and fund budgets add up exactly to the citywide totals.
           Where the book disagrees with itself, this page says so.
         </dd>
+        <dt>The ten-year history is approximate</dt>
+        <dd>
+          The book shows past budgets and spending only as charts. The yearly figures in each department&rsquo;s
+          history were measured from those drawings, so they are close but not exact. Every chart that can be
+          checked matches the city&rsquo;s own figure for its last year within a fraction of a percent of the
+          chart&rsquo;s scale; the two that cannot are labeled.
+        </dd>
         <dt>The rate is preliminary</dt>
         <dd>
           The {years.budget} rate of ${tr.rate_per_1000.budget_year.toFixed(4)} per $1,000 divides
@@ -61,8 +68,9 @@ export function About({ b, status }) {
         </dd>
         <dt>The data</dt>
         <dd>
-          Download the <a href={`${import.meta.env.BASE_URL}budget.json`} download>budget figures</a> and
-          the <a href={`${import.meta.env.BASE_URL}fees.json`} download>fee changes</a> (JSON).
+          Download the <a href={`${import.meta.env.BASE_URL}budget.json`} download>budget figures</a>,
+          the <a href={`${import.meta.env.BASE_URL}fees.json`} download>fee changes</a> and
+          the <a href={`${import.meta.env.BASE_URL}history.json`} download>ten-year history</a> (JSON).
         </dd>
       </dl>
     </section>

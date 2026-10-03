@@ -35,6 +35,24 @@ export async function loadFees(meta) {
   return f;
 }
 
+// Ten-year budget-to-actual history, measured from the book's charts by
+// extract_history.py. Approximate figures, so a separate file from budget.json.
+// It must come from the same book and cover every budget unit.
+const HISTORY_KEYS = ["source", "method", "tolerance_pct_of_axis", "fiscal_year", "units"];
+
+export async function loadHistory(b) {
+  const h = await fetchJson("history.json");
+  const missing = HISTORY_KEYS.filter((k) => !(k in h));
+  if (missing.length) throw new Error(`history.json is missing ${missing.join(", ")}`);
+  if (h.fiscal_year !== b.meta.fiscal_year) {
+    throw new Error(`history.json is for ${h.fiscal_year}; the budget is for ${b.meta.fiscal_year}`);
+  }
+  const byUnit = new Map(h.units.map((u) => [u.unit, u]));
+  const unmatched = b.units.filter((u) => !byUnit.has(u.name)).map((u) => u.name);
+  if (unmatched.length) throw new Error(`history.json has no chart for ${unmatched.join(", ")}`);
+  return { ...h, byUnit };
+}
+
 // Hand-edited log of committee and council amendments: [{date, body, summary, url}].
 export async function loadUpdates() {
   const u = await fetchJson("updates.json");

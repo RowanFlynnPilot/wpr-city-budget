@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { loadBudget, loadFees, loadUpdates } from "./data";
+import { loadBudget, loadFees, loadHistory, loadUpdates } from "./data";
 import { statusLine } from "./labels";
 import { Flag, Banner, SectionNav } from "./sections/Masthead";
 import Updates from "./sections/Updates";
@@ -17,7 +17,8 @@ import { About, Footer } from "./sections/About";
  * Follow the Money: Wausau's city budget (Wausau Pilot & Review).
  *
  * budget.json (from extract_budget.py), fees.json (hand-verified, checked by
- * check_fees.py) and updates.json load at runtime; every figure on screen
+ * check_fees.py), history.json (measured from the book's charts by
+ * extract_history.py) and updates.json load at runtime; every figure on screen
  * comes from them. If any fails to load or is missing a key, the page shows an
  * error and throws.
  */
@@ -27,7 +28,8 @@ export default function App() {
 
   useEffect(() => {
     Promise.all([loadBudget(), loadUpdates()])
-      .then(([b, updates]) => loadFees(b.meta).then((fees) => setState({ b, fees, updates })))
+      .then(([b, updates]) => Promise.all([loadFees(b.meta), loadHistory(b)])
+        .then(([fees, history]) => setState({ b, fees, history, updates })))
       .catch((e) => { setErr(String(e.message || e)); throw e; });
   }, []);
 
@@ -49,7 +51,7 @@ export default function App() {
   }
   if (!state) return <div className="ftm"><Flag /><p className="load">Loading the budget&hellip;</p></div>;
 
-  const { b, fees, updates } = state;
+  const { b, fees, history, updates } = state;
   const status = statusLine(b.meta);
   return (
     <div className="ftm">
@@ -61,7 +63,7 @@ export default function App() {
         <TaxBill b={b} status={status} />
         <Levy b={b} status={status} />
         <GeneralFund b={b} status={status} />
-        <Departments b={b} status={status} />
+        <Departments b={b} history={history} status={status} />
         <Fees fees={fees} b={b} status={status} />
         <Capital b={b} status={status} />
         <Debt b={b} status={status} />

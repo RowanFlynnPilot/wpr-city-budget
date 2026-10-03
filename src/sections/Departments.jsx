@@ -4,6 +4,7 @@ import { SectionHead, Change, TableScroll } from "../ui";
 import { groupNote, printedPage, OTHER_GENERAL_GOVERNMENT, otherGeneralGovernmentNote } from "../labels";
 import { usd, signedUsd, pct, change } from "../format";
 import { GENERAL_FUND } from "./GeneralFund";
+import UnitHistory from "./UnitHistory";
 
 // Fund groups in book order, general fund first.
 function groupUnits(units) {
@@ -59,7 +60,7 @@ function CategoryTable({ title, rows, total, years }) {
   );
 }
 
-function UnitDetail({ u, meta }) {
+function UnitDetail({ u, meta, history }) {
   const t = u.total_expenses;
   const { years } = meta;
   return (
@@ -71,6 +72,7 @@ function UnitDetail({ u, meta }) {
       </dl>
       <p className="unit-request">{requestLine(t)}</p>
       {u.name === OTHER_GENERAL_GOVERNMENT && <p className="unit-flag">{otherGeneralGovernmentNote(u, usd)}</p>}
+      <UnitHistory u={u} h={history.byUnit.get(u.name)} meta={meta} offset={history.source.printed_page_offset} />
       <CategoryTable title="Spending" rows={u.expenses} total={t} years={years} />
       {u.total_revenue
         ? <CategoryTable title="Revenue" rows={u.revenues} total={u.total_revenue} years={years} />
@@ -82,7 +84,7 @@ function UnitDetail({ u, meta }) {
   );
 }
 
-function UnitRow({ u, meta }) {
+function UnitRow({ u, meta, history }) {
   const [open, setOpen] = useState(false);
   const panel = useId();
   const t = u.total_expenses;
@@ -95,12 +97,12 @@ function UnitRow({ u, meta }) {
         <span className="unit-chg"><Change value={change(t.proposed, t.current_adopted)} /></span>
         <ChevronDown className="unit-chev" size={18} strokeWidth={2} aria-hidden="true" />
       </button>
-      {open && <div id={panel}><UnitDetail u={u} meta={meta} /></div>}
+      {open && <div id={panel}><UnitDetail u={u} meta={meta} history={history} /></div>}
     </li>
   );
 }
 
-export default function Departments({ b, status }) {
+export default function Departments({ b, history, status }) {
   const [query, setQuery] = useState("");
   const searchId = useId();
   const { years } = b.meta;
@@ -114,7 +116,8 @@ export default function Departments({ b, status }) {
     <section id="departments" className="block">
       <SectionHead kicker="Departments and funds" title="What each department asked for, and got" status={status}>
         All {b.units.length} department and fund budgets in the book. Open one to see its{" "}
-        {years.current} budget, its {years.budget} request, the proposed amount and where the money goes.
+        {years.current} budget, its {years.budget} request, the proposed amount, where the money goes, and
+        about ten years of budgeted and actual spending.
       </SectionHead>
 
       <div className="search">
@@ -139,7 +142,7 @@ export default function Departments({ b, status }) {
               <span>Budget</span><span>{years.budget} proposed</span><span>vs. {years.current}</span>
             </div>
             <ul className="units">
-              {g.units.map((u) => <UnitRow key={u.name} u={u} meta={b.meta} />)}
+              {g.units.map((u) => <UnitRow key={u.name} u={u} meta={b.meta} history={history} />)}
             </ul>
           </div>
         );

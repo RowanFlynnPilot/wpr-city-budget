@@ -1,5 +1,7 @@
 import React from "react";
-import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid } from "recharts";
+import {
+  ResponsiveContainer, BarChart, ComposedChart, Bar, Line, XAxis, YAxis, Tooltip, CartesianGrid, ReferenceLine,
+} from "recharts";
 import { usd } from "./format";
 
 // Chart colors. Validated with the dataviz palette checker against the cream
@@ -13,6 +15,17 @@ const GRID = "#E3DDD0";
 const AXIS_TEXT = "#5E5A52";
 
 const millions = (v) => (v === 0 ? "$0" : "$" + v / 1e6 + "M");
+
+// Axis money at any scale: $0, $50K, $2.5M.
+const axisMoney = (v) => (v === 0 ? "$0" : v >= 1e6 ? "$" + +(v / 1e6).toFixed(1) + "M" : "$" + +(v / 1e3).toFixed(0) + "K");
+
+// Four or five clean ticks from zero to just above `max`.
+function niceTicks(max) {
+  const raw = max / 4;
+  const mag = 10 ** Math.floor(Math.log10(raw));
+  const step = [1, 2, 2.5, 5, 10].map((m) => m * mag).find((s) => s >= raw);
+  return Array.from({ length: Math.ceil(max / step) + 1 }, (_, i) => i * step);
+}
 const axisTick = { fill: AXIS_TEXT, fontSize: 12, fontFamily: "JetBrains Mono, ui-monospace, monospace" };
 
 export function Legend({ series }) {
@@ -38,6 +51,49 @@ function StackTip({ active, payload, label, series, totalLabel }) {
         </div>
       ))}
       <div className="tip-row tip-total"><span>{totalLabel}</span><b>{usd(row.total)}</b></div>
+    </div>
+  );
+}
+
+// Ten-year history colors: a light tint of the brand teal for the budget bars
+// (it recedes, so the actual line reads in front) and blue for actual spending.
+// Checked with the dataviz validator: ΔE 31 apart; the tint is under 3:1 on the
+// surface, so every history chart ships with a table.
+export const HISTORY = { budget: "#8DBFB7", actual: "#2E5C9A", proposed: "#7A4F0E" };
+
+function HistoryTip({ active, payload, label }) {
+  if (!active || !payload || !payload.length) return null;
+  const row = payload[0].payload;
+  return (
+    <div className="tip">
+      <div className="tip-title">{label}</div>
+      <div className="tip-row"><span><i className="legend-sw" style={{ background: HISTORY.budget }} aria-hidden="true" />Budget</span><b>{row.budget === null ? "none" : "~" + axisMoney(row.budget)}</b></div>
+      <div className="tip-row"><span><i className="legend-sw" style={{ background: HISTORY.actual }} aria-hidden="true" />Actual</span><b>{"~" + axisMoney(row.actual)}</b></div>
+    </div>
+  );
+}
+
+// Budget as bars, actual spending as a line, and the coming year's proposal as a
+// dashed reference line. Values are measured from the city's charts (approximate).
+export function HistoryChart({ rows, proposed, ariaLabel }) {
+  const top = Math.max(proposed, ...rows.map((r) => Math.max(r.budget ?? 0, r.actual)));
+  const ticks = niceTicks(top || 1);
+  return (
+    <div className="chart" role="img" aria-label={ariaLabel}>
+      <ResponsiveContainer width="100%" height={220}>
+        <ComposedChart data={rows} margin={{ top: 14, right: 16, bottom: 0, left: 0 }} barCategoryGap="22%">
+          <CartesianGrid stroke={GRID} vertical={false} />
+          <XAxis dataKey="year" tick={axisTick} axisLine={{ stroke: GRID }} tickLine={false} interval="preserveStartEnd" minTickGap={4} />
+          <YAxis tick={axisTick} axisLine={false} tickLine={false} tickFormatter={axisMoney} width={52}
+            ticks={ticks} domain={[0, ticks[ticks.length - 1]]} />
+          <Tooltip content={<HistoryTip />} cursor={{ fill: "rgba(50,55,60,.06)" }} />
+          <Bar dataKey="budget" fill={HISTORY.budget} maxBarSize={20} radius={[4, 4, 0, 0]} isAnimationActive={false} />
+          <Line dataKey="actual" stroke={HISTORY.actual} strokeWidth={2} isAnimationActive={false}
+            dot={{ r: 4, fill: HISTORY.actual, stroke: "#FFFFFF", strokeWidth: 2 }} activeDot={{ r: 5 }} />
+          {/* Named in the legend, not on the line: an inline label collides with low bars. */}
+          <ReferenceLine y={proposed} stroke={HISTORY.proposed} strokeDasharray="5 4" strokeWidth={1.5} />
+        </ComposedChart>
+      </ResponsiveContainer>
     </div>
   );
 }
