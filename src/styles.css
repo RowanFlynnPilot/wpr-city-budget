@@ -187,7 +187,8 @@ body { margin: 0; background: var(--cream); color: var(--ink); }
   display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px;
   margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--rule);
 }
-.calc-jump { font-weight: 700; font-size: 14.5px; text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+/* The padding makes a taller tap target; the margin gives the space back. */
+.calc-jump { font-weight: 700; font-size: 14.5px; text-decoration-thickness: 1.5px; text-underline-offset: 3px; padding: 6px 0; margin: -6px 0; }
 .share { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 8px; }
 .share-btn {
   display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; cursor: pointer;
@@ -640,13 +641,13 @@ body { margin: 0; background: var(--cream); color: var(--ink); }
 }
 
 @media print {
-  .secnav, .search, .seg, .table-toggle summary, .calc-actions, .support-actions { display: none !important; }
-  .ftm { background: #fff; }
+  .secnav, .langs, .search, .seg, .table-toggle summary, .calc-actions, .support-actions { display: none !important; }
+  body, .ftm { background: #fff; }
   .flow-svg .flow-layer { opacity: 1 !important; animation: none !important; }
-  .rrow, .rank, .mrow, .unit, .proj, .debt-card, .callout, .flow, .sec-head { break-inside: avoid; }
+  .rrow, .rank, .mrow, .unit, .proj, .debt-card, .callout, .flagnote, .flow, .sec-head, .hl, .chart { break-inside: avoid; }
   /* Printing does not rerun the flow's width measurement; its viewBox scales it to the page. */
   .flow-svg { width: 100%; height: auto; }
-  .sec-head, .subhead, .group-head, .tbl caption, .about dt { break-after: avoid; }
+  .sec-head, .hl-head, .subhead, .subnote, .legend, .group-head, .receipt-head, .tbl caption, .about dt { break-after: avoid; }
   .about dd { break-inside: avoid; }
-  .unit-chev { display: none; }
+  .unit-chev, .fee-group-chev { display: none; }
 }

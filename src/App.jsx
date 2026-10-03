@@ -38,9 +38,21 @@ export default function App() {
   }, []);
 
   // The sections exist only after the data loads, so a deep link (#debt)
-  // scrolls once they do.
+  // scrolls once they do. Layout keeps moving for a moment after that (web
+  // fonts swap in, and the flow diagram draws once they have), so the section
+  // is held in place whenever the page resizes, until the reader takes over.
   useEffect(() => {
-    if (state && location.hash) document.getElementById(location.hash.slice(1))?.scrollIntoView();
+    const target = state && location.hash && document.getElementById(location.hash.slice(1));
+    if (!target) return;
+    const hold = new ResizeObserver(() => target.scrollIntoView());
+    hold.observe(document.getElementById("root"));
+    const READER = ["wheel", "touchstart", "keydown", "pointerdown"];
+    const release = () => {
+      hold.disconnect();
+      READER.forEach((e) => removeEventListener(e, release));
+    };
+    READER.forEach((e) => addEventListener(e, release, { passive: true }));
+    return release;
   }, [state]);
 
   if (err) {
