@@ -15,6 +15,16 @@ import Debt from "./sections/Debt";
 import Staffing from "./sections/Staffing";
 import { About, Support, Footer } from "./sections/About";
 
+// ?view=card is the banner and calculator alone, sized for a fixed-height
+// iframe in a story (WordPress refuses posts with a script, so a story's embed
+// cannot resize itself; see the README). Anything else stops the page.
+const VIEWS = ["full", "card"];
+function pageView() {
+  const v = new URLSearchParams(location.search).get("view") ?? "full";
+  if (!VIEWS.includes(v)) throw new Error(`?view=${v}: no such view (${VIEWS.join(", ")})`);
+  return v;
+}
+
 /*
  * Follow the Money: Wausau's city budget (Wausau Pilot & Review).
  *
@@ -26,6 +36,7 @@ import { About, Support, Footer } from "./sections/About";
  */
 export default function App() {
   const t = useStrings();
+  const [view] = useState(pageView);
   const [state, setState] = useState(null);
   const [err, setErr] = useState(null);
   // The assessed value is typed in the banner and followed through the bill section.
@@ -55,10 +66,12 @@ export default function App() {
     return release;
   }, [state]);
 
+  // The card sits inside a WPR story, under WPR's own masthead.
+  const flag = view === "full" && <Flag />;
   if (err) {
     return (
       <div className="ftm">
-        <Flag />
+        {flag}
         <div className="load load-error" role="alert">
           <b>{t("load.errorTitle")}</b> {t("load.errorBody", CORRECTIONS_EMAIL)}
           <span className="load-detail">{err}</span>
@@ -66,10 +79,17 @@ export default function App() {
       </div>
     );
   }
-  if (!state) return <div className="ftm"><Flag /><p className="load">{t("load.loading")}</p></div>;
+  if (!state) return <div className="ftm">{flag}<p className="load">{t("load.loading")}</p></div>;
 
   const { b, fees, history, updates } = state;
   const status = statusLine(b.meta, t);
+  if (view === "card") {
+    return (
+      <div className="ftm ftm-card">
+        <main><Banner b={b} status={status} assessed={assessed} onAssessed={setAssessed} card /></main>
+      </div>
+    );
+  }
   return (
     <div className="ftm">
       <Flag />

@@ -6,21 +6,31 @@ Live at <https://rowanflynnpilot.github.io/wpr-city-budget/>.
 
 ## Embed on WordPress
 
-The page reports its content height to the parent page, so the iframe matches it exactly (no inner scrollbar):
+wausaupilotandreview.com sits behind a Cloudflare firewall that rejects any post containing a `<script` tag, even `<script src>`. The editor reports it as "Updating failed. The response is not a valid JSON response." (found on `wpr-gas-prices`, Sept. 2026). So both snippets are bare iframes with no script. Paste one into a **Custom HTML** block. Saving needs an Editor or Administrator account: WordPress strips iframes from posts saved by Authors and Contributors.
+
+### In a story: the calculator card
+
+The title, status line and calculator, with a link that opens the full breakdown in a new tab. It fits its frame at every width, so readers scroll past it like an image.
 
 ```html
-<iframe id="wpr-city-budget" src="https://rowanflynnpilot.github.io/wpr-city-budget/"
-        style="width:100%;border:0" scrolling="no" allow="web-share; clipboard-write"
-        title="Follow the Money: Wausau's city budget"></iframe>
-<script>
-addEventListener("message", (e) => {
-  if (e.origin === "https://rowanflynnpilot.github.io" && e.data && e.data.type === "wpr-city-budget:height")
-    document.getElementById("wpr-city-budget").style.height = e.data.height + "px";
-});
-</script>
+<iframe src="https://rowanflynnpilot.github.io/wpr-city-budget/?view=card" title="Follow the Money: what Wausau's 2027 budget means for your tax bill" loading="lazy" allow="web-share; clipboard-write" style="display:block;width:100%;height:max(595px, calc(958px - 46.3vw));border:0;"></iframe>
 ```
 
-The `allow` attribute lets the Share button open the phone's share sheet or copy the link from inside the embed; without it, readers get the link to copy by hand.
+For a Spanish or Hmong story, add the language: `?view=card&amp;lang=es` or `?view=card&amp;lang=hmn`.
+
+Without a script the frame cannot measure the card, so the height is a formula of the screen width. It was fitted on Oct. 3, 2026 to the card's measured height in all three languages, for frames from 288px (a 320px phone) to WPR's 720px article column (32px narrower than the screen on phones), with 24px to spare at the tightest width. The card centers its content, so the spare height is even teal margin, and a reader who switches language in the card never gets a scrollbar. **If the banner or calculator changes, re-measure** (the content height of `?view=card` in each language at frame widths 288 to 720) and refit the formula.
+
+### On its own page: the full tool
+
+```html
+<iframe src="https://rowanflynnpilot.github.io/wpr-city-budget/" title="Follow the Money: Wausau's 2027 budget" allow="web-share; clipboard-write" style="display:block;width:100%;height:90vh;min-height:560px;border:0;"></iframe>
+```
+
+The full tool is about 19,000px tall on a desktop and more on a phone, so without a script it scrolls inside its frame, with its section nav pinned at the frame's top. Use it on a page of its own, or as the last thing in a story. Mid-story it fills a phone's screen, and readers have to scroll through the whole tool to get past it.
+
+The `allow` attribute lets the Share button open the phone's share sheet or copy the link from inside the frame; without it, readers get the link to copy by hand.
+
+The page still posts its content height to the parent (`{type: "wpr-city-budget:height", height}`). If an administrator ever installs a listener outside post content, where the firewall allows it (the `wpr-fish-fry` README has one), the full tool's frame can match its content instead of scrolling.
 
 ## Languages
 

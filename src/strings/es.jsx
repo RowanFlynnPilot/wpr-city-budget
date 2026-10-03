@@ -45,6 +45,7 @@ export default {
   "calc.empty": "Escriba el valor tasado que aparece en su factura de impuestos.",
   "calc.rate": ({ rate, dir, prev }) => `${rate} por $1,000 de valor tasado, ${dir === "up" ? "un aumento respecto a" : dir === "down" ? "una baja respecto a" : "sin cambio respecto a"} ${prev}.`,
   "calc.jump": (bill) => `Vea a dónde van sus ${bill}`,
+  "card.full": "Vea el desglose completo del presupuesto",
   "share.button": "Compartir",
   "share.copied": "Enlace copiado",
   "share.urlAria": "Enlace para compartir",

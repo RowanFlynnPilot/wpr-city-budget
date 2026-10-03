@@ -85,8 +85,9 @@ function LangNote() {
 
 // The subject banner: tool title, the proposal in one sentence (rule 5: the
 // levy and the general fund, not the all-funds total), the status, and the
-// calculator, so the first thing on screen is the reader's own bill.
-export function Banner({ b, status, assessed, onAssessed }) {
+// calculator, so the first thing on screen is the reader's own bill. `card`:
+// the banner alone, for a story's fixed-height embed (?view=card).
+export function Banner({ b, status, assessed, onAssessed, card }) {
   const t = useStrings();
   const { years } = b.meta;
   const tr = b.tax_rate;
@@ -95,20 +96,24 @@ export function Banner({ b, status, assessed, onAssessed }) {
     <header className="banner">
       <div className="banner-inner">
         <div className="banner-top">
-          <div className="banner-kicker">{t("banner.kicker")}</div>
+          {!card && <div className="banner-kicker">{t("banner.kicker")}</div>}
           <LangSwitch />
         </div>
         <SponsorSlot />
         <h1>{t("banner.title", years.budget)}</h1>
-        <p className="banner-dek">
-          {t("banner.dek", {
-            levy: t("fmt.millions", tr.levy.budget_year), pct: pct(levyChange, 2),
-            spend: t("fmt.millions", b.general_fund.total_expenditures.budget),
-          })}
-        </p>
+        {/* In a story the article around the card already says this. */}
+        {!card && (
+          <p className="banner-dek">
+            {t("banner.dek", {
+              levy: t("fmt.millions", tr.levy.budget_year), pct: pct(levyChange, 2),
+              spend: t("fmt.millions", b.general_fund.total_expenditures.budget),
+            })}
+          </p>
+        )}
         <p className="banner-status"><span className="banner-dot" aria-hidden="true" />{status}</p>
-        <LangNote />
-        <BillCalculator b={b} assessed={assessed} onChange={onAssessed} />
+        {/* The card shows no city names and links to the full page, which carries the notes. */}
+        {!card && <LangNote />}
+        <BillCalculator b={b} assessed={assessed} onChange={onAssessed} card={card} />
       </div>
     </header>
   );

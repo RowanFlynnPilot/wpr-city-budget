@@ -40,6 +40,7 @@ export default {
   "calc.empty": "Sau tus nqi ntsuas uas nyob ntawm koj daim nqi se.",
   "calc.rate": ({ rate, dir, prev }) => `${rate} rau ib $1,000 tus nqi ntsuas, ${dir === "up" ? "nce ntawm" : dir === "down" ? "poob ntawm" : "zoo ib yam li"} ${prev}.`,
   "calc.jump": (bill) => `Saib koj ${bill} mus qhov twg`,
+  "card.full": "Saib tag nrho daim nyiaj txiag",
   "share.button": "Faib",
   "share.copied": "Theej qhov txuas lawm",
   "share.urlAria": "Qhov txuas los faib",

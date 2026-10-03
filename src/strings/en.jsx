@@ -42,6 +42,7 @@ export default {
   "calc.empty": "Type the assessed value from your tax bill.",
   "calc.rate": ({ rate, dir, prev }) => `${rate} per $1,000 of assessed value, ${dir === "up" ? "up from" : dir === "down" ? "down from" : "the same as"} ${prev}.`,
   "calc.jump": (bill) => `See where your ${bill} goes`,
+  "card.full": "See the full budget breakdown",
   "share.button": "Share",
   "share.copied": "Link copied",
   "share.urlAria": "Link to share",

@@ -1,4 +1,5 @@
 import React, { useId, useMemo, useState } from "react";
+import { ArrowUpRight } from "lucide-react";
 import { SectionHead, Bar, ShareButton, jumpTo } from "../ui";
 import { fundLabel, tifLabel, departmentShort, SHARE_URL } from "../labels";
 import { useLang, useStrings } from "../i18n.jsx";
@@ -57,14 +58,17 @@ function shareText(b, t) {
   });
 }
 
-// The calculator, set in the banner: the first thing a reader can do.
-export function BillCalculator({ b, assessed, onChange }) {
+// The calculator, set in the banner: the first thing a reader can do. In the
+// card view (a story's embed) the full page is a separate tab, so the link
+// opens it rather than jumping down to the bill section.
+export function BillCalculator({ b, assessed, onChange, card }) {
   const t = useStrings();
   const { lang } = useLang();
   const id = useId();
   const { years } = b.meta;
   const r = b.tax_rate.rate_per_1000;
   const { bill, prior, diff } = billFor(b, assessed);
+  const pageUrl = lang === "en" ? SHARE_URL : `${SHARE_URL}?lang=${lang}`;
   // The field keeps its own text so it can sit empty while the reader retypes;
   // the page keeps following the last value above zero.
   const [text, setText] = useState(assessed.toLocaleString("en-US"));
@@ -109,9 +113,12 @@ export function BillCalculator({ b, assessed, onChange }) {
           })}
         </p>
         <div className="calc-actions">
-          {text && <a className="calc-jump" href="#bill" onClick={jumpTo("bill")}>{t("calc.jump", usdCents(bill))}</a>}
-          <ShareButton title={t("share.title", years.budget)} text={shareText(b, t)}
-            url={lang === "en" ? SHARE_URL : `${SHARE_URL}?lang=${lang}`} />
+          {card
+            ? <a className="calc-jump" href={pageUrl} target="_blank" rel="noopener noreferrer">
+                {t("card.full")} <ArrowUpRight size={15} strokeWidth={2.5} aria-hidden="true" />
+              </a>
+            : text && <a className="calc-jump" href="#bill" onClick={jumpTo("bill")}>{t("calc.jump", usdCents(bill))}</a>}
+          <ShareButton title={t("share.title", years.budget)} text={shareText(b, t)} url={pageUrl} />
         </div>
       </div>
     </div>
