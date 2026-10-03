@@ -36,13 +36,15 @@ function Delta({ c }) {
   );
 }
 
-function FeeRow({ c, meta }) {
+// `cont`: same fee as the row above, so its name is not repeated on screen.
+// `more`: the next row continues this one.
+function FeeRow({ c, meta, cont, more }) {
   // A restructured fee's old terms are quoted as the city printed them.
   const note = c.kind === "restructured" ? `In ${meta.years.current}: “${c.current_text}”` : c.note;
   return (
-    <li className="fee">
+    <li className={"fee" + (cont ? " fee-cont" : "") + (more ? " fee-more" : "")}>
       <span className="fee-name">
-        {c.fee}
+        {cont ? <span className="sr-only">{c.fee}</span> : c.fee}
         {c.detail && <span className="fee-detail">{c.detail}</span>}
       </span>
       <Rates c={c} />
@@ -109,7 +111,10 @@ export default function Fees({ fees, b, status }) {
                 <span>Fee</span><span>{years.current} → {years.budget}</span><span>Change</span>
               </div>
               <ul className="fee-list">
-                {g.changes.map((c, i) => <FeeRow key={i} c={c} meta={b.meta} />)}
+                {g.changes.map((c, i, all) => (
+                  <FeeRow key={i} c={c} meta={b.meta}
+                    cont={i > 0 && all[i - 1].fee === c.fee} more={i < all.length - 1 && all[i + 1].fee === c.fee} />
+                ))}
               </ul>
             </details>
           );

@@ -26,37 +26,39 @@ function requestLine(t) {
   return `Changed from request: ${signedUsd(d)} (${pct(Math.abs(change(t.proposed, t.requested)))} ${dir} the request).`;
 }
 
+// On phones the rows are restyled as grids (styles.css), which can strip table
+// semantics, so the roles are explicit.
 function CategoryTable({ title, rows, total, years }) {
   // Rows with no money in any column shown are left out.
   const shown = rows.filter((r) => r.current_adopted || r.requested || r.proposed);
   return (
     <TableScroll label={title}>
-      <table className="tbl tbl-detail">
+      <table className="tbl tbl-detail" role="table">
         <caption>{title}</caption>
-        <thead>
-          <tr>
-            <th scope="col">Category</th>
-            <th scope="col" className="num">{years.current} adopted</th>
-            <th scope="col" className="num">{years.budget} requested</th>
-            <th scope="col" className="num">{years.budget} proposed</th>
+        <thead role="rowgroup">
+          <tr role="row">
+            <th scope="col" role="columnheader">Category</th>
+            <th scope="col" role="columnheader" className="num">{years.current} adopted</th>
+            <th scope="col" role="columnheader" className="num">{years.budget} requested</th>
+            <th scope="col" role="columnheader" className="num">{years.budget} proposed</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody role="rowgroup">
           {shown.map((r) => (
-            <tr key={r.category}>
-              <th scope="row">{r.category}</th>
-              <td className="num">{usd(r.current_adopted)}</td>
-              <td className="num">{usd(r.requested)}</td>
-              <td className="num">{usd(r.proposed)}</td>
+            <tr key={r.category} role="row">
+              <th scope="row" role="rowheader">{r.category}</th>
+              <td role="cell" className="num">{usd(r.current_adopted)}</td>
+              <td role="cell" className="num">{usd(r.requested)}</td>
+              <td role="cell" className="num">{usd(r.proposed)}</td>
             </tr>
           ))}
         </tbody>
-        <tfoot>
-          <tr>
-            <th scope="row">Total</th>
-            <td className="num">{usd(total.current_adopted)}</td>
-            <td className="num">{usd(total.requested)}</td>
-            <td className="num">{usd(total.proposed)}</td>
+        <tfoot role="rowgroup">
+          <tr role="row">
+            <th scope="row" role="rowheader">Total</th>
+            <td role="cell" className="num">{usd(total.current_adopted)}</td>
+            <td role="cell" className="num">{usd(total.requested)}</td>
+            <td role="cell" className="num">{usd(total.proposed)}</td>
           </tr>
         </tfoot>
       </table>

@@ -30,6 +30,7 @@ html { -webkit-text-size-adjust: 100%; }
 body { margin: 0; background: var(--cream); color: var(--ink); }
 
 .ftm {
+  --surface: var(--cream);
   font-family: var(--sans); font-size: 16px; line-height: 1.55; color: var(--ink);
   background: var(--cream); min-height: 100vh; overflow-x: clip;
 }
@@ -228,8 +229,8 @@ body { margin: 0; background: var(--cream); color: var(--ink); }
   overflow-x: auto; -webkit-overflow-scrolling: touch; margin-top: 4px;
   /* scroll shadows: show an edge only when there is more to see */
   background:
-    linear-gradient(to right, var(--cream) 30%, rgba(246, 242, 233, 0)) left / 24px 100% no-repeat local,
-    linear-gradient(to left, var(--cream) 30%, rgba(246, 242, 233, 0)) right / 24px 100% no-repeat local,
+    linear-gradient(to right, var(--surface) 30%, transparent) left / 24px 100% no-repeat local,
+    linear-gradient(to left, var(--surface) 30%, transparent) right / 24px 100% no-repeat local,
     linear-gradient(to right, rgba(26, 26, 26, 0.14), rgba(26, 26, 26, 0)) left / 10px 100% no-repeat scroll,
     linear-gradient(to left, rgba(26, 26, 26, 0.14), rgba(26, 26, 26, 0)) right / 10px 100% no-repeat scroll;
 }
@@ -242,10 +243,12 @@ body { margin: 0; background: var(--cream); color: var(--ink); }
 .tbl thead th { font-size: 12.5px; font-weight: 600; letter-spacing: 0; color: var(--muted); border-bottom: 2px solid var(--ink); white-space: nowrap; }
 .tbl tbody th { font-weight: 500; }
 .tbl .num { text-align: right; white-space: nowrap; }
+.tbl thead th.num { font-family: var(--sans); letter-spacing: 0; }
 .tbl tfoot th, .tbl tfoot td { font-weight: 700; border-top: 1.5px solid var(--ink); border-bottom: 0; }
 .tbl .row-now th, .tbl .row-now td { font-weight: 700; background: var(--teal-tint); }
 .tbl .row-now th { padding-left: 8px; }
-.tbl-detail { min-width: 540px; font-size: 13.5px; }
+.tbl-detail { table-layout: fixed; font-size: 13.5px; }
+.tbl-detail thead th.num { width: 22%; }
 .tbl-compact { max-width: 640px; font-size: 13.5px; }
 .tbl-compact th, .tbl-compact td { padding: 8px 6px; }
 .table-toggle { margin-top: 14px; }
@@ -326,7 +329,7 @@ body { margin: 0; background: var(--cream); color: var(--ink); }
 .unit-chev { grid-area: chev; color: var(--muted); transition: transform 0.2s ease; }
 .unit.open .unit-chev { transform: rotate(180deg); }
 .unit.open > .unit-row { background: var(--cream-2); }
-.unit-detail { background: var(--paper); border: 1px solid var(--rule); border-top: 0; padding: 16px 14px 18px; display: grid; gap: 16px; }
+.unit-detail { --surface: var(--paper); background: var(--paper); border: 1px solid var(--rule); border-top: 0; padding: 16px 14px 18px; display: grid; gap: 16px; }
 .unit-figs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 0; }
 .unit-figs > div { display: flex; flex-direction: column; justify-content: space-between; }
 .unit-figs dt { font-size: 12.5px; font-weight: 600; letter-spacing: 0; color: var(--muted); }
@@ -374,9 +377,11 @@ body { margin: 0; background: var(--cream); color: var(--ink); }
 .fee-list { list-style: none; margin: 0 0 14px; padding: 0; border-top: 1px solid var(--rule-2); }
 .fee {
   display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "name name" "rates chg" "note note";
-  gap: 3px 12px; align-items: baseline; padding: 10px 2px; border-bottom: 1px solid var(--rule);
+  gap: 3px 12px; align-items: last baseline; /* rates sit on the line naming the permit */ padding: 10px 2px; border-bottom: 1px solid var(--rule);
 }
 .fee-name { grid-area: name; font-weight: 600; font-size: 15px; }
+.fee-more { border-bottom: 0; padding-bottom: 4px; }
+.fee-cont { padding-top: 4px; }
 .fee-detail { display: block; font-weight: 400; font-size: 13px; color: var(--muted); }
 .fee-rates { grid-area: rates; font-family: var(--mono); font-size: 14px; letter-spacing: -0.02em; color: var(--ink-2); }
 .fee-chg { grid-area: chg; text-align: right; font-family: var(--mono); font-size: 13px; letter-spacing: -0.02em; white-space: nowrap; }
@@ -499,7 +504,6 @@ body { margin: 0; background: var(--cream); color: var(--ink); }
   .unit-amt { text-align: right; }
   .unit-detail { padding: 20px 22px 22px; }
   .unit-figs dd { font-size: 16px; }
-  .tbl-detail { min-width: 0; }
   .fee-lead-list li { grid-template-columns: minmax(0, 1fr) 170px 88px; grid-template-areas: "name rates pct"; }
   .fee-lead-rates { text-align: right; }
   .fee-lead-pct { text-align: right; }
@@ -514,6 +518,29 @@ body { margin: 0; background: var(--cream); color: var(--ink); }
   .col:first-child .col-val, .col:last-child .col-val { align-self: center; }
   .cols { gap: 8px; height: 220px; }
   .foot { padding: 24px 24px 48px; }
+}
+
+/* ---------- phones: department tables stack ----------
+   Each category's name sits on its own line with its three figures beneath,
+   so the 2027 columns never hide behind a sideways scroll. The markup carries
+   explicit table roles, which the grid display would otherwise drop. */
+@media (max-width: 639.98px) {
+  .tbl-detail, .tbl-detail thead, .tbl-detail tbody, .tbl-detail tfoot, .tbl-detail caption { display: block; }
+  .tbl-detail tr {
+    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2px 8px;
+    padding: 8px 0; border-bottom: 1px solid var(--rule);
+  }
+  .tbl-detail th, .tbl-detail td, .tbl-detail tfoot th, .tbl-detail tfoot td { padding: 0; border: 0; }
+  .tbl-detail tr > :first-child { grid-column: 1 / -1; }
+  .tbl-detail td { font-size: 12.5px; }
+  .tbl-detail thead tr { padding-top: 0; border-bottom: 2px solid var(--ink); }
+  .tbl-detail thead th, .tbl-detail thead th.num { white-space: normal; border: 0; }
+  .tbl-detail thead th:first-child {
+    position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+  }
+  .tbl-detail thead th.num { width: auto; line-height: 1.3; }
+  .tbl-detail tbody tr:last-child { border-bottom: 0; }
+  .tbl-detail tfoot tr { border-top: 1.5px solid var(--ink); border-bottom: 0; }
 }
 
 @media print {

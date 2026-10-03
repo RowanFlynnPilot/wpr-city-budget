@@ -1,4 +1,4 @@
-import React, { useId, useMemo } from "react";
+import React, { useId, useMemo, useState } from "react";
 import { SectionHead, Bar } from "../ui";
 import { fundLabel, departmentShort, TIF } from "../labels";
 import { usdCents, signedUsdCents, pct, change, taxAt } from "../format";
@@ -43,15 +43,23 @@ const billFor = (b, assessed) => {
   return { bill, prior, diff: Math.round((bill - prior) * 100) / 100 };
 };
 
+// Whole dollars. Anything after a decimal point is cents and is dropped, so
+// "185,300.00" reads as $185,300, not $18,530,000.
+const parseAssessed = (text) => Math.min(parseInt(text.split(".")[0].replace(/\D/g, "") || "0", 10), MAX_ASSESSED);
+
 // The calculator, set in the banner: the first thing a reader can do.
 export function BillCalculator({ b, assessed, onChange }) {
   const id = useId();
   const { years } = b.meta;
   const r = b.tax_rate.rate_per_1000;
   const { bill, prior, diff } = billFor(b, assessed);
+  // The field keeps its own text so it can sit empty while the reader retypes;
+  // the page keeps following the last value above zero.
+  const [text, setText] = useState(assessed.toLocaleString("en-US"));
   const onInput = (e) => {
-    const digits = e.target.value.replace(/[^\d]/g, "");
-    onChange(Math.min(parseInt(digits || "0", 10), MAX_ASSESSED));
+    const v = parseAssessed(e.target.value);
+    setText(v ? v.toLocaleString("en-US") : "");
+    if (v) onChange(v);
   };
   return (
     <div className="calc">
@@ -60,21 +68,31 @@ export function BillCalculator({ b, assessed, onChange }) {
         <div className="calc-field">
           <span aria-hidden="true">$</span>
           <input id={id} type="text" inputMode="numeric" autoComplete="off" aria-describedby={`${id}-hint`}
-            value={assessed.toLocaleString("en-US")} onChange={onInput} />
+            placeholder={EXAMPLE_ASSESSED.toLocaleString("en-US")} value={text} onChange={onInput} />
         </div>
         <p className="calc-hint" id={`${id}-hint`}>
-          {assessed === EXAMPLE_ASSESSED ? "This is an example. " : ""}
+          {text && assessed === EXAMPLE_ASSESSED ? "This is an example. " : ""}
           Use the assessed value on your tax bill, not the market value.
         </p>
       </div>
       <div className="calc-out" aria-live="polite">
         <span className="calc-label">Your {years.budget} city tax</span>
-        <span className="calc-big">{usdCents(bill)}</span>
-        <p className="calc-compare">
-          <span className="calc-diff">{signedUsdCents(diff)}</span> from {usdCents(prior)} in {years.current}
-        </p>
+        {text ? (
+          <>
+            <span className="calc-big">{usdCents(bill)}</span>
+            <p className="calc-compare">
+              <span className="calc-diff">{signedUsdCents(diff)}</span> from {usdCents(prior)} in {years.current}
+            </p>
+          </>
+        ) : (
+          <>
+            <span className="calc-big" aria-hidden="true">&mdash;</span>
+            <p className="calc-compare">Type the assessed value from your tax bill.</p>
+          </>
+        )}
         <p className="calc-rate">
-          ${r.budget_year.toFixed(4)} per $1,000 of assessed value, up from ${r.current_year.toFixed(4)}.
+          ${r.budget_year.toFixed(4)} per $1,000 of assessed value,{" "}
+          {r.budget_year > r.current_year ? "up from" : r.budget_year < r.current_year ? "down from" : "the same as"} ${r.current_year.toFixed(4)}.
         </p>
       </div>
     </div>
