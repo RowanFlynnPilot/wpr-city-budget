@@ -10,6 +10,9 @@ export default function Debt({ b, status }) {
   const sched = b.debt.go_schedule;
   const ratepayer = o.water_revenue + o.sewer_revenue;
   const first = sched.years[0], last = sched.years[sched.years.length - 1];
+  // How front-loaded the schedule is: principal due in the first five years.
+  const soon = sched.years.slice(0, 5);
+  const soonShare = (soon.reduce((s, y) => s + y.principal, 0) / sched.total_principal) * 100;
 
   // The legal limit as a share of equalized value, computed rather than stated.
   const eq = b.valuation.history.find((v) => v.year === years.budget);
@@ -67,6 +70,7 @@ export default function Debt({ b, status }) {
       <p className="subnote">
         Scheduled payments on general obligation debt, {first.year} to {last.year}. In {first.year} the
         city pays {usd(first.total)}: {usd(first.principal)} in principal and {usd(first.interest)} in interest.
+        {" "}By {soon[soon.length - 1].year} the city is scheduled to repay {pct(soonShare, 0)} of the principal.
       </p>
       <Legend series={series} />
       <StackedColumns rows={sched.years} series={series} totalLabel="Total payment" barSize={18} step={5e6}

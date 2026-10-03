@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { WPR_URL } from "../labels";
 import { compact, pct, change } from "../format";
 import { BillCalculator } from "./TaxBill";
@@ -64,9 +64,11 @@ export function Banner({ b, status, assessed, onAssessed }) {
   );
 }
 
-// Section links; the one for the section in view is marked as you scroll.
+// Section links; the one for the section in view is marked as you scroll, and
+// on phones, where the links scroll sideways, it is brought into view.
 export function SectionNav() {
   const [active, setActive] = useState(null);
+  const nav = useRef(null);
   useEffect(() => {
     const io = new IntersectionObserver(
       (entries) => entries.forEach((e) => { if (e.isIntersecting) setActive(e.target.id); }),
@@ -74,8 +76,12 @@ export function SectionNav() {
     SECTIONS.forEach(([id]) => { const el = document.getElementById(id); if (el) io.observe(el); });
     return () => io.disconnect();
   }, []);
+  useEffect(() => {
+    const a = active && nav.current.querySelector(`a[href="#${active}"]`);
+    if (a) nav.current.scrollTo({ left: a.offsetLeft + a.offsetWidth / 2 - nav.current.clientWidth / 2, behavior: "smooth" });
+  }, [active]);
   return (
-    <nav className="secnav" aria-label="Sections">
+    <nav className="secnav" aria-label="Sections" ref={nav}>
       {SECTIONS.map(([id, label]) => (
         <a key={id} href={`#${id}`} className={active === id ? "on" : ""} aria-current={active === id ? "true" : undefined}>{label}</a>
       ))}

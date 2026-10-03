@@ -34,7 +34,7 @@ export default function GeneralFund({ b, status }) {
 
   return (
     <section id="general-fund" className="block">
-      <SectionHead title="The city’s day-to-day budget" status={status}>
+      <SectionHead title={<>The city&rsquo;s <span className="nowrap">day-to-day</span> budget</>} status={status}>
         The general fund pays for police, fire, streets, parks and city hall. Property taxes
         cover {usd(propertyTax.budget)} of it, about {pct((propertyTax.budget / revenue) * 100, 0)} of
         its revenue.
@@ -47,8 +47,8 @@ export default function GeneralFund({ b, status }) {
       </dl>
 
       <div className="seg" role="group" aria-label="General fund view">
-        <button type="button" aria-pressed={view === "spending"} onClick={() => setView("spending")}>Spending by department</button>
-        <button type="button" aria-pressed={view === "revenue"} onClick={() => setView("revenue")}>Revenue by source</button>
+        <button type="button" aria-pressed={view === "spending"} onClick={() => setView("spending")}>Spending</button>
+        <button type="button" aria-pressed={view === "revenue"} onClick={() => setView("revenue")}>Revenue</button>
       </div>
 
       <div className="ranked-head" aria-hidden="true">

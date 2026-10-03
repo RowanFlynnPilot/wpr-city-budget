@@ -6,11 +6,15 @@ import { usd, signedUsd, pct, change } from "../format";
 import { GENERAL_FUND } from "./GeneralFund";
 import UnitHistory from "./UnitHistory";
 
-// Fund groups in book order, general fund first.
+// Fund groups in book order, general fund first; within a group, largest budget first.
 function groupUnits(units) {
   const order = [...new Set(units.map((u) => u.fund_group))]
     .sort((a, c) => (a === GENERAL_FUND ? -1 : c === GENERAL_FUND ? 1 : 0));
-  return order.map((g) => ({ name: g, units: units.filter((u) => u.fund_group === g) }));
+  return order.map((g) => ({
+    name: g,
+    units: units.filter((u) => u.fund_group === g)
+      .sort((a, c) => c.total_expenses.proposed - a.total_expenses.proposed),
+  }));
 }
 
 // "Changed from request", never "cut": some budgets came in above the request.
