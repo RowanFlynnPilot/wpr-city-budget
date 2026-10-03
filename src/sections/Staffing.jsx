@@ -1,12 +1,14 @@
 import React from "react";
 import { SectionHead, Change, Spark } from "../ui";
 import { fte } from "../format";
+import { useStrings } from "../i18n.jsx";
 
 // The council's row is filled in only for the oldest year (rule 9), which
 // makes that year's total not comparable with the rest.
 const COUNCIL = "City Council";
 
 export default function Staffing({ b, status }) {
+  const t = useStrings();
   const { years } = b.meta;
   const st = b.staffing;
   const iNow = st.years.indexOf(years.budget);
@@ -26,13 +28,11 @@ export default function Staffing({ b, status }) {
 
   return (
     <section id="staffing" className="block">
-      <SectionHead title="How many people the city employs" status={status}>
-        The proposed budget funds {fte(st.total[iNow])} full-time-equivalent positions
-        in {years.budget}, compared with {fte(st.total[iPrev])} in {years.current}.
+      <SectionHead title={t("staff.title")} status={status}>
+        {t("staff.standfirst", { now: fte(st.total[iNow]), year: years.budget, prev: fte(st.total[iPrev]), prevYear: years.current })}
       </SectionHead>
 
-      <div className="cols" role="img"
-        aria-label={`Column chart of total full-time-equivalent positions by year, ${oldest} to ${years.budget}.`}>
+      <div className="cols" role="img" aria-label={t("staff.chartAria", { first: oldest, last: years.budget })}>
         {yearsAsc.map((y, i) => (
           <div className={"col" + (y === oldest ? " col-caveat" : "") + (y === years.budget ? " col-now" : "")} key={y}>
             <span className="col-val">{fte(totalsAsc[i])}{y === oldest && <sup>*</sup>}</span>
@@ -41,25 +41,22 @@ export default function Staffing({ b, status }) {
           </div>
         ))}
       </div>
-      <p className="note">
-        * {oldest} is not comparable with later years: it is the only year that counts
-        the {council.values[iOld]} council members.
-      </p>
+      <p className="note">{t("staff.caveat", { oldest, council: council.values[iOld] })}</p>
 
-      <h3 className="subhead">By department</h3>
-      <p className="subnote">Bars show {oldest} to {years.budget}, each row on its own scale. Blank years are blank in the city&rsquo;s table.</p>
+      <h3 className="subhead">{t("staff.byDept")}</h3>
+      <p className="subnote">{t("staff.note", { first: oldest, last: years.budget })}</p>
       <ul className="multiples">
         {depts.map((d) => {
           const now = d.values[iNow], prev = d.values[iPrev];
           const onlyOldest = d.values.every((v, k) => (k === iOld ? v !== null : v === null));
           return (
             <li className="mrow" key={d.name}>
-              <span className="mrow-label">{d.name}</span>
-              <Spark values={asc(d.values)} label={`${d.name} positions, ${oldest} to ${years.budget}`} />
+              <span className="mrow-label" lang="en">{d.name}</span>
+              <Spark values={asc(d.values)} label={t("staff.sparkAria", { name: d.name, first: oldest, last: years.budget })} />
               <span className="mrow-amt">{now === null ? "—" : fte(now)}</span>
               <span className="mrow-chg">
                 {now === null
-                  ? <span className="muted">{onlyOldest ? `only in ${oldest}` : "not listed"}</span>
+                  ? <span className="muted">{onlyOldest ? t("staff.onlyIn", oldest) : t("staff.notListed")}</span>
                   : <Change value={prev === null ? null : now === prev ? 0 : now - prev} kind="fte" />}
               </span>
             </li>

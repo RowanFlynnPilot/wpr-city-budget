@@ -1,7 +1,8 @@
 import React from "react";
 import { jumpTo } from "../ui";
 import { OTHER_GENERAL_GOVERNMENT, administratorCost } from "../labels";
-import { usd, signedPct, change, apCount } from "../format";
+import { usd, signedPct, change } from "../format";
+import { useStrings } from "../i18n.jsx";
 import { GENERAL_FUND } from "./GeneralFund";
 
 // The most recent earlier year whose levy grew at least as much as the budget
@@ -17,6 +18,7 @@ function largestSince(lf, year) {
 // Four findings from the proposal, each a link to the section that shows it.
 // Every figure is computed from the data; the words around them are fixed.
 export default function Highlights({ b, fees, status }) {
+  const t = useStrings();
   const { years } = b.meta;
   const lf = b.levy_by_fund;
   const i = lf.years.indexOf(years.budget);
@@ -30,18 +32,16 @@ export default function Highlights({ b, fees, status }) {
   const up = changes.filter((c) => c.kind === "rate" && c.budget > c.current).length;
 
   const items = [
-    { id: "levy", fig: signedPct(levyGrowth),
-      label: since ? `levy increase, the largest since ${since}` : `levy increase, the largest since at least ${lf.years[1]}` },
-    { id: "departments", fig: `${below} of ${b.units.length}`,
-      label: `budgets came in below what was requested; ${apCount(above)} came in above` },
-    { id: "general-fund", fig: usd(administratorCost(ogg)), label: "for a proposed city administrator" },
-    { id: "fees", fig: String(changes.length), label: `fee changes; ${apCount(up)} go up` },
+    { id: "levy", fig: signedPct(levyGrowth), label: t("hl.levy", { since, first: lf.years[1] }) },
+    { id: "departments", fig: t("hl.requestsFig", { below, total: b.units.length }), label: t("hl.requests", above) },
+    { id: "general-fund", fig: usd(administratorCost(ogg)), label: t("hl.admin") },
+    { id: "fees", fig: String(changes.length), label: t("hl.fees", up) },
   ];
 
   return (
     <section className="hl" aria-labelledby="hl-title">
       <div className="hl-head">
-        <h2 id="hl-title">What&rsquo;s in the proposal</h2>
+        <h2 id="hl-title">{t("hl.title")}</h2>
         <p className="status-line">{status}</p>
       </div>
       <div className="hl-grid">

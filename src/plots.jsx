@@ -43,21 +43,22 @@ function StackTip({ active, payload, label, series, totalLabel }) {
   );
 }
 
-function HistoryTip({ active, payload, label }) {
+function HistoryTip({ active, payload, label, labels }) {
   if (!active || !payload || !payload.length) return null;
   const row = payload[0].payload;
   return (
     <div className="tip">
       <div className="tip-title">{label}</div>
-      <div className="tip-row"><span><i className="legend-sw" style={{ background: HISTORY.budget }} aria-hidden="true" />Budget</span><b>{row.budget === null ? "none" : "~" + axisMoney(row.budget)}</b></div>
-      <div className="tip-row"><span><i className="legend-sw" style={{ background: HISTORY.actual }} aria-hidden="true" />Actual</span><b>{"~" + axisMoney(row.actual)}</b></div>
+      <div className="tip-row"><span><i className="legend-sw" style={{ background: HISTORY.budget }} aria-hidden="true" />{labels.budget}</span><b>{row.budget === null ? labels.none : "~" + axisMoney(row.budget)}</b></div>
+      <div className="tip-row"><span><i className="legend-sw" style={{ background: HISTORY.actual }} aria-hidden="true" />{labels.actual}</span><b>{"~" + axisMoney(row.actual)}</b></div>
     </div>
   );
 }
 
 // Budget as bars, actual spending as a line, and the coming year's proposal as a
 // dashed reference line. Values are measured from the city's charts (approximate).
-export function HistoryChart({ rows, proposed, height, ariaLabel }) {
+// labels: the tooltip's words, in the page's language.
+export function HistoryChart({ rows, proposed, height, labels, ariaLabel }) {
   const top = Math.max(proposed, ...rows.map((r) => Math.max(r.budget ?? 0, r.actual)));
   const ticks = niceTicks(top || 1);
   return (
@@ -68,7 +69,7 @@ export function HistoryChart({ rows, proposed, height, ariaLabel }) {
           <XAxis dataKey="year" tick={axisTick} axisLine={{ stroke: GRID }} tickLine={false} interval="preserveStartEnd" minTickGap={4} />
           <YAxis tick={axisTick} axisLine={false} tickLine={false} tickFormatter={axisMoney} width={52}
             ticks={ticks} domain={[0, ticks[ticks.length - 1]]} />
-          <Tooltip content={<HistoryTip />} cursor={{ fill: "rgba(50,55,60,.06)" }} />
+          <Tooltip content={<HistoryTip labels={labels} />} cursor={{ fill: "rgba(50,55,60,.06)" }} />
           <Bar dataKey="budget" fill={HISTORY.budget} maxBarSize={20} radius={[4, 4, 0, 0]} isAnimationActive={false} />
           <Line dataKey="actual" stroke={HISTORY.actual} strokeWidth={2} isAnimationActive={false}
             dot={{ r: 4, fill: HISTORY.actual, stroke: "#FFFFFF", strokeWidth: 2 }} activeDot={{ r: 5 }} />

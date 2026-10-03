@@ -22,6 +22,12 @@ addEventListener("message", (e) => {
 
 The `allow` attribute lets the Share button open the phone's share sheet or copy the link from inside the embed; without it, readers get the link to copy by hand.
 
+## Languages
+
+The page reads in English, Spanish and Hmong; readers switch in the banner, and the choice is remembered. Link or embed a language directly with `?lang=es` or `?lang=hmn` (for example in the iframe `src` of a Spanish-language story). Spanish is a full translation; Hmong is a beta community translation and says so on the page, inviting corrections. Names the city publishes (departments, funds, budget categories, fees, projects) and the hand-written notes in the data files stay in English in every language, and the page says that too.
+
+Every reader-facing sentence lives in `src/strings/en.jsx`, `es.jsx` and `hmn.jsx` under the same keys. Adding or changing text means changing all three: a key missing from any language stops the page at load, rather than showing English in the middle of a translation.
+
 ## Sharing and sponsors
 
 - **Share link.** The Share button in the calculator sends `SHARE_URL` from `src/labels.js`, with a line about the example $200,000 home (never the reader's own value). It points at the tool for now. Once the story runs, set it to the story's URL so shared links land on WPR's site.
@@ -99,7 +105,9 @@ extract_history.py        PDF charts -> history.json (approximate, checked again
 og_card.py                budget.json -> public/og-card.png (1200x630 share card)
 src/App.jsx               loads the data, lays out the sections
 src/sections/             one file per section, in page order
-src/labels.js             reader-facing names and notes (text only, no figures)
+src/labels.js             lookups for reader-facing names, and the page's fixed links
+src/i18n.jsx              languages: the switcher's state and t(key, ...args)
+src/strings/              every reader-facing sentence: en.jsx, es.jsx, hmn.jsx
 src/charts.jsx            the validated chart palette, legend, and lazy chart wrappers
 src/plots.jsx             the recharts charts, loaded after the first render
 src/ui.jsx, src/format.js shared pieces and number formatting

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Share2 } from "lucide-react";
 import { signedPct, signedUsd } from "./format";
+import { useStrings } from "./i18n.jsx";
 
 // Section header: title, standfirst, and the budget's status line, which every
 // section carries so a screenshot of any one of them is labeled.
@@ -17,8 +18,9 @@ export function SectionHead({ title, status, children }) {
 // A change, shown neutrally: direction by glyph and sign, never by red/green.
 // A bigger or smaller budget is not good or bad by itself.
 export function Change({ value, kind = "pct", digits = 1 }) {
-  if (value === null) return <span className="chg muted">new</span>;
-  if (value === 0) return <span className="chg muted">no change</span>;
+  const t = useStrings();
+  if (value === null) return <span className="chg muted">{t("change.new")}</span>;
+  if (value === 0) return <span className="chg muted">{t("change.none")}</span>;
   const glyph = value > 0 ? "▲" : "▼";
   return (
     <span className="chg">
@@ -80,6 +82,7 @@ export const jumpTo = (id) => (e) => {
 // copied. If the browser refuses both (an iframe embedded without the
 // permissions in the README snippet), the link is shown to copy by hand.
 export function ShareButton({ title, text, url }) {
+  const t = useStrings();
   const [state, setState] = useState("idle"); // idle | copied | manual
   const copy = () => navigator.clipboard.writeText(`${text} ${url}`)
     .then(() => { setState("copied"); setTimeout(() => setState("idle"), 2500); })
@@ -92,9 +95,9 @@ export function ShareButton({ title, text, url }) {
     <span className="share">
       <button type="button" className="share-btn" onClick={onClick}>
         <Share2 size={15} strokeWidth={2.25} aria-hidden="true" />
-        {state === "copied" ? "Link copied" : "Share"}
+        {state === "copied" ? t("share.copied") : t("share.button")}
       </button>
-      {state === "manual" && <input className="share-url" readOnly value={url} aria-label="Link to share"
+      {state === "manual" && <input className="share-url" readOnly value={url} aria-label={t("share.urlAria")}
         onFocus={(e) => e.target.select()} autoFocus />}
     </span>
   );

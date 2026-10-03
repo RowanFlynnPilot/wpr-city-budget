@@ -237,7 +237,8 @@ function Segment({ seg, y, h, color, text, label, dim, onEnter, onLeave }) {
   );
 }
 
-export default function MoneyFlow({ bill, funds, departments, billLabel, ariaLabel }) {
+// billLabels: the top block's name, long then short. tipOf: what a share is of, for funds and departments.
+export default function MoneyFlow({ bill, funds, departments, billLabels, tipOf, ariaLabel }) {
   const [ref, W] = useWidth();
   const fontsReady = useFontsReady();
   const seen = useSeen(ref);
@@ -256,7 +257,7 @@ export default function MoneyFlow({ bill, funds, departments, billLabel, ariaLab
     const src2 = splitSpan(general.x, general.w, row3);
 
     // Labels first: each row is as tall as its tallest label needs.
-    const billLabel1 = fit(billW, bill, [billLabel, "Your city tax"]);
+    const billLabel1 = fit(billW, bill, billLabels);
     const labels2 = row2.map((f) => fit(f.w, f.amount, [f.label, f.short]));
     const labels3 = row3.map((d) => fit(d.w, d.amount, [d.label, d.short]));
     const callouts2 = placeCallouts(row2, labels2, W, general.x + general.w + 6);
@@ -320,7 +321,7 @@ export default function MoneyFlow({ bill, funds, departments, billLabel, ariaLab
           {svg}
           <div className="flow-tip" style={{ left, top }} role="status">
             <b>{tipSeg.label}</b>
-            <span>{usdCents(tipSeg.amount)} &middot; {pct(tipSeg.share * 100)} of {hot.kind === "fund" ? "your city tax" : "day-to-day services"}</span>
+            <span>{usdCents(tipSeg.amount)} &middot; {pct(tipSeg.share * 100)} {hot.kind === "fund" ? tipOf.fund : tipOf.dept}</span>
           </div>
         </>
       );

@@ -1,7 +1,6 @@
 {
-  "_README": "Sponsor credit in the banner. While enabled is false nothing renders. To go live: set enabled to true and fill name, plus url and logo if there are any. logo is a file in public/ (e.g. \"sponsor-acme.png\") or an https URL; logos sit on a white chip, so art drawn for white works. label is the line above the name. The link is marked rel=sponsored and carries UTM tags. Keep the credit in the banner; never place it among the figures.",
+  "_README": "Sponsor credit in the banner. While enabled is false nothing renders. To go live: set enabled to true and fill name, plus url and logo if there are any. logo is a file in public/ (e.g. \"sponsor-acme.png\") or an https URL; logos sit on a white chip, so art drawn for white works. The line above the name (\"Presented by\") is sponsor.presentedBy in src/strings/. The link is marked rel=sponsored and carries UTM tags. Keep the credit in the banner; never place it among the figures.",
   "enabled": false,
-  "label": "Presented by",
   "name": "",
   "url": "",
   "logo": ""

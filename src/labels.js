@@ -1,35 +1,17 @@
-// Reader-facing words. Text only: every figure on the page comes from budget.json.
+// Lookups for reader-facing words, and the page's fixed links. The words
+// themselves live in src/strings/<lang>.jsx; every figure comes from the data.
 
 // Bill and levy slices, keyed by levy_by_fund.funds[].name (CLAUDE.md,
-// "Reader-facing labels"). A fund missing here stops the page.
-// [label, description, short label for narrow spaces such as the money flow]
-const FUND_LABELS = {
-  "General Fund": ["Day-to-day services", "Police, fire, streets, parks and city hall", "Day-to-day"],
-  "Debt Service Fund": ["Debt payments", "Principal and interest on money the city has borrowed", "Debt"],
-  "MetroRide Fund": ["Metro Ride", "The city bus system", "Metro"],
-  "Recycling Fund": ["Recycling", "Curbside recycling", "Recycling"],
-  "Central Equipment Capital Fund": ["Equipment and small facility work", "Police cameras, radios and vests; computers and phones; small building repairs", "Equipment"],
-  "Community Development": ["Community development", "Planning, economic development and housing programs", "Planning"],
-  "Capital Projects Fund": ["Streets and construction", "The tax-funded share of street, sidewalk and building projects", "Streets"],
-  "Wausau Downtown Airport Fund": ["Downtown airport", "Wausau Downtown Airport operations", "Airport"],
-  "Parking Fund": ["Parking", "City ramps and lots", "Parking"],
-  "Animal Control": ["Animal control", "Animal control services", "Animals"],
-};
-
-export const TIF = {
-  label: "Tax increment districts",
-  desc: "Taxes on new development in the city’s TIF districts, set aside for those districts’ costs",
-  short: "TIF",
-};
-
-export function fundLabel(name) {
-  const l = FUND_LABELS[name];
-  if (!l) throw new Error(`No reader-facing label for levy fund "${name}" (src/labels.js)`);
-  return { label: l[0], desc: l[1], short: l[2] };
+// "Reader-facing labels"). A fund with no strings stops the page.
+export function fundLabel(name, t) {
+  return { label: t(`fund.${name}.label`), desc: t(`fund.${name}.desc`), short: t(`fund.${name}.short`) };
 }
 
+export const tifLabel = (t) => ({ label: t("fund.tif.label"), desc: t("fund.tif.desc"), short: t("fund.tif.short") });
+
 // Short names for general fund departments where space is tight (the money
-// flow). Keyed by units[].name; a general fund unit missing here stops the page.
+// flow). Department names are the city's and stay in English in every
+// language. Keyed by units[].name; a general fund unit missing here stops the page.
 const DEPARTMENT_SHORT = {
   "Police": "Police",
   "Fire": "Fire",
@@ -53,59 +35,21 @@ export function departmentShort(name) {
   return s;
 }
 
-// One-line explanations of the fund groups in the department drill-down.
-const GROUP_NOTES = {
-  "General Fund": "The city’s main operating budget: police, fire, public works, parks and city hall. Most of the property tax lands here.",
-  "Special Revenue Funds": "Money set aside for a specific purpose, such as recycling, room tax or community development grants.",
-  "Debt Service Fund": "Payments on the city’s general obligation borrowing, which property taxes back.",
-  "Capital Projects Funds": "Construction and equipment, plus the tax increment districts’ spending on development.",
-  "Internal Service Funds": "Accounts that bill other city departments for vehicles, insurance and employee benefits. The same dollars also show up in the departments they bill.",
-  "Enterprise Funds": "Services paid for largely by the people who use them: water, sewer, buses, parking and the airport.",
-};
-
-export function groupNote(group) {
-  const n = GROUP_NOTES[group];
-  if (!n) throw new Error(`No description for fund group "${group}" (src/labels.js)`);
-  return n;
-}
-
 // Other General Government is not an ordinary department (rule 6): its budget
 // page carries the general fund's general revenues, which pay for every
-// department. The dollar figure in the note comes from the unit's own table.
+// department. The note's figure is the proposed city administrator, the
+// Personal Services line of this unit (its only personnel).
 export const OTHER_GENERAL_GOVERNMENT = "Other General Government";
 
-// The proposed city administrator is the Personal Services line of Other
-// General Government (its only personnel); the overview names the position.
 export function administratorCost(unit) {
   const personnel = unit.expenses.find((e) => e.category === "Personal Services");
   if (!personnel) throw new Error(`${unit.name} has no Personal Services row`);
   return personnel.proposed;
 }
 
-export function otherGeneralGovernmentNote(unit, usd) {
-  return `Citywide costs not assigned to a department, including ${usd(administratorCost(unit))} `
-    + "for a proposed city administrator. Its budget page also carries the general fund’s "
-    + "general revenues, including the property tax, which pay for every department. "
-    + "That money is not earned by this office.";
-}
-
-// Editorial context for a known source discrepancy, keyed by its `check`.
-export const DISCREPANCY_CONTEXT = {
-  "capital projects: Infrastructure":
-    "The gap equals the cost of the Ethel Street reconstruction, which appears only in a second copy of this list later in the book.",
-};
-
-// The status line every section carries. Driven by meta.stage; a stage this
-// page has not been written for stops it, so a new book gets a deliberate update.
-const STATUS = {
-  proposed: "Mayor’s proposed budget. Not yet adopted.",
-};
-
-export function statusLine(meta) {
-  const s = STATUS[meta.stage];
-  if (!s) throw new Error(`No status line for budget stage "${meta.stage}" (src/labels.js)`);
-  return s;
-}
+// The status line every section carries, from meta.stage. A stage with no
+// string stops the page, so a new book gets a deliberate update.
+export const statusLine = (meta, t) => t(`status.${meta.stage}`);
 
 // The number printed in the page corner of the city's book.
 export const printedPage = (page, meta) => page - meta.printed_page_offset;
@@ -119,4 +63,5 @@ export const MEETING_TRACKER_URL = "https://rowanflynnpilot.github.io/marathon-m
 
 // What the Share button sends: the tool itself until the story runs. Then set
 // it to the story's URL, so shared links land on WPR's site with the embed.
+// A language other than English is carried along as ?lang=.
 export const SHARE_URL = "https://rowanflynnpilot.github.io/wpr-city-budget/";

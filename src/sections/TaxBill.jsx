@@ -1,6 +1,7 @@
 import React, { useId, useMemo, useState } from "react";
 import { SectionHead, Bar, ShareButton, jumpTo } from "../ui";
-import { fundLabel, departmentShort, TIF, SHARE_URL } from "../labels";
+import { fundLabel, tifLabel, departmentShort, SHARE_URL } from "../labels";
+import { useLang, useStrings } from "../i18n.jsx";
 import { usdCents, signedUsdCents, pct, change, taxAt } from "../format";
 import MoneyFlow from "../MoneyFlow";
 import { GENERAL_FUND } from "./GeneralFund";
@@ -24,12 +25,12 @@ export function levyYearIndex(b, year) {
 // The budget year's levy split into slices: each fund plus tax increment, as
 // shares of the FULL levy (rule 1). Shares of the subtotal would not add up to
 // the bill, because the rate is the full levy over assessed value.
-function levySlices(b) {
+function levySlices(b, t) {
   const lf = b.levy_by_fund;
   const i = levyYearIndex(b, b.meta.years.budget);
   const total = lf.total[i];
-  const rows = lf.funds.map((f) => ({ key: f.name, ...fundLabel(f.name), amount: f.values[i] }));
-  rows.push({ key: "tax_increment", ...TIF, amount: lf.tax_increment[i] });
+  const rows = lf.funds.map((f) => ({ key: f.name, ...fundLabel(f.name, t), amount: f.values[i] }));
+  rows.push({ key: "tax_increment", ...tifLabel(t), amount: lf.tax_increment[i] });
   return rows
     .filter((r) => r.amount > 0)
     .map((r) => ({ ...r, share: r.amount / total }))
@@ -48,14 +49,18 @@ const billFor = (b, assessed) => {
 const parseAssessed = (text) => Math.min(parseInt(text.split(".")[0].replace(/\D/g, "") || "0", 10), MAX_ASSESSED);
 
 // The shared line uses the example home, never the reader's own value.
-function shareText(b) {
+function shareText(b, t) {
   const { diff } = billFor(b, EXAMPLE_ASSESSED);
-  return `Wausau’s proposed ${b.meta.years.budget} budget would ${diff >= 0 ? "raise" : "lower"} the city tax on a `
-    + `$${EXAMPLE_ASSESSED.toLocaleString("en-US")} home by ${usdCents(Math.abs(diff))}. See what it means for yours:`;
+  return t("share.text", {
+    dir: diff >= 0 ? "up" : "down", home: `$${EXAMPLE_ASSESSED.toLocaleString("en-US")}`,
+    diff: usdCents(Math.abs(diff)), year: b.meta.years.budget,
+  });
 }
 
 // The calculator, set in the banner: the first thing a reader can do.
 export function BillCalculator({ b, assessed, onChange }) {
+  const t = useStrings();
+  const { lang } = useLang();
   const id = useId();
   const { years } = b.meta;
   const r = b.tax_rate.rate_per_1000;
@@ -71,39 +76,42 @@ export function BillCalculator({ b, assessed, onChange }) {
   return (
     <div className="calc">
       <div className="calc-input">
-        <label htmlFor={id}>Assessed value of your property</label>
+        <label htmlFor={id}>{t("calc.assessedLabel")}</label>
         <div className="calc-field">
           <span aria-hidden="true">$</span>
           <input id={id} type="text" inputMode="numeric" autoComplete="off" aria-describedby={`${id}-hint`}
             placeholder={EXAMPLE_ASSESSED.toLocaleString("en-US")} value={text} onChange={onInput} />
         </div>
         <p className="calc-hint" id={`${id}-hint`}>
-          {text && assessed === EXAMPLE_ASSESSED ? "This is an example. " : ""}
-          Use the assessed value on your tax bill, not the market value.
+          {text && assessed === EXAMPLE_ASSESSED ? t("calc.example") : ""}
+          {t("calc.hint")}
         </p>
       </div>
       <div className="calc-out" aria-live="polite">
-        <span className="calc-label">Your {years.budget} city tax</span>
+        <span className="calc-label">{t("calc.yourTax", years.budget)}</span>
         {text ? (
           <>
             <span className="calc-big">{usdCents(bill)}</span>
             <p className="calc-compare">
-              <span className="calc-diff">{signedUsdCents(diff)}</span> from {usdCents(prior)} in {years.current}
+              {t("calc.compare", { diff: signedUsdCents(diff), prior: usdCents(prior), year: years.current })}
             </p>
           </>
         ) : (
           <>
             <span className="calc-big" aria-hidden="true">&mdash;</span>
-            <p className="calc-compare">Type the assessed value from your tax bill.</p>
+            <p className="calc-compare">{t("calc.empty")}</p>
           </>
         )}
         <p className="calc-rate">
-          ${r.budget_year.toFixed(4)} per $1,000 of assessed value,{" "}
-          {r.budget_year > r.current_year ? "up from" : r.budget_year < r.current_year ? "down from" : "the same as"} ${r.current_year.toFixed(4)}.
+          {t("calc.rate", {
+            rate: `$${r.budget_year.toFixed(4)}`, prev: `$${r.current_year.toFixed(4)}`,
+            dir: r.budget_year > r.current_year ? "up" : r.budget_year < r.current_year ? "down" : "same",
+          })}
         </p>
         <div className="calc-actions">
-          {text && <a className="calc-jump" href="#bill" onClick={jumpTo("bill")}>See where your {usdCents(bill)} goes</a>}
-          <ShareButton title={`Follow the Money: Wausau’s ${years.budget} budget`} text={shareText(b)} url={SHARE_URL} />
+          {text && <a className="calc-jump" href="#bill" onClick={jumpTo("bill")}>{t("calc.jump", usdCents(bill))}</a>}
+          <ShareButton title={t("share.title", years.budget)} text={shareText(b, t)}
+            url={lang === "en" ? SHARE_URL : `${SHARE_URL}?lang=${lang}`} />
         </div>
       </div>
     </div>
@@ -111,9 +119,10 @@ export function BillCalculator({ b, assessed, onChange }) {
 }
 
 export default function TaxBill({ b, status, assessed }) {
+  const t = useStrings();
   const { years } = b.meta;
   const tr = b.tax_rate;
-  const slices = useMemo(() => levySlices(b), [b]);
+  const slices = useMemo(() => levySlices(b, t), [b, t]);
   const { bill } = billFor(b, assessed);
   const maxShare = slices[0].share;
   const avGrowth = change(tr.assessed_valuation.budget_year, tr.assessed_valuation.current_year);
@@ -138,28 +147,26 @@ export default function TaxBill({ b, status, assessed }) {
 
   return (
     <section id="bill" className="block block-hero">
-      <SectionHead title={`Follow your ${usdCents(bill)}`} status={status}>
-        Your city tax, to scale: first the funds it pays for, then how day-to-day services split it
-        among departments. Hover or tap a block for its share.
+      <SectionHead title={t("bill.title", usdCents(bill))} status={status}>
+        {t("bill.standfirst")}
       </SectionHead>
 
-      <MoneyFlow bill={bill} funds={funds} departments={departments} billLabel={`Your ${years.budget} city tax`}
-        ariaLabel={`Your ${usdCents(bill)} city tax: ${funds.slice(0, 3).map((f) => `${usdCents(bill * f.share)} to ${f.label.toLowerCase()}`).join(", ")}, and the rest to ${funds.length - 3} smaller funds. Of day-to-day services, ${top.map((d) => `${d.short.toLowerCase()} ${usdCents(bill * general.share * d.share)}`).join(", ")}. Every amount is listed below.`} />
-      <p className="note flow-note">
-        The bottom row splits day-to-day services by each department&rsquo;s share of general fund spending. The
-        city pools property taxes with state aid and fees; it does not assign tax dollars to departments.
-      </p>
+      <MoneyFlow bill={bill} funds={funds} departments={departments}
+        billLabels={[t("calc.yourTax", years.budget), t("bill.flowShort")]}
+        tipOf={{ fund: t("bill.tipFund"), dept: t("bill.tipDept") }}
+        ariaLabel={t("bill.flowAria", {
+          bill: usdCents(bill), rest: funds.length - 3,
+          funds: funds.slice(0, 3).map((f) => ({ label: f.label, amount: usdCents(bill * f.share) })),
+          depts: top.map((d) => ({ label: d.short, amount: usdCents(bill * general.share * d.share) })),
+        })} />
+      <p className="note flow-note">{t("bill.flowNote")}</p>
 
       {tr.assessed_valuation_is_estimate && (
-        <p className="flagnote">
-          <b>The {years.budget} rate is preliminary.</b> It rests on the city&rsquo;s placeholder
-          for {years.budget} assessed value (last year&rsquo;s plus {pct(avGrowth, 2)}), which
-          will change when the state publishes final figures.
-        </p>
+        <p className="flagnote">{t("bill.preliminary", { year: years.budget, growth: pct(avGrowth, 2) })}</p>
       )}
 
       <div className="receipt">
-        <h3 className="receipt-head">Every line of your city tax</h3>
+        <h3 className="receipt-head">{t("bill.receiptTitle")}</h3>
         <ol className="receipt-rows">
           {slices.map((s) => (
             <li className="rrow" key={s.key}>
@@ -174,21 +181,13 @@ export default function TaxBill({ b, status, assessed }) {
           ))}
         </ol>
         <div className="receipt-total">
-          <span>City share of your {years.budget} bill</span>
+          <span>{t("bill.receiptTotal", years.budget)}</span>
           <span className="rrow-amt">{usdCents(bill)}</span>
         </div>
-        <p className="note">
-          Each line is that fund&rsquo;s share of the full {years.budget} city levy, including tax increment
-          districts. Lines are rounded to the cent, so they can differ from the total by a few cents.
-        </p>
+        <p className="note">{t("bill.receiptNote", years.budget)}</p>
       </div>
 
-      <p className="note">
-        <b>This is only the city&rsquo;s part of your bill.</b> Your full property tax bill also
-        includes Marathon County, your school district and the technical college, whose rates
-        are set in mid-November. Both years use the same assessed value; if your assessment
-        changed, your actual change will differ.
-      </p>
+      <p className="note">{t("bill.cityOnly")}</p>
     </section>
   );
 }

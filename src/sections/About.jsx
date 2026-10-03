@@ -1,11 +1,13 @@
 import React from "react";
 import { CITY_BUDGET_PAGE, CORRECTIONS_EMAIL, WPR_URL, WPR_PHONE, SUPPORT_URL, MEETING_TRACKER_URL } from "../labels";
 import { usd, pct, change } from "../format";
+import { useStrings } from "../i18n.jsx";
 
 const BADGE = `${import.meta.env.BASE_URL}wpr-typewriter-badge.png`;
 
 // Source, method and caveats in plain language (rules 2, 3 and 5).
 export function About({ b, status }) {
+  const t = useStrings();
   const { years } = b.meta;
   const tr = b.tax_rate;
   const allFunds = b.all_funds.expenditures_by_category.total.budget;
@@ -13,64 +15,28 @@ export function About({ b, status }) {
   return (
     <section id="about" className="block block-about">
       <header className="sec-head">
-        <h2>About these numbers</h2>
+        <h2>{t("about.title")}</h2>
         <p className="status-line">{status}</p>
       </header>
       <dl className="about">
-        <dt>Source</dt>
-        <dd>
-          The City of Wausau&rsquo;s {years.budget} proposed budget, as published in
-          the {b.meta.pages}-page packet for the city&rsquo;s Finance Committee. Page references
-          on this page use the numbers printed in the budget book. The city posts its budget
-          documents on its{" "}
-          <a href={CITY_BUDGET_PAGE} target="_blank" rel="noopener noreferrer">budget reports page</a>.
-        </dd>
-        <dt>Method</dt>
-        <dd>
-          Wausau Pilot &amp; Review extracted every table from the book and checked each one
-          against the totals the city printed and against the book&rsquo;s other tables. The{" "}
-          {b.units.length} department and fund budgets add up exactly to the citywide totals.
-          Where the book disagrees with itself, this page says so.
-        </dd>
-        <dt>The 10-year history is approximate</dt>
-        <dd>
-          The book shows past budgets and spending only as charts. The yearly figures in each department&rsquo;s
-          history were measured from those drawings, so they are close but not exact. Every chart that can be
-          checked matches the city&rsquo;s own figure for its last year within a fraction of a percent of the
-          chart&rsquo;s scale; the two that cannot are labeled.
-        </dd>
-        <dt>The rate is preliminary</dt>
-        <dd>
-          The {years.budget} rate of ${tr.rate_per_1000.budget_year.toFixed(4)} per $1,000 divides
-          the levy by the city&rsquo;s placeholder for {years.budget} assessed value, which is last
-          year&rsquo;s plus {pct(avGrowth, 2)}. It will change when the state publishes final values.
-        </dd>
-        <dt>The city&rsquo;s part only</dt>
-        <dd>
-          Your property tax bill also includes Marathon County, your school district and the
-          technical college. Their rates are set in mid-November.
-        </dd>
-        <dt>Why this page doesn&rsquo;t lead with {usd(allFunds)}</dt>
-        <dd>
-          That is the city&rsquo;s spending across all funds, but it counts some dollars twice:
-          money moved between city funds, and internal service funds that bill other departments
-          for vehicles, insurance and benefits. The levy and the general fund are the clearer measures.
-        </dd>
-        <dt>Not yet final</dt>
-        <dd>
-          These are the mayor&rsquo;s proposals. The Finance Committee and the Common Council can
-          change them before the council adopts the budget. Changes will be logged at the top of this page.
-        </dd>
-        <dt>Corrections</dt>
-        <dd>
-          See something wrong? Email <a href={`mailto:${CORRECTIONS_EMAIL}`}>{CORRECTIONS_EMAIL}</a>.
-        </dd>
-        <dt>The data</dt>
-        <dd>
-          Download the <a href={`${import.meta.env.BASE_URL}budget.json`} download>budget figures</a>,
-          the <a href={`${import.meta.env.BASE_URL}fees.json`} download>fee changes</a> and
-          the <a href={`${import.meta.env.BASE_URL}history.json`} download>10-year history</a> (JSON).
-        </dd>
+        <dt>{t("about.sourceT")}</dt>
+        <dd>{t("about.sourceD", { year: years.budget, pages: b.meta.pages, url: CITY_BUDGET_PAGE })}</dd>
+        <dt>{t("about.methodT")}</dt>
+        <dd>{t("about.methodD", b.units.length)}</dd>
+        <dt>{t("about.historyT")}</dt>
+        <dd>{t("about.historyD")}</dd>
+        <dt>{t("about.rateT")}</dt>
+        <dd>{t("about.rateD", { year: years.budget, rate: `$${tr.rate_per_1000.budget_year.toFixed(4)}`, growth: pct(avGrowth, 2) })}</dd>
+        <dt>{t("about.cityT")}</dt>
+        <dd>{t("about.cityD")}</dd>
+        <dt>{t("about.allFundsT", usd(allFunds))}</dt>
+        <dd>{t("about.allFundsD")}</dd>
+        <dt>{t("about.finalT")}</dt>
+        <dd>{t("about.finalD")}</dd>
+        <dt>{t("about.correctionsT")}</dt>
+        <dd>{t("about.correctionsD", CORRECTIONS_EMAIL)}</dd>
+        <dt>{t("about.dataT")}</dt>
+        <dd>{t("about.dataD", import.meta.env.BASE_URL)}</dd>
       </dl>
     </section>
   );
@@ -79,19 +45,15 @@ export function About({ b, status }) {
 // The close: who built this, how, and how to keep it going. A bookend to the
 // banner, for readers and for anyone weighing whether to fund the work.
 export function Support({ b }) {
+  const t = useStrings();
   return (
     <aside className="support" aria-labelledby="support-title">
       <div className="support-inner">
-        <h2 id="support-title">Built by <span className="nowrap">Wausau Pilot &amp; Review</span></h2>
-        <p>
-          We read the city&rsquo;s {b.meta.pages}-page budget, checked all {b.units.length} department and fund
-          budgets against its totals, and will update this page as the Finance Committee and the Common
-          Council change the plan. Wausau Pilot &amp; Review is a nonprofit newsroom, and reader support
-          keeps tools like this free.
-        </p>
+        <h2 id="support-title">{t("support.title")}</h2>
+        <p>{t("support.body", { pages: b.meta.pages, units: b.units.length })}</p>
         <div className="support-actions">
-          <a className="support-btn" href={SUPPORT_URL} target="_blank" rel="noopener noreferrer">Support our journalism</a>
-          <a className="support-link" href={MEETING_TRACKER_URL} target="_blank" rel="noopener noreferrer">Follow the budget meetings</a>
+          <a className="support-btn" href={SUPPORT_URL} target="_blank" rel="noopener noreferrer">{t("support.button")}</a>
+          <a className="support-link" href={MEETING_TRACKER_URL} target="_blank" rel="noopener noreferrer">{t("support.meetings")}</a>
         </div>
       </div>
     </aside>
@@ -100,12 +62,13 @@ export function Support({ b }) {
 
 // WPR footer invariants: seal, provenance, non-affiliation, name and phone.
 export function Footer({ b }) {
+  const t = useStrings();
   return (
     <footer className="foot">
       <img className="foot-badge" src={BADGE} alt="" width="44" height="44" decoding="async" />
       <div>
-        <p>Data: City of Wausau {b.meta.years.budget} {b.meta.stage} budget. Updated by hand as the budget is amended.</p>
-        <p>Not affiliated with or endorsed by the City of Wausau.</p>
+        <p>{t(`foot.data.${b.meta.stage}`, b.meta.years.budget)}</p>
+        <p>{t("foot.notAffiliated")}</p>
         <p><a href={WPR_URL} target="_blank" rel="noopener noreferrer">Wausau Pilot &amp; Review</a> &middot; {WPR_PHONE}</p>
       </div>
     </footer>

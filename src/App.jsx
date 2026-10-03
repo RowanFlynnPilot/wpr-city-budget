@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { loadAll } from "./data";
 import { statusLine, CORRECTIONS_EMAIL } from "./labels";
+import { useStrings } from "./i18n.jsx";
 import { Flag, Banner, SectionNav } from "./sections/Masthead";
 import Updates from "./sections/Updates";
 import Highlights from "./sections/Highlights";
@@ -24,6 +25,7 @@ import { About, Support, Footer } from "./sections/About";
  * error and throws.
  */
 export default function App() {
+  const t = useStrings();
   const [state, setState] = useState(null);
   const [err, setErr] = useState(null);
   // The assessed value is typed in the banner and followed through the bill section.
@@ -46,17 +48,16 @@ export default function App() {
       <div className="ftm">
         <Flag />
         <div className="load load-error" role="alert">
-          <b>The budget data could not be loaded.</b> Reload the page to try again. If it keeps
-          happening, email <a href={`mailto:${CORRECTIONS_EMAIL}`}>{CORRECTIONS_EMAIL}</a>.
+          <b>{t("load.errorTitle")}</b> {t("load.errorBody", CORRECTIONS_EMAIL)}
           <span className="load-detail">{err}</span>
         </div>
       </div>
     );
   }
-  if (!state) return <div className="ftm"><Flag /><p className="load">Loading the budget&hellip;</p></div>;
+  if (!state) return <div className="ftm"><Flag /><p className="load">{t("load.loading")}</p></div>;
 
   const { b, fees, history, updates } = state;
-  const status = statusLine(b.meta);
+  const status = statusLine(b.meta, t);
   return (
     <div className="ftm">
       <Flag />

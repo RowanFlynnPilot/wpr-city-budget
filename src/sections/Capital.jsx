@@ -1,11 +1,14 @@
 import React from "react";
 import { SectionHead, Bar } from "../ui";
-import { DISCREPANCY_CONTEXT, printedPage } from "../labels";
+import { printedPage } from "../labels";
 import { usd, pct } from "../format";
+import { useStrings } from "../i18n.jsx";
 
+// Project, category, department and funding names are the city's and stay in
+// English in every language.
 function ProjectList({ projects, showDept }) {
   return (
-    <ul className="projects">
+    <ul className="projects" lang="en">
       {projects.map((p, i) => (
         <li key={i} className="proj">
           <span className="proj-desc">
@@ -19,19 +22,22 @@ function ProjectList({ projects, showDept }) {
   );
 }
 
-// A known mismatch in the city's own document, from source_discrepancies.
+// A known mismatch in the city's own document, from source_discrepancies; its
+// editorial context is a string keyed by the check.
 function DiscrepancyNote({ d, meta }) {
+  const t = useStrings();
   return (
     <p className="flagnote">
-      <b>A gap in the city&rsquo;s list.</b> The printed total, {usd(d.printed_total)}, is{" "}
-      {usd(d.printed_total - d.sum_of_rows)} more than the projects listed, which add up to{" "}
-      {usd(d.sum_of_rows)} (page {printedPage(d.page, meta)} of the budget book).{" "}
-      {DISCREPANCY_CONTEXT[d.check]}
+      {t("cap.gap", {
+        printed: usd(d.printed_total), diff: usd(d.printed_total - d.sum_of_rows), sum: usd(d.sum_of_rows),
+        page: printedPage(d.page, meta), context: t(`discrepancy.${d.check}`),
+      })}
     </p>
   );
 }
 
 export default function Capital({ b, status }) {
+  const t = useStrings();
   const { years } = b.meta;
   const cp = b.capital_projects;
   const dp = b.deferred_projects;
@@ -41,9 +47,8 @@ export default function Capital({ b, status }) {
 
   return (
     <section id="capital" className="block">
-      <SectionHead title="What the city plans to build and buy" status={status}>
-        The proposed budget funds {count} listed projects totaling {usd(cp.total)} in {years.budget}.
-        Another {deferredCount} requests, worth {usd(dp.total)}, were left out.
+      <SectionHead title={t("cap.title")} status={status}>
+        {t("cap.standfirst", { count, total: usd(cp.total), year: years.budget, deferred: deferredCount, deferredTotal: usd(dp.total) })}
       </SectionHead>
 
       {cp.categories.map((c) => {
@@ -51,7 +56,7 @@ export default function Capital({ b, status }) {
         return (
           <div className="cat" key={c.name}>
             <div className="cat-head">
-              <h3>{c.name}</h3>
+              <h3 lang="en">{c.name}</h3>
               <span className="cat-sum">{usd(c.total)}</span>
             </div>
             <ProjectList projects={c.projects} showDept />
@@ -60,27 +65,21 @@ export default function Capital({ b, status }) {
         );
       })}
 
-      <h3 className="subhead">How the projects are paid for</h3>
+      <h3 className="subhead">{t("cap.fundingTitle")}</h3>
       <ol className="ranked ranked-simple">
         {[...cp.funding].sort((a, c) => c.amount - a.amount).map((f) => (
           <li key={f.source} className="rank">
-            <span className="rank-name">{f.source}</span>
+            <span className="rank-name" lang="en">{f.source}</span>
             <Bar value={f.amount} max={fundingMax} />
             <span className="rank-amt">{usd(f.amount)}</span>
             <span className="rank-share">{pct((f.amount / cp.total_funding) * 100)}</span>
           </li>
         ))}
       </ol>
-      <p className="note">
-        Funding sources as the city lists them, totaling {usd(cp.total_funding)} (page{" "}
-        {printedPage(cp.page, b.meta)} of the budget book).
-      </p>
+      <p className="note">{t("cap.fundingNote", { total: usd(cp.total_funding), page: printedPage(cp.page, b.meta) })}</p>
 
-      <h3 className="subhead">Requested but left out</h3>
-      <p className="subnote">
-        Projects departments asked for that are not in the proposed budget: {usd(dp.total)} in all
-        (page {printedPage(dp.page, b.meta)} of the budget book).
-      </p>
+      <h3 className="subhead">{t("cap.deferredTitle")}</h3>
+      <p className="subnote">{t("cap.deferredNote", { total: usd(dp.total), page: printedPage(dp.page, b.meta) })}</p>
       <div className="deferred">
         {[...dp.departments]
           .map((d) => ({ ...d, sum: d.projects.reduce((s, p) => s + p.amount, 0) }))
@@ -88,7 +87,7 @@ export default function Capital({ b, status }) {
           .map((d) => (
             <div className="cat cat-deferred" key={d.name}>
               <div className="cat-head">
-                <h4>{d.name}</h4>
+                <h4 lang="en">{d.name}</h4>
                 <span className="cat-sum">{usd(d.sum)}</span>
               </div>
               <ProjectList projects={d.projects} />
