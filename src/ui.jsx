@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Share2 } from "lucide-react";
 import { signedPct, signedUsd } from "./format";
 import { useStrings } from "./i18n.jsx";
@@ -59,13 +59,21 @@ export function Bar({ value, max }) {
   );
 }
 
-// Wide tables scroll inside their own container, never the page.
+// Wide tables scroll inside their own container, never the page. While a table
+// is wider than its container, the container is a named, focusable region so a
+// keyboard can scroll it; a table that fits adds no tab stop or landmark.
 export function TableScroll({ label, children }) {
-  return (
-    <div className="table-scroll" role="region" aria-label={label} tabIndex={0}>
-      {children}
-    </div>
-  );
+  const ref = useRef(null);
+  const [scrolls, setScrolls] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    const ro = new ResizeObserver(() => setScrolls(el.scrollWidth > el.clientWidth));
+    ro.observe(el);
+    ro.observe(el.firstElementChild);
+    return () => ro.disconnect();
+  }, []);
+  const region = scrolls ? { role: "region", "aria-label": label, tabIndex: 0 } : {};
+  return <div className="table-scroll" ref={ref} {...region}>{children}</div>;
 }
 
 // In-page links scroll the section into view rather than follow the hash:

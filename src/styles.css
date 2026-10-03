@@ -87,7 +87,6 @@ body { margin: 0; background: var(--cream); color: var(--ink); }
 }
 .langs button:hover { border-color: rgba(246, 242, 233, 0.45); }
 .langs button[aria-pressed="true"] { background: var(--cream); color: var(--teal-dark); }
-.banner button:focus-visible { outline-color: #FFFFFF; }
 .lang-note { margin-top: 12px; max-width: 62ch; font-size: 14px; line-height: 1.5; color: #E8F1EE; }
 .lang-note p + p { margin-top: 4px; }
 .lang-note b { color: #FFFFFF; }
@@ -175,8 +174,10 @@ body { margin: 0; background: var(--cream); color: var(--ink); }
 }
 .calc-hint { font-size: 13px; color: var(--muted); margin-top: 8px !important; }
 .calc-label { display: block; font-size: 13px; font-weight: 600; letter-spacing: 0; color: var(--muted); }
+.calc-out { container-type: inline-size; }
+/* Sized to its column (cqi), so a long total never runs out of the card. */
 .calc-big {
-  display: block; font-family: var(--serif); font-size: clamp(44px, 11vw, 64px); font-weight: 600;
+  display: block; font-family: var(--serif); font-size: clamp(40px, 16cqi, 64px); font-weight: 600;
   line-height: 1.05; color: var(--teal-dark); letter-spacing: -0.02em; margin-top: 4px;
 }
 .calc-compare { font-size: 15px; color: var(--ink-2); margin-top: 6px !important; }
@@ -305,7 +306,7 @@ body { margin: 0; background: var(--cream); color: var(--ink); }
 /* ---------- small multiples (levy by fund, staffing by department) ---------- */
 .multiples { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--ink); }
 .mrow {
-  display: grid; grid-template-columns: auto minmax(0, 1fr) auto; grid-template-areas: "label label label" "spark amt chg";
+  display: grid; grid-template-columns: auto minmax(min-content, 1fr) auto; grid-template-areas: "label label label" "spark amt chg";
   gap: 6px 14px; align-items: center; padding: 11px 0; border-bottom: 1px solid var(--rule);
 }
 .mrow-label { grid-area: label; font-weight: 600; font-size: 15px; }
@@ -380,10 +381,10 @@ body { margin: 0; background: var(--cream); color: var(--ink); }
 .unit.open .unit-chev { transform: rotate(180deg); }
 .unit.open > .unit-row { background: var(--cream-2); }
 .unit-detail { --surface: var(--paper); background: var(--paper); border: 1px solid var(--rule); border-top: 0; padding: 16px 14px 18px; display: grid; gap: 16px; }
-.unit-figs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 0; }
+.unit-figs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 0; container-type: inline-size; }
 .unit-figs > div { display: flex; flex-direction: column; justify-content: space-between; }
 .unit-figs dt { font-size: 12.5px; font-weight: 600; letter-spacing: 0; color: var(--muted); }
-.unit-figs dd { margin: 2px 0 0; font-size: 13.5px; font-weight: 600; }
+.unit-figs dd { margin: 2px 0 0; font-size: min(13.5px, 4.6cqi); font-weight: 600; }
 .unit-figs > div:last-child dd { color: var(--teal-dark); }
 .unit-request { font-size: 14.5px; font-weight: 600; }
 .unit-flag { font-size: 14px; background: var(--ochre-tint); border-left: 3px solid var(--ochre); padding: 10px 12px; color: var(--ink-2); }
@@ -507,10 +508,11 @@ body { margin: 0; background: var(--cream); color: var(--ink); }
 .ftm .hl-item {
   display: flex; flex-direction: column; gap: 6px; padding: 14px 14px 16px; text-decoration: none;
   background: var(--paper); color: var(--ink); box-shadow: inset 0 3px 0 transparent; transition: box-shadow 0.15s ease;
+  container-type: inline-size;
 }
 .ftm .hl-item:hover { box-shadow: inset 0 3px 0 var(--teal); }
 .hl-fig {
-  font-family: var(--serif); font-size: clamp(26px, 6vw, 34px); font-weight: 600; line-height: 1;
+  font-family: var(--serif); font-size: clamp(22px, 20cqi, 34px); font-weight: 600; line-height: 1;
   letter-spacing: -0.01em; color: var(--teal-dark); font-variant-numeric: lining-nums;
 }
 .hl-label { font-size: 14px; line-height: 1.4; color: var(--ink-2); }
@@ -527,7 +529,6 @@ body { margin: 0; background: var(--cream); color: var(--ink); }
 }
 .ftm .support-btn:hover { background: #FFFFFF; }
 .ftm .support-link { color: var(--paper); font-weight: 600; text-underline-offset: 3px; }
-.support a:focus-visible { outline-color: #FFFFFF; }
 
 /* ---------- about + footer ---------- */
 .block-about { border-bottom: 0; }
@@ -546,7 +547,11 @@ body { margin: 0; background: var(--cream); color: var(--ink); }
 .ftm a:focus-visible, .ftm button:focus-visible, .ftm summary:focus-visible, .search input:focus-visible {
   outline: 3px solid var(--teal); outline-offset: 2px;
 }
-.banner a:focus-visible { outline-color: #fff; }
+/* On the teal banner and band the ring is white; inside the calculator's paper
+   card (in the banner) it is teal again, the later rule winning at equal
+   specificity. */
+.ftm .banner :focus-visible, .ftm .support :focus-visible { outline-color: #FFFFFF; }
+.ftm .calc :focus-visible { outline-color: var(--teal); }
 @media (prefers-reduced-motion: reduce) {
   .ftm *, .ftm *::before, .ftm *::after { transition-duration: 0.001ms !important; animation-duration: 0.001ms !important; }
 }
@@ -587,7 +592,7 @@ body { margin: 0; background: var(--cream); color: var(--ink); }
   .unit-row { grid-template-columns: minmax(0, 1fr) 130px 96px 18px; grid-template-areas: "name amt chg chev"; padding: 12px 2px; }
   .unit-amt { text-align: right; }
   .unit-detail { padding: 20px 22px 22px; }
-  .unit-figs dd { font-size: 16px; }
+  .unit-figs dd { font-size: min(16px, 4.6cqi); }
   .fee-lead-list li { grid-template-columns: minmax(0, 1fr) 170px 88px; grid-template-areas: "name rates pct"; }
   .fee-lead-rates { text-align: right; }
   .fee-lead-pct { text-align: right; }
@@ -600,7 +605,6 @@ body { margin: 0; background: var(--cream); color: var(--ink); }
   .fee-cols span:nth-child(n+2) { text-align: right; }
   .col-val { visibility: visible; font-size: 11px; }
   .col:first-child .col-val, .col:last-child .col-val { align-self: center; }
-  .hl-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .hl { padding-top: 44px; }
   .support-inner { padding: 52px 24px 56px; }
   .cols { gap: 8px; height: 220px; }
@@ -611,6 +615,11 @@ body { margin: 0; background: var(--cream); color: var(--ink); }
    Each category's name sits on its own line with its three figures beneath,
    so the 2027 columns never hide behind a sideways scroll. The markup carries
    explicit table roles, which the grid display would otherwise drop. */
+/* Four findings across only where each card holds its figure at full size. */
+@media (min-width: 860px) {
+  .hl-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
 @media (max-width: 639.98px) {
   .tbl-detail, .tbl-detail thead, .tbl-detail tbody, .tbl-detail tfoot, .tbl-detail caption { display: block; }
   .tbl-detail tr {
