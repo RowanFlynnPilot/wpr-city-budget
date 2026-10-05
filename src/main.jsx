@@ -1,7 +1,6 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App.jsx";
-import { LangProvider } from "./i18n.jsx";
 import "./styles.css";
 
 // Seamless WordPress embeds: when framed, keep the parent page informed of the
@@ -19,8 +18,6 @@ if (window.parent !== window) {
 
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <LangProvider>
-      <App />
-    </LangProvider>
+    <App />
   </React.StrictMode>
 );

@@ -8,19 +8,17 @@ Live at <https://rowanflynnpilot.github.io/wpr-city-budget/>.
 
 wausaupilotandreview.com sits behind a Cloudflare firewall that rejects any post containing a `<script` tag, even `<script src>`. The editor reports it as "Updating failed. The response is not a valid JSON response." (found on `wpr-gas-prices`, Sept. 2026). So both snippets are bare iframes with no script. Paste one into a **Custom HTML** block. Saving needs an Editor or Administrator account: for Authors and Contributors, WordPress strips the iframe on save and leaves an empty box.
 
-Both were checked on Oct. 3, 2026 in WordPress 7.1.2 (WordPress Playground, default theme): published through the block editor's Publish button (the save request returned JSON, with no notice and no invalid block), every attribute kept as pasted, the card fitting its frame in all three languages at screen widths from 320 to 1280px, and the full tool scrolling inside its frame with its nav working.
+Both were checked on Oct. 5, 2026 in WordPress 7.1.2 (WordPress Playground, default theme): published through the block editor's Publish button (the save request returned JSON, with no notice and no invalid block), every attribute kept as pasted, the card fitting its frame at screen widths from 320 to 1280px, and the full tool scrolling inside its frame with its nav working.
 
 ### In a story: the calculator card
 
 The title, status line and calculator, with a link that opens the full breakdown in a new tab. It fits its frame at every width, so readers scroll past it like an image.
 
 ```html
-<div style="position:relative;padding-top:max(580px, calc(962px - 49%));"><iframe src="https://rowanflynnpilot.github.io/wpr-city-budget/?view=card" title="Follow the Money: what Wausau's 2027 budget means for your tax bill" loading="lazy" allow="web-share; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"></iframe></div>
+<div style="position:relative;padding-top:max(505px, calc(1155px - 143%), min(calc(781px - 28%), calc(1241px - 100%)));"><iframe src="https://rowanflynnpilot.github.io/wpr-city-budget/?view=card" title="Follow the Money: what Wausau's 2027 budget means for your tax bill" loading="lazy" allow="web-share; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"></iframe></div>
 ```
 
-For a Spanish or Hmong story, add the language: `?view=card&amp;lang=es` or `?view=card&amp;lang=hmn`.
-
-Without a script the frame cannot measure the card, so its height is a formula of the frame's own width: the wrapper's `padding-top` percentage is a share of the column it sits in, whatever the theme. The formula was fitted on Oct. 3, 2026 to the card's measured height in all three languages at frame widths from 240 to 1100px, and holds with at least 24px to spare for every frame 260px or wider (a 320px phone in WordPress's default theme; WPR's column there is 288px). The card centers its content, so spare height is even teal margin, and a reader who switches language in the card never gets a scrollbar. **If the banner or calculator changes, re-measure** (the content height of `?view=card` in each language at frame widths 260 to 1100) and refit the formula.
+Without a script the frame cannot measure the card, so its height is a formula of the frame's own width: the wrapper's `padding-top` percentages are shares of the column it sits in, whatever the theme. The card's height steps down as the frame widens (text wraps less, and from 640px the calculator goes two-column), so the formula is the largest of three pieces: a floor, a steep line for the narrowest frames and, below 640px, a gentle line that drops sharply after it. It was fitted on Oct. 5, 2026 to the card's measured height at frame widths from 240 to 1100px and holds with at least 24px to spare for every frame 260px or wider (a 320px phone in WordPress's default theme; WPR's column there is 288px), with the input emptied, a $99,999,999 value or the Share fallback showing. The card centers its content, so spare height is even teal margin. **If the banner or calculator changes, re-measure** (the content height of `?view=card` at frame widths 260 to 1100) and refit the formula.
 
 ### On its own page: the full tool
 
@@ -36,9 +34,7 @@ The page still posts its content height to the parent (`{type: "wpr-city-budget:
 
 ## Languages
 
-The page reads in English, Spanish and Hmong; readers switch in the banner, and the choice is remembered. Link or embed a language directly with `?lang=es` or `?lang=hmn` (for example in the iframe `src` of a Spanish-language story). Spanish is a full translation; Hmong is a beta community translation and says so on the page, inviting corrections. Names the city publishes (departments, funds, budget categories, fees, projects) and the hand-written notes in the data files stay in English in every language, and the page says that too.
-
-Every reader-facing sentence lives in `src/strings/en.jsx`, `es.jsx` and `hmn.jsx` under the same keys. Adding or changing text means changing all three: a key missing from any language stops the page at load, rather than showing English in the middle of a translation.
+The page is in English only. Spanish and Hmong versions, both AI-drafted (Hmong labeled a beta), were live Oct. 3–5, 2026, and were taken down until fluent readers review them. Reverting the commit "English only until the translations are reviewed" restores the language switch, the `?lang=` links and both string tables; after that, refit the card's height formula for the tallest language. A `?lang=` link from those days now opens the English page.
 
 ## Sharing and sponsors
 

@@ -2,7 +2,7 @@ import React, { useId, useMemo, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { SectionHead, Bar, ShareButton, jumpTo } from "../ui";
 import { fundLabel, tifLabel, departmentShort, SHARE_URL } from "../labels";
-import { useLang, useStrings } from "../i18n.jsx";
+import { useStrings } from "../i18n.jsx";
 import { usdCents, signedUsdCents, pct, change, taxAt } from "../format";
 import MoneyFlow from "../MoneyFlow";
 import { GENERAL_FUND } from "./GeneralFund";
@@ -63,12 +63,10 @@ function shareText(b, t) {
 // opens it rather than jumping down to the bill section.
 export function BillCalculator({ b, assessed, onChange, card }) {
   const t = useStrings();
-  const { lang } = useLang();
   const id = useId();
   const { years } = b.meta;
   const r = b.tax_rate.rate_per_1000;
   const { bill, prior, diff } = billFor(b, assessed);
-  const pageUrl = lang === "en" ? SHARE_URL : `${SHARE_URL}?lang=${lang}`;
   // The field keeps its own text so it can sit empty while the reader retypes;
   // the page keeps following the last value above zero.
   const [text, setText] = useState(assessed.toLocaleString("en-US"));
@@ -114,11 +112,11 @@ export function BillCalculator({ b, assessed, onChange, card }) {
         </p>
         <div className="calc-actions">
           {card
-            ? <a className="calc-jump" href={pageUrl} target="_blank" rel="noopener noreferrer">
+            ? <a className="calc-jump" href={SHARE_URL} target="_blank" rel="noopener noreferrer">
                 {t("card.full")} <ArrowUpRight size={15} strokeWidth={2.5} aria-hidden="true" />
               </a>
             : text && <a className="calc-jump" href="#bill" onClick={jumpTo("bill")}>{t("calc.jump", usdCents(bill))}</a>}
-          <ShareButton title={t("share.title", years.budget)} text={shareText(b, t)} url={pageUrl} />
+          <ShareButton title={t("share.title", years.budget)} text={shareText(b, t)} url={SHARE_URL} />
         </div>
       </div>
     </div>

@@ -63,5 +63,4 @@ export const MEETING_TRACKER_URL = "https://rowanflynnpilot.github.io/marathon-m
 
 // What the Share button sends: the tool itself until the story runs. Then set
 // it to the story's URL, so shared links land on WPR's site with the embed.
-// A language other than English is carried along as ?lang=.
 export const SHARE_URL = "https://rowanflynnpilot.github.io/wpr-city-budget/";

@@ -78,19 +78,7 @@ body { margin: 0; background: var(--cream); color: var(--ink); }
 }
 .banner-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--ochre); flex: none; }
 
-.banner-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; }
 .banner .sponsor { display: inline-flex; align-items: center; gap: 10px; margin-top: 10px; color: var(--paper); text-decoration: none; }
-.langs { display: inline-flex; gap: 2px; }
-.langs button {
-  font: 600 12.5px/1 var(--sans); color: #E8F1EE; background: transparent; cursor: pointer;
-  border: 1px solid transparent; border-radius: 3px; padding: 6px 8px;
-}
-.langs button:hover { border-color: rgba(246, 242, 233, 0.45); }
-.langs button[aria-pressed="true"] { background: var(--cream); color: var(--teal-dark); }
-.lang-note { margin-top: 12px; max-width: 62ch; font-size: 14px; line-height: 1.5; color: #E8F1EE; }
-.lang-note p + p { margin-top: 4px; }
-.lang-note b { color: #FFFFFF; }
-.ftm .lang-note a { color: #FFFFFF; }
 .sponsor-label { font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #F2D7A0; }
 .sponsor-logo { display: inline-flex; background: #FFFFFF; border-radius: 3px; padding: 4px 8px; }
 .sponsor-logo img { height: 26px; width: auto; max-width: 150px; object-fit: contain; }
@@ -155,14 +143,12 @@ body { margin: 0; background: var(--cream); color: var(--ink); }
 .hbar-fill { display: block; height: 100%; background: var(--teal); border-radius: 0 4px 4px 0; }
 
 /* ?view=card: the banner alone, filling the story's fixed-height frame. The
-   frame is sized for the longest language, so the card centers its content
-   and any height to spare is even teal margin, not a gap at the bottom. */
+   frame's height is a formula of its width (README), so the card centers its
+   content and any height to spare is even teal margin, not a gap at the bottom. */
 .ftm-card .banner { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
 .ftm-card .banner-inner { width: 100%; }
-/* A story's headline is the article's; the card's title is a label, and the
-   language buttons sit at the right without the kicker beside them. */
+/* A story's headline is the article's; the card's title is a label. */
 .ftm-card .banner h1 { font-size: clamp(25px, 5.4vw, 34px); }
-.ftm-card .langs { margin-left: auto; }
 
 /* ---------- tax calculator (a paper card set into the banner) ---------- */
 .calc {
@@ -652,7 +638,7 @@ body { margin: 0; background: var(--cream); color: var(--ink); }
 }
 
 @media print {
-  .secnav, .langs, .search, .seg, .table-toggle summary, .calc-actions, .support-actions { display: none !important; }
+  .secnav, .search, .seg, .table-toggle summary, .calc-actions, .support-actions { display: none !important; }
   body, .ftm { background: #fff; }
   .flow-svg .flow-layer { opacity: 1 !important; animation: none !important; }
   .rrow, .rank, .mrow, .unit, .proj, .debt-card, .callout, .flagnote, .flow, .sec-head, .hl, .chart { break-inside: avoid; }

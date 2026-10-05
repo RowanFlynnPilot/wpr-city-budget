@@ -1,24 +1,16 @@
 import React from "react";
 import { apCount, apDate, millions } from "../format";
 
-// English, the source for es.jsx and hmn.jsx. Keys are grouped by where they
+// Every reader-facing sentence on the page. Keys are grouped by where they
 // appear. Figures arrive formatted ("$1,848.08", "6.76%", years as numbers);
 // a function only arranges words around them. Running text follows AP style.
 
 export default {
   // ---- formats
-  "doc.title": "Follow the Money: Wausau’s city budget · Wausau Pilot & Review",
-
   "fmt.today": (date) => date.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" }),
   "fmt.date": (ymd) => apDate(ymd),
   "fmt.millions": (n) => millions(n),
   "fmt.aboutMillions": (n) => `$${(n / 1e6).toFixed(2)} million`,
-
-  // ---- language
-  "lang.label": "Language",
-  "lang.namesNote": "Names the city publishes appear in English, as printed.",
-  "lang.betaTitle": "Hmong is a community translation, in beta.",
-  "lang.betaBody": (email) => <>Some wording may be rough. Tell Wausau Pilot &amp; Review what to fix: <a href={`mailto:${email}`}>{email}</a>.</>,
 
   // ---- page states
   "load.loading": "Loading the budget…",
@@ -65,7 +57,6 @@ export default {
   "updates.title": "Changes since the proposal",
   "updates.note": "The figures below are the mayor’s proposal. These are the changes made since, newest first.",
   "updates.read": "Read the story",
-  "updates.inEnglish": "These entries are written in English.",
 
   // ---- highlights
   "hl.title": "What’s in the proposal",

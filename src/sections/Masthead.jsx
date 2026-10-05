@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
-import { WPR_URL, CORRECTIONS_EMAIL } from "../labels";
+import { WPR_URL } from "../labels";
 import { pct, change } from "../format";
 import { BillCalculator } from "./TaxBill";
 import { jumpTo } from "../ui";
-import { LANGS, useLang, useStrings } from "../i18n.jsx";
+import { useStrings } from "../i18n.jsx";
 import sponsor from "../sponsors.json";
 
 const BADGE = `${import.meta.env.BASE_URL}wpr-typewriter-badge.png`;
@@ -55,34 +55,6 @@ function SponsorSlot() {
   return <a className="sponsor" href={url.href} target="_blank" rel="noopener noreferrer sponsored">{inner}</a>;
 }
 
-// English / Español / Hmoob, each in its own language.
-function LangSwitch() {
-  const t = useStrings();
-  const { lang, setLang } = useLang();
-  return (
-    <div className="langs" role="group" aria-label={t("lang.label")}>
-      {LANGS.map((l) => (
-        <button key={l.code} type="button" lang={l.code} aria-pressed={lang === l.code}
-          onClick={() => setLang(l.code)}>{l.label}</button>
-      ))}
-    </div>
-  );
-}
-
-// In Spanish and Hmong: the names the city publishes stay in English; Hmong
-// also carries the beta note inviting corrections.
-function LangNote() {
-  const t = useStrings();
-  const { lang } = useLang();
-  if (lang === "en") return null;
-  return (
-    <div className="lang-note" role="note">
-      {lang === "hmn" && <p><b>{t("lang.betaTitle")}</b> {t("lang.betaBody", CORRECTIONS_EMAIL)}</p>}
-      <p>{t("lang.namesNote")}</p>
-    </div>
-  );
-}
-
 // The subject banner: tool title, the proposal in one sentence (rule 5: the
 // levy and the general fund, not the all-funds total), the status, and the
 // calculator, so the first thing on screen is the reader's own bill. `card`:
@@ -95,10 +67,7 @@ export function Banner({ b, status, assessed, onAssessed, card }) {
   return (
     <header className="banner">
       <div className="banner-inner">
-        <div className="banner-top">
-          {!card && <div className="banner-kicker">{t("banner.kicker")}</div>}
-          <LangSwitch />
-        </div>
+        {!card && <div className="banner-kicker">{t("banner.kicker")}</div>}
         <SponsorSlot />
         <h1>{t("banner.title", years.budget)}</h1>
         {/* In a story the article around the card already says this. */}
@@ -111,8 +80,6 @@ export function Banner({ b, status, assessed, onAssessed, card }) {
           </p>
         )}
         <p className="banner-status"><span className="banner-dot" aria-hidden="true" />{status}</p>
-        {/* The card shows no city names and links to the full page, which carries the notes. */}
-        {!card && <LangNote />}
         <BillCalculator b={b} assessed={assessed} onChange={onAssessed} card={card} />
       </div>
     </header>
