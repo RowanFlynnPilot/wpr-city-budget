@@ -88,7 +88,8 @@ export const jumpTo = (id) => (e) => {
 
 // Share: the system share sheet where there is one, otherwise the link is
 // copied. If the browser refuses both (an iframe embedded without the
-// permissions in the README snippet), the link is shown to copy by hand.
+// permissions in the README snippet), the link takes the button's place, at
+// its height, to copy by hand: the story card's frame is fixed and must not grow.
 export function ShareButton({ title, text, url }) {
   const t = useStrings();
   const [state, setState] = useState("idle"); // idle | copied | manual
@@ -101,12 +102,15 @@ export function ShareButton({ title, text, url }) {
   };
   return (
     <span className="share">
-      <button type="button" className="share-btn" onClick={onClick}>
-        <Share2 size={15} strokeWidth={2.25} aria-hidden="true" />
-        {state === "copied" ? t("share.copied") : t("share.button")}
-      </button>
-      {state === "manual" && <input className="share-url" readOnly value={url} aria-label={t("share.urlAria")}
-        onFocus={(e) => e.target.select()} autoFocus />}
+      {state === "manual"
+        ? <input className="share-url" readOnly value={url} aria-label={t("share.urlAria")}
+            onFocus={(e) => e.target.select()} autoFocus />
+        : (
+          <button type="button" className="share-btn" onClick={onClick}>
+            <Share2 size={15} strokeWidth={2.25} aria-hidden="true" />
+            {state === "copied" ? t("share.copied") : t("share.button")}
+          </button>
+        )}
     </span>
   );
 }

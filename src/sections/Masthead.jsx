@@ -126,15 +126,20 @@ export function SectionNav() {
   const [active, setActive] = useState(null);
   const nav = useRef(null);
   useEffect(() => {
+    // Back above the first section (it has left the band downward), no link is marked.
     const io = new IntersectionObserver(
-      (entries) => entries.forEach((e) => { if (e.isIntersecting) setActive(e.target.id); }),
+      (entries) => entries.forEach((e) => {
+        if (e.isIntersecting) setActive(e.target.id);
+        else if (e.target.id === SECTIONS[0] && e.boundingClientRect.top > 0) setActive(null);
+      }),
       { rootMargin: "-40% 0px -55% 0px" });
     SECTIONS.forEach((id) => { const el = document.getElementById(id); if (el) io.observe(el); });
     return () => io.disconnect();
   }, []);
   useEffect(() => {
     const a = active && nav.current.querySelector(`a[href="#${active}"]`);
-    if (a) nav.current.scrollTo({ left: a.offsetLeft + a.offsetWidth / 2 - nav.current.clientWidth / 2, behavior: "smooth" });
+    const left = a ? a.offsetLeft + a.offsetWidth / 2 - nav.current.clientWidth / 2 : 0;
+    nav.current.scrollTo({ left, behavior: "smooth" });
   }, [active]);
   return (
     <nav className="secnav" aria-label={t("nav.aria")} ref={nav}>
