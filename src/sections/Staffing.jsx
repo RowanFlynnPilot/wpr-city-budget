@@ -25,11 +25,19 @@ export default function Staffing({ b, status }) {
   const yearsAsc = asc(st.years);
   const max = Math.max(...st.total);
   const depts = [...st.departments].sort((a, c) => (c.values[iNow] ?? -1) - (a.values[iNow] ?? -1));
+  // The department that grew the most since the oldest year. Department rows
+  // compare across years; only the total's oldest year carries the council.
+  const grew = st.departments
+    .filter((d) => d.values[iNow] !== null && d.values[iOld] !== null)
+    .reduce((a, d) => (d.values[iNow] - d.values[iOld] > a.values[iNow] - a.values[iOld] ? d : a));
 
   return (
     <section id="staffing" className="block">
       <SectionHead title={t("staff.title")} status={status}>
-        {t("staff.standfirst", { now: fte(st.total[iNow]), year: years.budget, prev: fte(st.total[iPrev]), prevYear: years.current })}
+        {t("staff.standfirst", {
+          now: fte(st.total[iNow]), year: years.budget, prev: fte(st.total[iPrev]), prevYear: years.current,
+          grew: grew.name, from: fte(grew.values[iOld]), to: fte(grew.values[iNow]), first: oldest,
+        })}
       </SectionHead>
 
       <div className="cols" role="img" aria-label={t("staff.chartAria", { first: oldest, last: years.budget })}>
@@ -41,7 +49,7 @@ export default function Staffing({ b, status }) {
           </div>
         ))}
       </div>
-      <p className="note">{t("staff.caveat", { oldest, council: council.values[iOld] })}</p>
+      <p className="note">{t("staff.caveat", { oldest, council: council.values[iOld], without: fte(st.total[iOld] - council.values[iOld]) })}</p>
 
       <h3 className="subhead">{t("staff.byDept")}</h3>
       <p className="subnote">{t("staff.note", { first: oldest, last: years.budget })}</p>

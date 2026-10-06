@@ -148,6 +148,9 @@ KNOWN_DISCREPANCIES = {
     # $1,830,000 gap equals the Ethel Street reconstruction that appears only
     # in the second copy of this list on page 161.
     "capital projects: Infrastructure": [16502360, 18332360],
+    # p. 20 prints the 2024 reserve's budget as 48,014,197; the general fund
+    # statement on p. 72 gives 2026 adopted spending as 48,014,200.
+    "fund balance: previous row's budget vs adopted general fund spending": [48014197, 48014200],
 }
 
 
@@ -601,6 +604,54 @@ def parse_deferred_projects(texts, rec):
     return {"page": page + 1, "departments": departments, "total": total}
 
 
+def parse_fund_balance(texts, rec):
+    """The general fund's unassigned balance at each year's end, the budget the
+    city measures it against, and the reserve goal in its fund balance policy.
+
+    The city pairs each year-end balance with the budget two years later (the
+    last row's budget is this book's proposed spending; see cross_check).
+    """
+    header = "Budget Expenses Percent of Budget"
+    page = find_page(texts, header)
+    goal = re.search(r"recommends\s+reserves of ([\d.]+)% of expenses", texts[page])
+    if not goal:
+        raise ValueError(f"fund balance policy goal not found on page {page + 1}")
+    years = []
+    for line in lines_after(texts[page], header):
+        label, values = split_row(line)
+        if label or len(values) != 4 or not 2000 < values[0] < 2100:
+            break
+        year, balance, budget, percent = values
+        rec.check(f"fund balance {year}: balance / budget", round(balance / budget * 100, 2), percent, page + 1, tolerance=1e-9)
+        years.append({"year": year, "unassigned": balance, "budget_expenses": budget, "percent": percent})
+    if len(years) < 2 or any(b["year"] != a["year"] + 1 for a, b in zip(years, years[1:])):
+        raise ValueError(f"fund balance years missing or out of order on page {page + 1}: {[y['year'] for y in years]}")
+    return {"page": page + 1, "policy_percent": float(goal.group(1)), "years": years}
+
+
+def parse_motor_pool(texts):
+    """The Motor Pool Fund's working capital at each year's end (newest first in
+    the book, oldest first here), and the overview's note on why it is low."""
+    hits = [i for i, t in enumerate(texts) if "MOTOR POOL FUND" in t.upper() and "WORKING CAPITAL HISTORY" in t.upper()]
+    if len(hits) != 1:
+        raise ValueError(f"expected one Motor Pool working capital page, found {[h + 1 for h in hits]}")
+    page = hits[0]
+    history = []
+    for line in lines_after(texts[page], "WORKING CAPITAL HISTORY"):
+        label, values = split_row(line)
+        if label or len(values) != 2 or not 2000 < values[0] < 2100:
+            break
+        history.append({"year": values[0], "working_capital": values[1]})
+    history.reverse()
+    if len(history) < 2 or any(b["year"] != a["year"] + 1 for a, b in zip(history, history[1:])):
+        raise ValueError(f"motor pool years missing or out of order on page {page + 1}: {[h['year'] for h in history]}")
+    note_page = find_page(texts, "No progress was made in increasing the motor pool")
+    note = re.search(r"(No progress was made in increasing the motor pool.*?)\n(?=general fund balance)", texts[note_page], re.I | re.S)
+    if not note:
+        raise ValueError(f"motor pool note not found on page {note_page + 1}")
+    return {"page": page + 1, "history": history, "overview_note": {"page": note_page + 1, "text": " ".join(note.group(1).split())}}
+
+
 def parse_staffing(words, page, rec):
     """Full-time-equivalent positions by department and year.
 
@@ -698,6 +749,19 @@ def cross_check(budget, rec):
     rec.check("capital funding vs Capital Projects Fund revenue",
               capital["total_funding"], fund["total_revenue"]["proposed"], capital["page"])
 
+    # The city measures each year-end reserve against the general fund budget
+    # two years later: the last row's budget is this book's proposed spending,
+    # the row before it the current year's adopted spending.
+    reserves = budget["fund_balance"]
+    spending = budget["general_fund"]["total_expenditures"]
+    last, before = reserves["years"][-1], reserves["years"][-2]
+    if last["year"] != budget["meta"]["fiscal_year"] - 2:
+        raise ValueError(f"fund balance ends in {last['year']}, not two years before {budget['meta']['fiscal_year']}")
+    rec.check("fund balance: last row's budget vs proposed general fund spending",
+              last["budget_expenses"], spending["budget"], reserves["page"])
+    rec.check("fund balance: previous row's budget vs adopted general fund spending",
+              before["budget_expenses"], spending["current_adopted"], reserves["page"])
+
 
 def extract(pdf_path):
     with pdfplumber.open(pdf_path) as pdf:
@@ -721,6 +785,8 @@ def extract(pdf_path):
         "debt": parse_debt(texts, rec),
         "capital_projects": parse_capital_projects(texts, rec),
         "deferred_projects": parse_deferred_projects(texts, rec),
+        "fund_balance": parse_fund_balance(texts, rec),
+        "motor_pool": parse_motor_pool(texts),
     }
     check_arithmetic(budget, rec)
     cross_check(budget, rec)

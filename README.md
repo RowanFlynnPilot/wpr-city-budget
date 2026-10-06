@@ -114,8 +114,8 @@ og_card.py                budget.json -> public/og-card.png (1200x630 share card
 src/App.jsx               loads the data, lays out the sections
 src/sections/             one file per section, in page order
 src/labels.js             lookups for reader-facing names, and the page's fixed links
-src/i18n.jsx              languages: the switcher's state and t(key, ...args)
-src/strings/              every reader-facing sentence: en.jsx, es.jsx, hmn.jsx
+src/i18n.jsx              t(key, ...args) over the string table
+src/strings/en.jsx        every reader-facing sentence
 src/charts.jsx            the validated chart palette, legend, and lazy chart wrappers
 src/plots.jsx             the recharts charts, loaded after the first render
 src/ui.jsx, src/format.js shared pieces and number formatting

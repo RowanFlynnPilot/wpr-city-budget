@@ -9,7 +9,7 @@ import sponsor from "../sponsors.json";
 const BADGE = `${import.meta.env.BASE_URL}wpr-typewriter-badge.png`;
 const WORDMARK = `${import.meta.env.BASE_URL}wpr-wordmark.png`;
 
-const SECTIONS = ["bill", "levy", "general-fund", "departments", "fees", "capital", "debt", "staffing", "about"];
+const SECTIONS = ["bill", "levy", "general-fund", "departments", "fees", "capital", "debt", "reserves", "staffing", "about"];
 
 // WPR's flag (seal + wordmark, tagline, dateline) above the tool's own banner.
 // The flag is WPR's; the tool's title sits below it, never above. The tagline

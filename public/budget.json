@@ -5697,12 +5697,139 @@
     ],
     "total": 9095154
   },
+  "fund_balance": {
+    "page": 20,
+    "policy_percent": 16.67,
+    "years": [
+      {
+        "year": 2015,
+        "unassigned": 5032077,
+        "budget_expenses": 30933390,
+        "percent": 16.27
+      },
+      {
+        "year": 2016,
+        "unassigned": 5788763,
+        "budget_expenses": 32193988,
+        "percent": 17.98
+      },
+      {
+        "year": 2017,
+        "unassigned": 6566389,
+        "budget_expenses": 32384515,
+        "percent": 20.28
+      },
+      {
+        "year": 2018,
+        "unassigned": 8185464,
+        "budget_expenses": 33634463,
+        "percent": 24.34
+      },
+      {
+        "year": 2019,
+        "unassigned": 9364682,
+        "budget_expenses": 34550000,
+        "percent": 27.1
+      },
+      {
+        "year": 2020,
+        "unassigned": 10111154,
+        "budget_expenses": 35899158,
+        "percent": 28.17
+      },
+      {
+        "year": 2021,
+        "unassigned": 11306936,
+        "budget_expenses": 34871787,
+        "percent": 32.42
+      },
+      {
+        "year": 2022,
+        "unassigned": 10857923,
+        "budget_expenses": 37554028,
+        "percent": 28.91
+      },
+      {
+        "year": 2023,
+        "unassigned": 12206891,
+        "budget_expenses": 46330541,
+        "percent": 26.35
+      },
+      {
+        "year": 2024,
+        "unassigned": 14459598,
+        "budget_expenses": 48014197,
+        "percent": 30.12
+      },
+      {
+        "year": 2025,
+        "unassigned": 15338265,
+        "budget_expenses": 49616051,
+        "percent": 30.91
+      }
+    ]
+  },
+  "motor_pool": {
+    "page": 206,
+    "history": [
+      {
+        "year": 2016,
+        "working_capital": 1047631
+      },
+      {
+        "year": 2017,
+        "working_capital": 2375411
+      },
+      {
+        "year": 2018,
+        "working_capital": 2072293
+      },
+      {
+        "year": 2019,
+        "working_capital": 2328655
+      },
+      {
+        "year": 2020,
+        "working_capital": 1707389
+      },
+      {
+        "year": 2021,
+        "working_capital": 2766678
+      },
+      {
+        "year": 2022,
+        "working_capital": 921328
+      },
+      {
+        "year": 2023,
+        "working_capital": 549329
+      },
+      {
+        "year": 2024,
+        "working_capital": 505496
+      },
+      {
+        "year": 2025,
+        "working_capital": 363346
+      }
+    ],
+    "overview_note": {
+      "page": 20,
+      "text": "No progress was made in increasing the motor pool line item budgets within the general fund to reflect the full rate. Current 2026 general fund projections indicate a yearend surplus. The Council could adopt a budget modification to absorb the full rate charges to departments with the Motor Pool revenue used to fund future fleet investment."
+    }
+  },
   "source_discrepancies": [
     {
       "check": "capital projects: Infrastructure",
       "page": 22,
       "sum_of_rows": 16502360,
       "printed_total": 18332360
+    },
+    {
+      "check": "fund balance: previous row's budget vs adopted general fund spending",
+      "page": 20,
+      "sum_of_rows": 48014197,
+      "printed_total": 48014200
     }
   ]
 }

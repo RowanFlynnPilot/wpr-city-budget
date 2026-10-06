@@ -17,6 +17,8 @@ export const signedPct = (n, digits = 1) => (n > 0 ? "+" : "") + pct(n, digits);
 export const change = (now, then) => (then ? ((now - then) / then) * 100 : now ? null : 0);
 
 export const fte = (n) => n.toFixed(2);
+// A column label: "$2.8M" from a million up, "$363K" below.
+export const shortUsd = (n) => (n >= 1e6 ? `$${(n / 1e6).toFixed(1)}M` : `$${Math.round(n / 1e3)}K`);
 
 // A property's tax at a rate per $1,000 of assessed value, rounded to cents.
 export const taxAt = (assessed, ratePer1000) => Math.round(assessed * ratePer1000 / 10) / 100;

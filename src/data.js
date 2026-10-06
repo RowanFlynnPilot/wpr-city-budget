@@ -5,7 +5,7 @@
 const BUDGET_KEYS = [
   "meta", "tax_rate", "valuation", "levy_limit", "levy_by_fund", "general_fund",
   "all_funds", "units", "staffing", "debt", "capital_projects", "deferred_projects",
-  "source_discrepancies",
+  "fund_balance", "motor_pool", "source_discrepancies",
 ];
 
 async function fetchJson(file) {

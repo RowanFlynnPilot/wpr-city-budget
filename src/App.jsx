@@ -12,6 +12,7 @@ import Departments from "./sections/Departments";
 import Fees from "./sections/Fees";
 import Capital from "./sections/Capital";
 import Debt from "./sections/Debt";
+import Reserves from "./sections/Reserves";
 import Staffing from "./sections/Staffing";
 import { About, Support, Footer } from "./sections/About";
 
@@ -106,6 +107,7 @@ export default function App() {
           <Fees fees={fees} b={b} status={status} />
           <Capital b={b} status={status} />
           <Debt b={b} status={status} />
+          <Reserves b={b} status={status} />
           <Staffing b={b} status={status} />
           <About b={b} status={status} />
         </div>

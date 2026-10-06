@@ -50,6 +50,7 @@ export default {
   "nav.fees": "Fees",
   "nav.capital": "Projects",
   "nav.debt": "Debt",
+  "nav.reserves": "Reserves",
   "nav.staffing": "Staffing",
   "nav.about": "About",
 
@@ -103,12 +104,12 @@ export default {
 
   // ---- your bill
   "bill.title": (bill) => `Follow your ${bill}`,
-  "bill.standfirst": "Your city tax, to scale: first the funds it pays for, then how day-to-day services split it among departments. Hover or tap a block for its share.",
+  "bill.standfirst": "Your city tax, to scale: first the funds it pays for, then an estimate of how day-to-day services split it among departments. Hover or tap a block for its share.",
   "bill.flowShort": "Your city tax",
   "bill.flowAria": ({ bill, funds, rest, depts }) => `Your ${bill} city tax: ${funds.map((f) => `${f.amount} to ${f.label.toLowerCase()}`).join(", ")}, and the rest to ${rest} smaller funds. Of day-to-day services, ${depts.map((d) => `${d.label.toLowerCase()} ${d.amount}`).join(", ")}. Every amount is listed below.`,
   "bill.tipFund": "of your city tax",
-  "bill.tipDept": "of day-to-day services",
-  "bill.flowNote": "The bottom row splits day-to-day services by each department’s share of general fund spending. The city pools property taxes with state aid and fees; it does not assign tax dollars to departments.",
+  "bill.tipDept": "of day-to-day services (estimate)",
+  "bill.flowNote": "The bottom row is an estimate: it splits day-to-day services by each department’s share of general fund spending. The city pools property taxes with state aid and fees; it does not assign tax dollars to departments.",
   "bill.preliminary": ({ year, growth }) => <><b>The {year} rate is preliminary.</b> It rests on the city&rsquo;s placeholder for {year} assessed value (last year&rsquo;s plus {growth}), which will change when the state publishes final figures.</>,
   "bill.receiptTitle": "Every line of your city tax",
   "bill.receiptTotal": (year) => `City share of your ${year} bill`,
@@ -125,6 +126,10 @@ export default {
   // ---- levy
   "levy.title": "Where the levy goes, year by year",
   "levy.standfirst": ({ total, year, up, pct, prev, first, grown }) => `The city plans to collect ${total} in property taxes for ${year}, up ${up} (${pct}) from ${prev}. Since ${first} the levy has grown ${grown}.`,
+  "levy.swingTitle": ({ dir, amount }) => `Where the ${amount} ${dir === "up" ? "increase" : "decrease"} comes from`,
+  "levy.swingNote": ({ prev, year }) => `Each fund’s change in levy from ${prev} to ${year}; together they make up the whole change. Funds whose levy did not change are left out.`,
+  "levy.swingTotal": "Total change",
+  "levy.historyTitle": ({ first, last }) => `The levy by year, ${first} to ${last}`,
   "levy.otherFunds": "All other funds",
   "levy.totalLabel": "Total levy",
   "levy.chartAria": ({ first, last, from, to }) => `Stacked column chart of the city property tax levy by year, ${first} to ${last}, rising from ${from} to ${to}. The same figures are in the table below.`,
@@ -232,7 +237,7 @@ export default {
 
   // ---- capital projects
   "cap.title": "What the city plans to build and buy",
-  "cap.standfirst": ({ count, total, year, deferred, deferredTotal }) => `The proposed budget funds ${count} listed projects totaling ${total} in ${year}. Another ${deferred} requests, worth ${deferredTotal}, were left out.`,
+  "cap.standfirst": ({ count, total, year, deferred, deferredTotal, top, topAmount, topShare }) => `The proposed budget funds ${count} listed projects totaling ${total} in ${year}. The largest, listed as “${top},” costs ${topAmount}: ${topShare} of the total. Another ${deferred} requests, worth ${deferredTotal}, were left out.`,
   "cap.gap": ({ printed, diff, sum, page, context }) => <><b>A gap in the city&rsquo;s list.</b> The printed total, {printed}, is {diff} more than the projects listed, which add up to {sum} (page {page} of the budget book). {context}</>,
   "discrepancy.capital projects: Infrastructure": "The gap equals the cost of the Ethel Street reconstruction, which appears only in a second copy of this list later in the book.",
   "cap.fundingTitle": "How the projects are paid for",
@@ -263,13 +268,31 @@ export default {
   "debt.showTable": "Show the repayment schedule as a table",
   "debt.tableAria": "Repayment schedule",
 
+  // ---- reserves and the vehicle fund
+  "res.title": "What the city keeps in reserve",
+  "res.standfirst": ({ year, balance, share, budgetYear, goal }) => `The general fund ended ${year} with ${balance} in unassigned reserves, ${share} of the ${budgetYear} general fund budget. The city’s fund balance policy sets a goal of ${goal}, as the Government Finance Officers Association recommends.`,
+  "res.balanceTitle": ({ first, last }) => `Unassigned general fund reserves, ${first} to ${last}`,
+  "res.legendBalance": "Reserves as a share of the budget",
+  "res.legendGoal": (goal) => `City policy goal, ${goal}`,
+  "res.balanceAria": ({ first, last, from, to, goal }) => `Column chart of unassigned general fund reserves as a share of the budget, ${first} to ${last}, from ${from} to ${to}, against a goal of ${goal}. The same figures are in the table below.`,
+  "res.pairing": ({ year, budgetYear, page }) => `As in the city’s table, each year-end balance is measured against the general fund budget two years later: the ${year} balance against the ${budgetYear} budget (page ${page} of the budget book).`,
+  "res.showTable": "Show the numbers",
+  "res.colBalance": "Unassigned reserves",
+  "res.colBudget": "Budget measured against",
+  "res.colShare": "Share",
+  "res.fleetTitle": "The vehicle fund",
+  "res.fleetNote": ({ last, lastYear, peak, peakYear, first }) => `The Motor Pool Fund runs the city’s fleet: it buys, repairs and maintains nearly all city vehicles and equipment and bills departments for their use. Its working capital was ${last} at the end of ${lastYear}. The highest since ${first} was ${peak}, in ${peakYear}.`,
+  "res.fleetAria": ({ first, last }) => `Column chart of the Motor Pool Fund’s working capital at the end of each year, ${first} to ${last}. The same figures are in the table below.`,
+  "res.quoteSource": (page) => `The budget overview, page ${page}`,
+  "res.colWorking": "Working capital",
+
   // ---- staffing
   "staff.title": "How many people the city employs",
-  "staff.standfirst": ({ now, year, prev, prevYear }) => `The proposed budget funds ${now} full-time-equivalent positions in ${year}, compared with ${prev} in ${prevYear}.`,
+  "staff.standfirst": ({ now, year, prev, prevYear, grew, from, to, first }) => `The proposed budget funds ${now} full-time-equivalent positions in ${year}, compared with ${prev} in ${prevYear}. ${grew} has grown the most since ${first}, from ${from} to ${to} positions.`,
   "staff.chartAria": ({ first, last }) => `Column chart of total full-time-equivalent positions by year, ${first} to ${last}.`,
-  "staff.caveat": ({ oldest, council }) => `* ${oldest} is not comparable with later years: it is the only year that counts the ${council} council members.`,
+  "staff.caveat": ({ oldest, council, without }) => `* ${oldest} is not comparable with later years: it is the only year that counts the ${council} council members (${without} positions without them).`,
   "staff.byDept": "By department",
-  "staff.note": ({ first, last }) => `Bars show ${first} to ${last}, each row on its own scale. Blank years are blank in the city’s table.`,
+  "staff.note": ({ first, last }) => `Bars show ${first} to ${last}, each row on its own scale. Blank years are blank in the city’s table. Parks has no row: under an agreement with the city, the Marathon County Parks Department runs Wausau’s parks.`,
   "staff.sparkAria": ({ name, first, last }) => `${name} positions, ${first} to ${last}`,
   "staff.onlyIn": (year) => `only in ${year}`,
   "staff.notListed": "not listed",

@@ -11,6 +11,43 @@ import { levyYearIndex } from "./TaxBill";
 const GENERAL = "General Fund";
 const DEBT = "Debt Service Fund";
 
+// Each fund's levy change from the current year to the budget year, with tax
+// increment as its own row, largest first; funds that did not move are left
+// out. Colors follow the stacked chart: the two named funds and tax increment
+// keep theirs, every other fund is the "all other funds" gray.
+function swingRows(lf, iNow, iPrev, t) {
+  const color = (key) => ({ [GENERAL]: SERIES.teal, [DEBT]: SERIES.blue, tax_increment: SERIES.ochre })[key] ?? SERIES.gray;
+  const rows = lf.funds.map((f) => ({ key: f.name, label: fundLabel(f.name, t).label, delta: f.values[iNow] - f.values[iPrev] }));
+  rows.push({ key: "tax_increment", label: tifLabel(t).label, delta: lf.tax_increment[iNow] - lf.tax_increment[iPrev] });
+  return rows.filter((r) => r.delta !== 0).map((r) => ({ ...r, color: color(r.key) })).sort((a, c) => c.delta - a.delta);
+}
+
+// Bars either side of a zero line, on one scale. The rows must add up to the
+// total change, or the page stops.
+function Swing({ rows, total, t }) {
+  const sum = rows.reduce((s, r) => s + r.delta, 0);
+  if (sum !== total) throw new Error(`levy changes by fund sum to ${sum}, not the total change ${total}`);
+  const lo = Math.min(0, ...rows.map((r) => r.delta)), hi = Math.max(0, ...rows.map((r) => r.delta));
+  const at = (v) => ((v - lo) / (hi - lo)) * 100;
+  return (
+    <ul className="swing" style={{ "--zero": `${at(0)}%` }}>
+      {rows.map((r) => (
+        <li key={r.key} className={"swing-row " + (r.delta > 0 ? "swing-up" : "swing-down")}>
+          <span className="swing-name">{r.label}</span>
+          <span className="swing-track" aria-hidden="true">
+            <i style={{ left: `${at(Math.min(0, r.delta))}%`, width: `${at(Math.max(0, r.delta)) - at(Math.min(0, r.delta))}%`, background: r.color }} />
+          </span>
+          <span className="swing-amt">{signedUsd(r.delta)}</span>
+        </li>
+      ))}
+      <li className="swing-row swing-total">
+        <span className="swing-name">{t("levy.swingTotal")}</span>
+        <span className="swing-amt">{signedUsd(total)}</span>
+      </li>
+    </ul>
+  );
+}
+
 function fundByName(lf, name) {
   const f = lf.funds.find((x) => x.name === name);
   if (!f) throw new Error(`levy_by_fund has no "${name}"`);
@@ -66,6 +103,13 @@ export default function Levy({ b, status }) {
         })}
       </SectionHead>
 
+      <div className="swing-block">
+        <h3 className="subhead">{t("levy.swingTitle", { dir: levyChange >= 0 ? "up" : "down", amount: usd(Math.abs(levyChange)) })}</h3>
+        <p className="subnote">{t("levy.swingNote", { prev: years.current, year: years.budget })}</p>
+        <Swing rows={swingRows(lf, iNow, iPrev, t)} total={levyChange} t={t} />
+      </div>
+
+      <h3 className="subhead">{t("levy.historyTitle", { first: first.year, last: last.year })}</h3>
       <Legend series={series} />
       <StackedColumns rows={rows} series={series} totalLabel={t("levy.totalLabel")} step={10e6} height={280}
         ariaLabel={t("levy.chartAria", { first: first.year, last: last.year, from: usd(first.total), to: usd(last.total) })} />

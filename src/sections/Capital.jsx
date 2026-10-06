@@ -44,11 +44,15 @@ export default function Capital({ b, status }) {
   const count = cp.categories.reduce((s, c) => s + c.projects.length, 0);
   const fundingMax = Math.max(...cp.funding.map((f) => f.amount));
   const deferredCount = dp.departments.reduce((s, d) => s + d.projects.length, 0);
+  const top = cp.categories.flatMap((c) => c.projects).reduce((a, p) => (p.amount > a.amount ? p : a));
 
   return (
     <section id="capital" className="block">
       <SectionHead title={t("cap.title")} status={status}>
-        {t("cap.standfirst", { count, total: usd(cp.total), year: years.budget, deferred: deferredCount, deferredTotal: usd(dp.total) })}
+        {t("cap.standfirst", {
+          count, total: usd(cp.total), year: years.budget, deferred: deferredCount, deferredTotal: usd(dp.total),
+          top: top.description, topAmount: usd(top.amount), topShare: pct((top.amount / cp.total) * 100, 0),
+        })}
       </SectionHead>
 
       {cp.categories.map((c) => {
