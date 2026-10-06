@@ -493,13 +493,12 @@ body { margin: 0; background: var(--cream); color: var(--ink); }
 .cols { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 0; height: 210px; margin-top: 6px; }
 .col { display: flex; flex-direction: column; align-items: center; height: 100%; min-width: 0; }
 .col-val { font-size: 10.5px; color: var(--ink-2); white-space: nowrap; height: 18px; visibility: hidden; }
-.col-now .col-val, .col-caveat .col-val { visibility: visible; font-weight: 600; }
+.col-now .col-val { visibility: visible; font-weight: 600; }
 .col:first-child .col-val { align-self: flex-start; }
 .col:last-child .col-val { align-self: flex-end; }
 .col-track { flex: 1; width: 100%; display: flex; align-items: flex-end; justify-content: center; border-bottom: 1px solid var(--rule-2); }
 .col-bar { width: min(24px, 70%); background: #A9CFC8; border-radius: 4px 4px 0 0; }
 .col-now .col-bar { background: var(--teal); }
-.col-caveat .col-bar { background: repeating-linear-gradient(135deg, var(--teal) 0 3px, var(--teal-tint) 3px 6px); }
 .col-year { font-size: 10.5px; color: var(--muted); padding-top: 5px; }
 .col-first .col-val { visibility: visible; font-weight: 600; }
 .cols .col-track { position: relative; }

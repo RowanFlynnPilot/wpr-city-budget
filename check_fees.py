@@ -19,11 +19,14 @@ import sys
 
 import pdfplumber
 
-# Rows whose two years differ but are not reader-facing fee changes.
-# Keyed by (page, normalized label); each needs a reason.
+# Rows whose two years differ but are not reader-facing fee changes, each with a
+# reason. Keyed by (page, normalized label), or for a row with no label of its
+# own, by (page, "", normalized budget-year cell) so only that cell is excused.
 IGNORED = {
     (262, "soundandlightingsystem(400block)"):
         "Duplicate of the page 261 rate (listed once, from page 261).",
+    (253, "", "permitlevel6only:monthly=5seasonalavailability"):
+        "The updated book adds “only” to the 2027 cell; the rate stays $5 a month.",
 }
 
 KINDS = {"rate", "removed", "restructured"}
@@ -32,7 +35,9 @@ KINDS = {"rate", "removed", "restructured"}
 # page -> y positions between text lines.
 EXTRA_CUTS = {
     255: [566.0, 578.0],  # contractor parking permit | DEPARTMENT: FINANCE | NSF check charge
-    262: [456.0],         # ticketed event safety fee | police services per hour
+    # ticketed event safety fee | police services per hour (the updated book; the packet's
+    # cut was 456.0, before the city removed the two repeated Memorial rows above it)
+    262: [431.2],
 }
 
 
@@ -157,7 +162,7 @@ def main(pdf_path, fees_path):
         for r in rs:
             if r["prose"] or norm(r[cur]) == norm(r[bud]) or (n, r["top"]) in covered:
                 continue
-            if (n, norm(r["label"])) in IGNORED:
+            if (n, norm(r["label"])) in IGNORED or (n, "", norm(r[bud])) in IGNORED and not r["label"]:
                 continue
             missing.append(f"page {n}: {r['label'] or '(no label)'} | {bud}: {r[bud]!r} | {cur}: {r[cur]!r}")
     if missing:

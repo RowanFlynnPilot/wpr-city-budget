@@ -1,17 +1,17 @@
 {
   "source": {
-    "document": "City of Wausau 2027 proposed budget, Finance Committee packet: revenue schedule",
+    "document": "City of Wausau 2027 proposed budget, the updated book the city posted after the Finance Committee packet: revenue schedule",
     "first_page": 252,
     "last_page": 273,
-    "printed_page_offset": 1
+    "printed_page_offset": 0
   },
   "years": {
     "current": 2026,
     "budget": 2027
   },
   "verification": {
-    "date": "2026-10-02",
-    "method": "Every row of the fee schedules (PDF pages 252-273) was compared year against year in the PDF's text layer, split into columns by position on the page, and every change was checked against an image of its page. check_fees.py confirms each entry's printed rates sit in the right column of the cited page."
+    "date": "2026-10-05",
+    "method": "Every row of the fee schedules (PDF pages 252-273) was compared year against year in the PDF's text layer, split into columns by position on the page, and every change was checked against an image of its page. check_fees.py confirms each entry's printed rates sit in the right column of the cited page. Rechecked on Oct. 5, 2026 against the city's updated book, where the schedule sits on the same PDF pages: the city added “only” to the Jefferson Ramp 2 level 5 and 6 cells and dropped the repeated Memorial Tree and Memorial Bench rows; no rate changed."
   },
   "groups": [
     {
@@ -98,7 +98,7 @@
           "label": "",
           "section": "Jefferson Ramp 2 - 425 N 1st Street",
           "current_text": "Permit Level 5: Monthly = $15 Annual $165",
-          "budget_text": "Permit Level 5: Monthly = $17 Annual $187",
+          "budget_text": "Permit Level 5 only: Monthly = $17 Annual $187",
           "page": 253,
           "note": null
         },
@@ -111,7 +111,7 @@
           "label": "",
           "section": "Jefferson Ramp 2 - 425 N 1st Street",
           "current_text": "Permit Level 5: Monthly = $15 Annual $165",
-          "budget_text": "Permit Level 5: Monthly = $17 Annual $187",
+          "budget_text": "Permit Level 5 only: Monthly = $17 Annual $187",
           "page": 253,
           "note": null
         },
@@ -1325,7 +1325,7 @@
   "source_discrepancies": [
     {
       "page": 262,
-      "note": "The schedule lists the tree replacement, memorial, 400 Block rental and sound system fees a second time, with the 2026 price in both columns, as if unchanged. This list uses the first listing, where they rise; the second listing's own first row also shows the sound system rising."
+      "note": "The schedule lists the tree replacement, 400 Block rental and sound system fees a second time, with the 2026 price in both columns, as if unchanged. This list uses the first listing, where they rise; the second listing's own first row also shows the sound system rising."
     },
     {
       "page": 260,

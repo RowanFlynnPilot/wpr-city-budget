@@ -3,16 +3,16 @@
     "entity": "City of Wausau",
     "stage": "proposed",
     "fiscal_year": 2027,
-    "printed_page_offset": 1,
+    "printed_page_offset": 0,
     "years": {
       "prior": 2025,
       "current": 2026,
       "budget": 2027
     },
-    "pages": 284
+    "pages": 274
   },
   "tax_rate": {
-    "page": 16,
+    "page": 15,
     "levy": {
       "budget_year": 40628845,
       "current_year": 38055808,
@@ -31,7 +31,7 @@
     "assessed_valuation_is_estimate": true
   },
   "valuation": {
-    "page": 15,
+    "page": 14,
     "history": [
       {
         "year": 2017,
@@ -91,7 +91,7 @@
     ]
   },
   "levy_limit": {
-    "page": 16,
+    "page": 15,
     "history": [
       {
         "budget_year": 2027,
@@ -5011,30 +5011,12 @@
       2021,
       2020,
       2019,
-      2018,
-      2017
+      2018
     ],
     "departments": [
       {
-        "name": "City Council",
-        "values": [
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          11.0
-        ]
-      },
-      {
         "name": "Mayor\u2019s Office",
         "values": [
-          2.0,
           2.0,
           2.0,
           2.0,
@@ -5059,7 +5041,6 @@
           12.45,
           11.84,
           11.84,
-          11.84,
           11.84
         ]
       },
@@ -5075,15 +5056,13 @@
           7.0,
           6.0,
           6.0,
-          6.0,
-          7.0
+          6.0
         ]
       },
       {
         "name": "Human Resources",
         "values": [
           4.0,
-          3.0,
           3.0,
           3.0,
           3.0,
@@ -5107,7 +5086,6 @@
           4.75,
           4.75,
           4.75,
-          3.75,
           3.75
         ]
       },
@@ -5123,8 +5101,7 @@
           0,
           0,
           0,
-          0,
-          null
+          0
         ]
       },
       {
@@ -5138,7 +5115,6 @@
           2.0,
           2.0,
           2.0,
-          1.5,
           1.5,
           1.5
         ]
@@ -5155,8 +5131,7 @@
           90.25,
           89.8,
           89.0,
-          87.0,
-          84.0
+          87.0
         ]
       },
       {
@@ -5171,8 +5146,7 @@
           62.0,
           62.0,
           62.0,
-          61.0,
-          60.0
+          61.0
         ]
       },
       {
@@ -5186,7 +5160,6 @@
           69.0,
           69.0,
           69.0,
-          68.5,
           68.5,
           68.5
         ]
@@ -5203,8 +5176,7 @@
           14.0,
           14.0,
           14.0,
-          14.0,
-          13.75
+          14.0
         ]
       },
       {
@@ -5219,7 +5191,6 @@
           34.5,
           34.5,
           34.5,
-          31.5,
           31.5
         ]
       },
@@ -5235,8 +5206,7 @@
           31.0,
           29.5,
           29.5,
-          28.5,
-          27.5
+          28.5
         ]
       }
     ],
@@ -5250,8 +5220,7 @@
       331.95,
       328.39,
       326.59,
-      318.59,
-      325.34
+      318.59
     ]
   },
   "debt": {
@@ -5403,6 +5372,11 @@
             "description": "East Wausau Avenue Reconstruction STH 52",
             "department": null,
             "amount": 300000
+          },
+          {
+            "description": "Reconstruction of Ethel Street from Grand Avenue to Zimmerma Street",
+            "department": null,
+            "amount": 1830000
           },
           {
             "description": "Reconstruction of Emerson Street from Ethel Street to Eau Claire Boulevard",
@@ -5698,7 +5672,7 @@
     "total": 9095154
   },
   "fund_balance": {
-    "page": 20,
+    "page": 19,
     "policy_percent": 16.67,
     "years": [
       {
@@ -5814,20 +5788,14 @@
       }
     ],
     "overview_note": {
-      "page": 20,
+      "page": 19,
       "text": "No progress was made in increasing the motor pool line item budgets within the general fund to reflect the full rate. Current 2026 general fund projections indicate a yearend surplus. The Council could adopt a budget modification to absorb the full rate charges to departments with the Motor Pool revenue used to fund future fleet investment."
     }
   },
   "source_discrepancies": [
     {
-      "check": "capital projects: Infrastructure",
-      "page": 22,
-      "sum_of_rows": 16502360,
-      "printed_total": 18332360
-    },
-    {
       "check": "fund balance: previous row's budget vs adopted general fund spending",
-      "page": 20,
+      "page": 19,
       "sum_of_rows": 48014197,
       "printed_total": 48014200
     }

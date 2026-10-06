@@ -1,7 +1,7 @@
 {
  "source": {
   "document": "City of Wausau 2027 proposed budget, historical budget to actual charts",
-  "printed_page_offset": 1
+  "printed_page_offset": 0
  },
  "method": "Measured from the city's vector charts: each chart's axis is calibrated from its own labels, and each bar and point converted to dollars. Values are approximate and rounded to 0.1% of the chart's axis. A missing bar (null) is a year the chart draws no budget bar.",
  "tolerance_pct_of_axis": 0.25,

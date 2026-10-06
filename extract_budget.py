@@ -30,6 +30,7 @@ from pdfplumber.utils import cluster_objects
 VALUE = re.compile(r"^\(?-?\d[\d,]*(\.\d+)?%?\)?$|^-$")
 RUNNING_HEADER = re.compile(r"City of Wausau, Wisconsin \|? ?(\w+) Budget (\d{4})")
 PRINTED_PAGE = re.compile(r"^(\d+) City of Wausau|Budget \d{4} (\d+)$")
+PACKET_FOOTER = re.compile(r"\nPage \d+ of \d+\s*$")
 
 # Section tab printed sideways in the page margin. On left-hand pages the text
 # layer returns it reversed, so both spellings are listed. "Revenu" is the
@@ -143,13 +144,9 @@ CAPITAL_DEPTS = ("Public Works", "Airport", "CCITC", "Parks", "Fire")
 # page. Keyed by the exact reconciliation label. A mismatch not listed here
 # stops the run.
 KNOWN_DISCREPANCIES = {
-    # 2027 proposed, page 22: the 14 itemized infrastructure projects add up to
-    # $16,502,360; the printed "Total Infrastructure" is $18,332,360. The
-    # $1,830,000 gap equals the Ethel Street reconstruction that appears only
-    # in the second copy of this list on page 161.
-    "capital projects: Infrastructure": [16502360, 18332360],
-    # p. 20 prints the 2024 reserve's budget as 48,014,197; the general fund
-    # statement on p. 72 gives 2026 adopted spending as 48,014,200.
+    # p. 19 prints the 2024 reserve's budget as 48,014,197; the general fund
+    # statement on p. 72 gives 2026 adopted spending as 48,014,200. (The
+    # packet's capital-list gap, fixed in the city's updated book, is gone.)
     "fund balance: previous row's budget vs adopted general fund spending": [48014197, 48014200],
 }
 
@@ -206,15 +203,16 @@ def lines_after(text, needle):
     raise ValueError(f"{needle!r} not found on page")
 
 
-def table_rows(lines, n_cols, stop):
+def table_rows(lines, n_cols, stop=None):
     """Rows of (label, values) with exactly n_cols values.
 
     A line with no values is the first half of a wrapped label and is joined to
-    the row that follows. Reading ends at the first line starting with `stop`.
+    the row that follows. Reading ends at the first line starting with `stop`,
+    or with no `stop`, at the end of the page.
     """
     rows, pending = [], ""
     for line in lines:
-        if line.startswith(stop):
+        if stop is not None and line.startswith(stop):
             return rows
         label, values = split_row(line)
         if not values:
@@ -224,6 +222,8 @@ def table_rows(lines, n_cols, stop):
             raise ValueError(f"expected {n_cols} values, got {len(values)}: {line!r}")
         rows.append((f"{pending} {label}".strip(), values))
         pending = ""
+    if stop is None:
+        return rows
     raise ValueError(f"table never reached {stop!r}")
 
 
@@ -248,8 +248,10 @@ def body_pages(texts):
     The packet wraps the budget in an agenda, a cover, and trailing layout
     leftovers that repeat some tables. Only pages carrying the document's
     running header are the budget itself. Blanking keeps page numbers intact.
+    The packet also stamps "Page N of M" at the foot of each page; the city's
+    standalone book has no such line, so it is dropped as packet furniture.
     """
-    return [text if RUNNING_HEADER.search(text.split("\n")[0]) else "" for text in texts]
+    return [PACKET_FOOTER.sub("", text) if RUNNING_HEADER.search(text.split("\n")[0]) else "" for text in texts]
 
 
 def parse_meta(texts):
@@ -367,7 +369,7 @@ def parse_general_fund(texts, units, rec):
     statement row is checked against its unit's own budget page instead.
     """
     page = find_page(texts, "COMBINED STATEMENT OF EXPENDITURES - GENERAL FUND")
-    rows = table_rows(lines_after(texts[page], "GENERAL GOVERNMENT"), len(GF_COLS), "Page ")
+    rows = table_rows(lines_after(texts[page], "GENERAL GOVERNMENT"), len(GF_COLS))
     by_unit = {u["name"]: u["total_expenses"] for u in units}
     spending, revenues, totals = [], [], {}
     target = spending
@@ -404,7 +406,7 @@ def parse_all_funds(texts, year, rec):
     ]
     for key, page_needle, header, total_label in specs:
         page = find_page(texts, page_needle)
-        rows = table_rows(lines_after(texts[page], header), 2, "Page ")
+        rows = table_rows(lines_after(texts[page], header), 2)
         items = [{"name": label, "budget": v[0], "current_budget": v[1]} for label, v in rows if label != total_label]
         total = next(v for label, v in rows if label == total_label)
         rec.check(f"all funds {key}: budget", sum(i["budget"] for i in items), total[0], page + 1)

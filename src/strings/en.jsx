@@ -183,7 +183,7 @@ export default {
   "dept.revenue": "Revenue",
   "dept.colCategory": "Category",
   "dept.noRevenue": "This budget has no revenue table.",
-  "dept.page": ({ printed, pdf }) => <>See the city&rsquo;s page: page {printed} of the budget book (page {pdf} of the PDF).</>,
+  "dept.page": ({ printed, pdf }) => <>See the city&rsquo;s page: page {printed} of the budget book{printed !== pdf && <> (page {pdf} of the PDF)</>}.</>,
   "dept.totalNote": ({ n, total }) => `Together the ${n} budgets propose ${total} in spending. That total counts some dollars twice: money moved from one city fund to another, and internal service funds that bill other departments, are counted in both places.`,
 
   // ---- 10-year history (inside each department)
@@ -290,7 +290,6 @@ export default {
   "staff.title": "How many people the city employs",
   "staff.standfirst": ({ now, year, prev, prevYear, grew, from, to, first }) => `The proposed budget funds ${now} full-time-equivalent positions in ${year}, compared with ${prev} in ${prevYear}. ${grew} has grown the most since ${first}, from ${from} to ${to} positions.`,
   "staff.chartAria": ({ first, last }) => `Column chart of total full-time-equivalent positions by year, ${first} to ${last}.`,
-  "staff.caveat": ({ oldest, council, without }) => `* ${oldest} is not comparable with later years: it is the only year that counts the ${council} council members (${without} positions without them).`,
   "staff.byDept": "By department",
   "staff.note": ({ first, last }) => `Bars show ${first} to ${last}, each row on its own scale. Blank years are blank in the city’s table. Parks has no row: under an agreement with the city, the Marathon County Parks Department runs Wausau’s parks.`,
   "staff.sparkAria": ({ name, first, last }) => `${name} positions, ${first} to ${last}`,
@@ -300,7 +299,7 @@ export default {
   // ---- about
   "about.title": "About these numbers",
   "about.sourceT": "Source",
-  "about.sourceD": ({ year, pages, url }) => <>The City of Wausau&rsquo;s {year} proposed budget, as published in the {pages}-page packet for the city&rsquo;s Finance Committee. Page references on this page use the numbers printed in the budget book. The city posts its budget documents on its <a href={url} target="_blank" rel="noopener noreferrer">budget reports page</a>.</>,
+  "about.sourceD": ({ year, pages, url }) => <>The City of Wausau&rsquo;s {year} proposed budget: the updated {pages}-page version the city posted after the Finance Committee&rsquo;s packet, which it replaces. Page references on this page use the numbers printed in the budget book. The city posts its budget documents on its <a href={url} target="_blank" rel="noopener noreferrer">budget reports page</a>.</>,
   "about.methodT": "Method",
   "about.methodD": (n) => `Wausau Pilot & Review extracted every table from the book and checked each one against the totals the city printed and against the book’s other tables. The ${n} department and fund budgets add up exactly to the citywide totals. Where the book disagrees with itself, this page says so.`,
   "about.historyT": "The 10-year history is approximate",

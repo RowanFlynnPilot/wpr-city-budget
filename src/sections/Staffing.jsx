@@ -3,10 +3,6 @@ import { SectionHead, Change, Spark } from "../ui";
 import { fte } from "../format";
 import { useStrings } from "../i18n.jsx";
 
-// The council's row is filled in only for the oldest year (rule 9), which
-// makes that year's total not comparable with the rest.
-const COUNCIL = "City Council";
-
 export default function Staffing({ b, status }) {
   const t = useStrings();
   const { years } = b.meta;
@@ -16,8 +12,6 @@ export default function Staffing({ b, status }) {
   if (iNow < 0 || iPrev < 0) throw new Error("staffing is missing the budget or current year");
   const iOld = st.years.length - 1;
   const oldest = st.years[iOld];
-  const council = st.departments.find((d) => d.name === COUNCIL);
-  if (!council) throw new Error(`staffing has no "${COUNCIL}" row`);
 
   // Oldest first for the charts (the source runs newest first).
   const asc = (vals) => [...vals].reverse();
@@ -25,8 +19,7 @@ export default function Staffing({ b, status }) {
   const yearsAsc = asc(st.years);
   const max = Math.max(...st.total);
   const depts = [...st.departments].sort((a, c) => (c.values[iNow] ?? -1) - (a.values[iNow] ?? -1));
-  // The department that grew the most since the oldest year. Department rows
-  // compare across years; only the total's oldest year carries the council.
+  // The department that grew the most since the oldest year.
   const grew = st.departments
     .filter((d) => d.values[iNow] !== null && d.values[iOld] !== null)
     .reduce((a, d) => (d.values[iNow] - d.values[iOld] > a.values[iNow] - a.values[iOld] ? d : a));
@@ -42,14 +35,13 @@ export default function Staffing({ b, status }) {
 
       <div className="cols" role="img" aria-label={t("staff.chartAria", { first: oldest, last: years.budget })}>
         {yearsAsc.map((y, i) => (
-          <div className={"col" + (y === oldest ? " col-caveat" : "") + (y === years.budget ? " col-now" : "")} key={y}>
-            <span className="col-val">{fte(totalsAsc[i])}{y === oldest && <sup>*</sup>}</span>
+          <div className={"col" + (y === oldest ? " col-first" : "") + (y === years.budget ? " col-now" : "")} key={y}>
+            <span className="col-val">{fte(totalsAsc[i])}</span>
             <span className="col-track"><span className="col-bar" style={{ height: `${(totalsAsc[i] / max) * 100}%` }} /></span>
             <span className="col-year">{y}</span>
           </div>
         ))}
       </div>
-      <p className="note">{t("staff.caveat", { oldest, council: council.values[iOld], without: fte(st.total[iOld] - council.values[iOld]) })}</p>
 
       <h3 className="subhead">{t("staff.byDept")}</h3>
       <p className="subnote">{t("staff.note", { first: oldest, last: years.budget })}</p>
